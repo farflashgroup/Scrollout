@@ -18,7 +18,7 @@
 - [x] Public website, privacy and support URLs work over HTTPS; DNS complete.
 - [x] Saved reviewer-instructions-short.txt in the dashboard (441 of 500 allowed characters). Full internal test guidance is in reviewer-instructions.txt.
 - [x] Free of charge, Public, all regions.
-- [x] Submitted for Google review. Automatic publication: disabled.
+- [x] Submitted for Google review. Automatic publication: enabled.
 
 Draft: https://chrome.google.com/webstore/devconsole/9406c6b1-b2f4-4509-94ad-0146d2c7884f/ajlhmigmaeodaedpgjmngkchnjoenmkm/edit/listing
 
@@ -28,6 +28,6 @@ Current review status: Pending review. See submission-state.json for the recorde
 
 ## After approval
 
-Review the public listing before launch. Set storeUrl in publisher.json to the real published listing URL, regenerate the website, and verify that the installation CTA and instructions switch to Chrome Web Store installation. Keep submission helpers outside website/.
+Google will publish automatically after approval. Once live, check the public listing. Set storeUrl in publisher.json to the real published listing URL, regenerate the website, and verify that the installation CTA and instructions switch to Chrome Web Store installation. Keep submission helpers outside website/.
 
 Official requirements checked on 2026-10-19 are listed in asset-provenance.json.
