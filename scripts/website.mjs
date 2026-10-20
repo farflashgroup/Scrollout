@@ -20,5 +20,5 @@ await fs.writeFile('website/sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?>
 await fs.writeFile('website/vercel.json',JSON.stringify({$schema:'https://openapi.vercel.sh/vercel.json',cleanUrls:true,trailingSlash:true,headers:[{source:'/(.*)',headers:[{key:'X-Content-Type-Options',value:'nosniff'},{key:'Referrer-Policy',value:'strict-origin-when-cross-origin'},{key:'X-Frame-Options',value:'DENY'},{key:'Content-Security-Policy',value:"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"},{key:'Permissions-Policy',value:'camera=(), microphone=(), geolocation=()'}]}]},null,2)+'\n');
 console.log('Landing, privacy, and support pages generated. No third-party scripts or remote fonts.');
 const routing=JSON.parse(await fs.readFile('website/vercel.json','utf8'));
-routing.redirects=[{source:'/:path*',has:[{type:'host',value:'.*\\.vercel\\.app'}],destination:config.websiteUrl+'/:path*',permanent:true}];
+routing.redirects=[{source:'/',has:[{type:'host',value:'.*\\.vercel\\.app'}],destination:config.websiteUrl+'/',permanent:true},{source:'/:path(.*)',has:[{type:'host',value:'.*\\.vercel\\.app'}],destination:config.websiteUrl+'/:path',permanent:true}];
 await fs.writeFile('website/vercel.json',JSON.stringify(routing,null,2)+'\n');
