@@ -7,8 +7,8 @@
   "formats": "PNG; full-bleed 1280×800 screenshots, 440×280 small promo, 1400×560 optional marquee, 128×128 transparent icon",
   "extensionArchive": {
     "path": "release/Scrollout-1.0.2.zip",
-    "bytes": 603730,
-    "sha256": "78edf04acf922ba6cfb2373df8cde2d96676c3fa815cc4b74e60aee6ba9acad0"
+    "bytes": 604463,
+    "sha256": "5ab3aae82a8eb2e29f88e44ef06044e777c288d5ab8816ec227b218dc927d580"
   },
   "officialRequirements": [
     "https://developer.chrome.com/docs/webstore/images",

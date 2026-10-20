@@ -4,14 +4,14 @@
 
 - [ ] Sign in with the Google account that should own the extension.
 - [ ] Enable Google two-step verification if needed.
-- [ ] Register as a Chrome Web Store developer and pay Google's one-time registration fee, if not already registered.
+- [x] Developer registration paid (confirmed by the account owner).
 - [ ] Public publisher name: FarFlash Group Ltd..
 - [ ] Verify scrollout@farflash.com as the public contact address; ensure the mailbox exists and receives mail.
 - [ ] Declare Trader or Non-Trader status based on your circumstances and provide any required legal/identity details. Being free does not by itself determine this status.
 
 ## Create the draft listing
 
-- [ ] Add new item and upload **release/Scrollout-1.0.2.zip** (the extension ZIP; not the source or store-kit ZIP). SHA-256: 78edf04acf922ba6cfb2373df8cde2d96676c3fa815cc4b74e60aee6ba9acad0.
+- [ ] Add new item and upload **release/Scrollout-1.0.2.zip** (the extension ZIP; not the source or store-kit ZIP). SHA-256: 5ab3aae82a8eb2e29f88e44ef06044e777c288d5ab8816ec227b218dc927d580.
 - [ ] Paste description from store/description.txt and remaining fields from store/listing.json.
 - [ ] Upload store/assets/store-icon-128.png, promo-small-440x280.png, and the five numbered screenshots. The marquee is optional.
 - [ ] Paste the single purpose and four permission explanations from store/privacy-practices.md. Declare no remote code.

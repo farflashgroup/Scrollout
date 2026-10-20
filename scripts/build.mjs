@@ -17,7 +17,7 @@ for(const name of ['react','react-dom','lucide-react','fflate','pdf-lib','@fonts
 await viteBuild();
 await bundle({ entryPoints:['src/extension/background.ts'],outfile:'dist/background.js',bundle:true,format:'esm',target:'chrome120',minify:true });
 await bundle({ entryPoints:['src/extension/content.ts'],outfile:'dist/content.js',bundle:true,format:'iife',target:'chrome120',minify:true });
-for(const guide of ['INSTALL.md','BRAND.md','THIRD_PARTY_NOTICES.md'])await fs.copyFile(guide,path.join('dist',guide));
+for(const guide of ['INSTALL.md','BRAND.md','THIRD_PARTY_NOTICES.md','LICENSE'])await fs.copyFile(guide,path.join('dist',guide));
 const entries={};
 async function collect(dir, prefix='', target=entries) {
   for (const item of await fs.readdir(dir,{withFileTypes:true})) {
@@ -30,7 +30,7 @@ await collect('dist');
 await fs.mkdir('release',{recursive:true});
 await fs.writeFile(`release/Scrollout-${version}.zip`,zipSync(entries,{level:6}));
 const sourceEntries={};
-for(const dir of ['src','public','scripts','tests'])await collect(dir,dir+'/',sourceEntries);
-for(const file of ['package.json','package-lock.json','editor.html','tsconfig.json','vite.config.ts','playwright.config.ts','.gitignore','README.md','INSTALL.md','BRAND.md','THIRD_PARTY_NOTICES.md'])sourceEntries[file]=new Uint8Array(await fs.readFile(file));
+for(const dir of ['src','public','scripts','tests','store','website'])await collect(dir,dir+'/',sourceEntries);
+for(const file of ['package.json','package-lock.json','editor.html','tsconfig.json','vite.config.ts','playwright.config.ts','.gitignore','README.md','INSTALL.md','BRAND.md','THIRD_PARTY_NOTICES.md','LICENSE','CONTRIBUTING.md','SECURITY.md'])sourceEntries[file]=new Uint8Array(await fs.readFile(file));
 await fs.writeFile(`release/Scrollout-${version}-source.zip`,zipSync(sourceEntries,{level:6}));
 console.log(`Ready: dist/, release/Scrollout-${version}.zip, and release/Scrollout-${version}-source.zip`);

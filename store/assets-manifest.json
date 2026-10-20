@@ -1,0 +1,58 @@
+[
+  {
+    "file": "assets/01-full-page-editor-1280x800.png",
+    "width": 1280,
+    "height": 800,
+    "bytes": 85131,
+    "sha256": "892ca1f0f26be9d01325b51b608a85b6f4f74ee2d247870ff0f65357f86a0a82"
+  },
+  {
+    "file": "assets/02-annotate-1280x800.png",
+    "width": 1280,
+    "height": 800,
+    "bytes": 89399,
+    "sha256": "f5bc767a9522b195366339be8ca2f872967500d0f4f4e3ac48084f6da6caff10"
+  },
+  {
+    "file": "assets/03-crop-1280x800.png",
+    "width": 1280,
+    "height": 800,
+    "bytes": 90494,
+    "sha256": "1cf1cfd39d9b0789a8f0b8edebb745b150280440b29a01282dd3383c71a76bb1"
+  },
+  {
+    "file": "assets/04-redact-1280x800.png",
+    "width": 1280,
+    "height": 800,
+    "bytes": 85853,
+    "sha256": "1b2ac3511e1f248bb2ebab718fc1b78906a2c645b6f05e93843571a9b80a3bd4"
+  },
+  {
+    "file": "assets/05-export-1280x800.png",
+    "width": 1280,
+    "height": 800,
+    "bytes": 107200,
+    "sha256": "c1bacbd23978ab4ea9017f901ce489af2c38547b01d885dba07b03bc43dfd828"
+  },
+  {
+    "file": "assets/promo-marquee-1400x560.png",
+    "width": 1400,
+    "height": 560,
+    "bytes": 44211,
+    "sha256": "ddf5d347010ea5661c3cd224031a7a043b4b48ee6786879444ad797bef42c00b"
+  },
+  {
+    "file": "assets/promo-small-440x280.png",
+    "width": 440,
+    "height": 280,
+    "bytes": 7668,
+    "sha256": "fe77dd7d07ec1a6038b7e7920699d3712b376be51a55a05d631aa59e6a552c5a"
+  },
+  {
+    "file": "assets/store-icon-128.png",
+    "width": 128,
+    "height": 128,
+    "bytes": 1657,
+    "sha256": "fa8d1de982e59c991f4ffebb87513e4ef704c28fad1bc20e40100293dac17cf9"
+  }
+]

@@ -24,7 +24,7 @@ Capture the whole page. Draw, crop, highlight, redact, and export — free and o
 
 Capture the whole page. Make it yours.
 
-Scrollout takes a full-page screenshot of the tab you choose, then opens a simple editor. Every editing tool and export format is free. There is no account, subscription, or paywall.
+Scrollout takes a full-page screenshot of the tab you choose, then opens a simple editor. Every editing tool and export format is free. There is no account, subscription, or paywall. Scrollout is open source under the MIT license: https://github.com/farflashgroup/Scrollout
 
 CAPTURE THE WHOLE PAGE
 Click the Scrollout toolbar icon and keep the page active while it scrolls. Capture includes horizontal overflow and stops at the page dimensions measured at the start. Click the icon again or press Escape on the source page to cancel.

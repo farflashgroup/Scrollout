@@ -4,8 +4,9 @@
   "websiteUrl": "https://scrollout.farflash.com",
   "githubOwner": "farflashgroup",
   "storeUrl": null,
+  "registrationPaid": true,
   "preparedOn": "2026-10-19",
   "version": "1.0.2",
   "archiveName": "Scrollout-1.0.2.zip",
-  "archiveSha256": "78edf04acf922ba6cfb2373df8cde2d96676c3fa815cc4b74e60aee6ba9acad0"
+  "archiveSha256": "5ab3aae82a8eb2e29f88e44ef06044e777c288d5ab8816ec227b218dc927d580"
 }

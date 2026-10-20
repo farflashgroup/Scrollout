@@ -123,3 +123,9 @@ node scripts/serve-website.mjs
 ```
 
 Publisher identity and contact values are in `store/publisher.json`. Regenerate and verify the pages and listing files after changing them. Current website deployment and DNS status are recorded in `store/deployment.md`.
+
+## Open source
+
+Scrollout is licensed under the [MIT License](LICENSE), copyright 2026 FarFlash Group Ltd. The public repository is [farflashgroup/Scrollout](https://github.com/farflashgroup/Scrollout). Bundled fonts and third-party dependencies retain the licenses listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidance and [SECURITY.md](SECURITY.md) for private vulnerability reports.
