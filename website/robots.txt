@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://scrollout.farflash.com/sitemap.xml
