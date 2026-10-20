@@ -10,6 +10,7 @@ Support: **scrollout@farflash.com**
 - Production branch: `main`
 - Initial deployed commit: `bee6e9a542439071fcb5e0720d560811be90f7fe`
 - Initial production deployment: `dpl_2KRKz5reZzPqB7Dw4T5Z6HZa534M` — READY
+- Verified routing deployment: `dpl_49kYGxXSKRRoBNxsyXhmoEmEWtEd`, commit `7f635df5ab99af1593d423c7ec5935388aeada6c` — READY
 - Default Vercel alias: `scrollout-five.vercel.app`; it redirects to the custom domain after the routing update.
 - Intended public address: https://scrollout.farflash.com
 - Privacy policy: https://scrollout.farflash.com/privacy/
@@ -51,3 +52,5 @@ Set `storeUrl` in `store/publisher.json` to the real listing URL, regenerate the
 ## Vercel hostname restriction
 
 `website/vercel.json` permanently redirects requests on `*.vercel.app` to the matching path on `https://scrollout.farflash.com`, preserving query strings. This prevents Vercel aliases from serving a second public copy of the website. Project deployment protection remains enabled for non-custom deployment addresses. The redirect takes effect on each new deployment; previously created immutable deployments are subject to project deployment protection.
+
+Verified on the production alias after deployment: `/`, `/privacy/?check=keep`, `/support/`, a screenshot asset, and the extension ZIP all return HTTP 308 to the corresponding custom-domain URL. The previous immutable deployment URL and the project/branch deployment aliases return a Vercel sign-in redirect rather than website content.
