@@ -2,12 +2,13 @@
 
 ## You complete the publisher account
 
-- [ ] Sign in with the Google account that should own the extension.
+- [x] Signed in with the company Google account that should own the extension.
 - [ ] Enable Google two-step verification if needed.
 - [x] Developer registration paid (confirmed by the account owner).
-- [ ] Public publisher name: FarFlash Group Ltd..
+- [ ] Public publisher name: FarFlash Group Ltd.
 - [ ] Verify scrollout@farflash.com as the public contact address; ensure the mailbox exists and receives mail.
-- [ ] Declare Trader or Non-Trader status based on your circumstances and provide any required legal/identity details. Being free does not by itself determine this status.
+- [x] Account owner chose Trader and authorized the marketplace industry agreement.
+- [ ] Complete company verification using a Business/Organization payments profile. See company-verification.md; the previously shown saved profile was Individual.
 
 ## Create the draft listing
 
@@ -16,7 +17,7 @@
 - [ ] Upload store/assets/store-icon-128.png, promo-small-440x280.png, and the five numbered screenshots. The marquee is optional.
 - [ ] Paste the single purpose and four permission explanations from store/privacy-practices.md. Declare no remote code.
 - [ ] Complete accurate data-use disclosures and limited-use certifications. Local capture still handles website content.
-- [ ] Verify https://scrollout.farflash.com/privacy/ and https://scrollout.farflash.com/support/ load publicly without login. Enter those URLs only after DNS and HTTPS are working.
+- [x] https://scrollout.farflash.com/privacy/ and https://scrollout.farflash.com/support/ load publicly without login; DNS and HTTPS are working.
 - [ ] Paste store/reviewer-instructions.txt in Test instructions. No test login is needed.
 - [ ] Choose free distribution, audience, and countries.
 - [ ] Review the complete draft. Submit for review when ready; optionally disable automatic publishing after approval to control launch timing.

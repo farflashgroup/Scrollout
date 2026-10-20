@@ -12,32 +12,30 @@ Support: **scrollout@farflash.com**
 - Initial production deployment: `dpl_2KRKz5reZzPqB7Dw4T5Z6HZa534M` — READY
 - Verified routing deployment: `dpl_49kYGxXSKRRoBNxsyXhmoEmEWtEd`, commit `7f635df5ab99af1593d423c7ec5935388aeada6c` — READY
 - Default Vercel alias: `scrollout-five.vercel.app`; it redirects to the custom domain after the routing update.
-- Intended public address: https://scrollout.farflash.com
+- Live public address: https://scrollout.farflash.com
 - Privacy policy: https://scrollout.farflash.com/privacy/
 - Support: https://scrollout.farflash.com/support/
 
-## Complete the custom domain
+## Custom domain completed
 
-The domain is attached to the Vercel project and ownership is verified. GoDaddy is the authoritative DNS provider. The `scrollout` record was absent when checked on October 19, 2026.
-
-Open https://dcc.godaddy.com/control/dns?domainName=farflash.com and add:
+The domain is attached to the Vercel project and ownership is verified. The following CNAME was saved in GoDaddy, the authoritative DNS provider, and verified against its authoritative nameserver:
 
 | Field | Value |
 | --- | --- |
 | Type | CNAME |
 | Name / Host | `scrollout` |
 | Value / Points to | `2ae4dcf2dc674b9e.vercel-dns-016.com` |
-| TTL | Provider default |
+| TTL | 1 hour (saved provider value) |
 
-This is the project-specific target returned by Vercel. Keep unrelated DNS records, including email records, unchanged. Wait for DNS propagation and Vercel's HTTPS certificate, then verify the homepage, privacy, and support URLs load without login before entering them in the store listing.
+This is the project-specific target returned by Vercel. Vercel reports a matching CNAME, no conflicts, and `misconfigured: false`. The homepage, privacy policy, support page, and extension download load publicly over HTTPS. Other DNS records were left unchanged. No further DNS entry is needed for this deployment.
 
-DNS editing requires access to the GoDaddy account; it has not been performed by the preparation scripts.
+The deployed site returns HTTP 404 for `/store/START-HERE.html`, `/site-config.json`, `/privacy/content.json`, and `/.git/config`. Submission helpers and generator inputs remain outside the website directory; they are development files, not public website pages.
 
 ## Website validation
 
 Landing, privacy, and support pages passed at widths 320, 390, 768, 1024, 1280, 1440, and 1920, plus a 1440px viewport at 2× display scaling, in Chromium 153.0.8010.12 and Chrome 120.0.6099.109.
 
-Checks covered page identity/content, no horizontal overflow, loaded images and preserved aspect ratios, every tool-preview control, high-DPI image selection, keyboard FAQ interaction, privacy navigation, restrictive response headers, no console/page errors, and no third-party requests during local page use. The extension download matched the tested distribution ZIP byte for byte.
+The same responsive checks subsequently passed against the live custom domain in Chrome 120. Checks covered page identity/content, no horizontal overflow, loaded images and preserved aspect ratios, every tool-preview control, high-DPI image selection, keyboard FAQ interaction, privacy navigation, restrictive response headers, no console/page errors, and no third-party requests during page use. The extension download matched the tested distribution ZIP byte for byte.
 
 The website uses responsive screenshots rendered at 640×400, 1280×800, and 2560×1600. Store screenshots remain exactly 1280×800. The two requested FAQ entries and all eyebrow labels were removed; divider lines remain. The landing page explicitly states that screenshots are never uploaded to FarFlash and cannot be accessed by FarFlash through the extension.
 
