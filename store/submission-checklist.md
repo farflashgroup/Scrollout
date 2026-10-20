@@ -1,33 +1,33 @@
 # Submit Scrollout 1.0.2
 
-## You complete the publisher account
+## Publisher account
 
-- [x] Signed in with the company Google account that should own the extension.
-- [ ] Enable Google two-step verification if needed.
-- [x] Developer registration paid (confirmed by the account owner).
-- [ ] Public publisher name: FarFlash Group Ltd.
-- [ ] Verify scrollout@farflash.com as the public contact address; ensure the mailbox exists and receives mail.
-- [x] Account owner chose Trader and authorized the marketplace industry agreement.
-- [ ] Complete company verification using a Business/Organization payments profile. See company-verification.md; the previously shown saved profile was Individual.
+- [x] Signed in with the company Google account.
+- [x] Developer registration paid.
+- [x] Public publisher name: FarFlash Group Ltd.
+- [x] Public contact scrollout@farflash.com verified.
+- [x] Trader verification completed using the Organization setup flow; see company-verification.md.
 
-## Create the draft listing
+## Store draft
 
-- [ ] Add new item and upload **release/Scrollout-1.0.2.zip** (the extension ZIP; not the source or store-kit ZIP). SHA-256: 5ab3aae82a8eb2e29f88e44ef06044e777c288d5ab8816ec227b218dc927d580.
-- [ ] Paste description from store/description.txt and remaining fields from store/listing.json.
-- [ ] Upload store/assets/store-icon-128.png, promo-small-440x280.png, and the five numbered screenshots. The marquee is optional.
-- [ ] Paste the single purpose and four permission explanations from store/privacy-practices.md. Declare no remote code.
-- [ ] Complete accurate data-use disclosures and limited-use certifications. Local capture still handles website content.
-- [x] https://scrollout.farflash.com/privacy/ and https://scrollout.farflash.com/support/ load publicly without login; DNS and HTTPS are working.
-- [ ] Paste store/reviewer-instructions.txt in Test instructions. No test login is needed.
-- [ ] Choose free distribution, audience, and countries.
-- [ ] Review the complete draft. Submit for review when ready; optionally disable automatic publishing after approval to control launch timing.
+- [x] Uploaded release/Scrollout-1.0.2.zip (SHA-256: 5ab3aae82a8eb2e29f88e44ef06044e777c288d5ab8816ec227b218dc927d580).
+- [x] Saved description, English language, Tools category, homepage and support URLs.
+- [x] Uploaded icon, five numbered screenshots, small promo and marquee.
+- [x] Saved single purpose, four permission explanations, no remote code, Website content and Web history disclosures, and privacy URL.
+- [ ] Publisher authorized and accepted the three limited-use certifications.
+- [x] Public website, privacy and support URLs work over HTTPS; DNS complete.
+- [x] Saved reviewer-instructions-short.txt in the dashboard (441 of 500 allowed characters). Full internal test guidance is in reviewer-instructions.txt.
+- [x] Free of charge, Public, all regions.
+- [ ] Submitted for Google review. Automatic publication: not selected yet.
 
-## Pages to open
+Draft: https://chrome.google.com/webstore/devconsole/9406c6b1-b2f4-4509-94ad-0146d2c7884f/ajlhmigmaeodaedpgjmngkchnjoenmkm/edit/listing
 
-- Developer dashboard: https://chrome.google.com/webstore/devconsole
-- Google two-step verification: https://myaccount.google.com/signinoptions/two-step-verification
-- GoDaddy DNS for farflash.com: https://dcc.godaddy.com/control/dns?domainName=farflash.com
+Item ID: ajlhmigmaeodaedpgjmngkchnjoenmkm
 
-Publisher account identity, payment, mailbox verification, and trader declarations must be completed by the account owner. No store submission or fee payment has been performed by this preparation script.
+Current review status: draft. See submission-state.json for the recorded state. A draft or review submission is not a published listing.
 
-See asset-provenance.json for the official requirements checked on 2026-10-19.
+## After approval
+
+Review the public listing before launch. Set storeUrl in publisher.json to the real published listing URL, regenerate the website, and verify that the installation CTA and instructions switch to Chrome Web Store installation. Keep submission helpers outside website/.
+
+Official requirements checked on 2026-10-19 are listed in asset-provenance.json.
