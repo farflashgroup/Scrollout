@@ -14,17 +14,17 @@
 - [x] Saved description, English language, Tools category, homepage and support URLs.
 - [x] Uploaded icon, five numbered screenshots, small promo and marquee.
 - [x] Saved single purpose, four permission explanations, no remote code, Website content and Web history disclosures, and privacy URL.
-- [ ] Publisher authorized and accepted the three limited-use certifications.
+- [x] Publisher authorized and accepted the three limited-use certifications.
 - [x] Public website, privacy and support URLs work over HTTPS; DNS complete.
 - [x] Saved reviewer-instructions-short.txt in the dashboard (441 of 500 allowed characters). Full internal test guidance is in reviewer-instructions.txt.
 - [x] Free of charge, Public, all regions.
-- [ ] Submitted for Google review. Automatic publication: not selected yet.
+- [x] Submitted for Google review. Automatic publication: disabled.
 
 Draft: https://chrome.google.com/webstore/devconsole/9406c6b1-b2f4-4509-94ad-0146d2c7884f/ajlhmigmaeodaedpgjmngkchnjoenmkm/edit/listing
 
 Item ID: ajlhmigmaeodaedpgjmngkchnjoenmkm
 
-Current review status: draft. See submission-state.json for the recorded state. A draft or review submission is not a published listing.
+Current review status: Pending review. See submission-state.json for the recorded state. A draft or review submission is not a published listing.
 
 ## After approval
 
