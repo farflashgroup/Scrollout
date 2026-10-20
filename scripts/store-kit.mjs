@@ -94,6 +94,6 @@ await fs.copyFile('node_modules/@fontsource-variable/inter/files/inter-latin-wgh
 await fs.copyFile(path.join('release',archiveName),path.join('website/downloads',archiveName));
 const social=`<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="#0B8F78"/><svg x="72" y="116" width="620" height="172" viewBox="-7 -7 440 122">${inner(lockup)}</svg>${textPaths('Capture the whole page.',94,395,48)}${textPaths('Make it yours.',94,465,48)}<path d="M98 510H350" stroke="#FF6359" stroke-width="10" stroke-linecap="round"/></svg>`;
 await sharp(Buffer.from(social)).png().toFile('website/assets/social.png');
-await fs.writeFile('website/privacy/content.json',json(policySections));
-await fs.writeFile('website/site-config.json',json({...config,version,archiveName,archiveSha256:sha256(archive)}));
+await write('privacy-content.json',json(policySections));
+await write('website-config.json',json({...config,version,archiveName,archiveSha256:sha256(archive)}));
 console.log(`Store copy, privacy policy, brand artwork, and website inputs prepared for ${config.publisherName}`);
