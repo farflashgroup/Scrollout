@@ -5,6 +5,8 @@ import { build as bundle } from 'esbuild';
 import { zipSync } from 'fflate';
 
 const {version}=JSON.parse(await fs.readFile('package.json','utf8'));
+// Validation builds must never replace an already published version's ZIP.
+const verifyOnly=process.argv.includes('--verify');
 const manifest=JSON.parse(await fs.readFile('public/manifest.json','utf8'));
 if(manifest.version!==version)throw new Error('Package and manifest versions must match.');
 
@@ -18,6 +20,7 @@ await viteBuild();
 await bundle({ entryPoints:['src/extension/background.ts'],outfile:'dist/background.js',bundle:true,format:'esm',target:'chrome120',minify:true });
 await bundle({ entryPoints:['src/extension/content.ts'],outfile:'dist/content.js',bundle:true,format:'iife',target:'chrome120',minify:true });
 for(const guide of ['INSTALL.md','BRAND.md','THIRD_PARTY_NOTICES.md','LICENSE'])await fs.copyFile(guide,path.join('dist',guide));
+if(verifyOnly){console.log('Verified build ready in dist/; published archives were preserved.');process.exit(0)}
 const entries={};
 async function collect(dir, prefix='', target=entries) {
   for (const item of await fs.readdir(dir,{withFileTypes:true})) {

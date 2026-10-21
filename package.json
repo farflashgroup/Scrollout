@@ -5,9 +5,15 @@
   "license": "MIT",
   "type": "module",
   "description": "Free, private full-page screenshots and editing for Chrome.",
+  "engines": {
+    "node": "^24.22.1 || ^26.12.1"
+  },
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 4173",
     "build": "tsc --noEmit && node scripts/build.mjs",
+    "build:check": "tsc --noEmit && node scripts/build.mjs --verify",
+    "security": "npm audit --audit-level=low && node scripts/audit-artifacts.mjs",
+    "security:site": "node scripts/security-site.mjs",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test",
@@ -32,7 +38,7 @@
     "fontkit": "^2.0.4",
     "sharp": "^0.35.5",
     "typescript": "^7.0.2",
-    "vite": "^8.3.2",
+    "vite": "8.3.5",
     "vitest": "^5.0.3"
   }
 }

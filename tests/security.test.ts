@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { isEditorSender, isEditorUrl, isWorkerMessage } from '../src/shared/messages';
 import { readFileSync } from 'node:fs';
+import { readdirSync, existsSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import path from 'node:path';
 
 const editorUrl='chrome-extension://abcdefghijklmnop/editor.html';
 const tile={type:'TILE',id:'capture-123',sequence:0,total:1,x:0,y:0,metrics:{width:900,height:700,viewportWidth:900,viewportHeight:700,contentWidth:900,contentHeight:700}};
@@ -30,5 +33,39 @@ describe('extension trust boundaries',()=>{
     const csp=manifest.content_security_policy.extension_pages;for(const directive of ["default-src 'self'","script-src 'self'","connect-src 'self'","object-src 'none'","frame-src 'none'","base-uri 'none'","form-action 'none'"])expect(csp).toContain(directive);
     expect(csp).not.toContain('unsafe-eval');
     expect(csp.match(/connect-src[^;]+/)?.[0]).toBe("connect-src 'self' https://scrollout.farflash.com/releases.json");
+  });
+});
+
+describe('public website trust boundaries',()=>{
+  it('keeps scripts local and allows only hashed structured data inline',()=>{
+    const config=JSON.parse(readFileSync('website/vercel.json','utf8'));
+    const csp=config.headers.find((rule:{source:string})=>rule.source==='/(.*)').headers.find((h:{key:string})=>h.key==='Content-Security-Policy').value as string;
+    for(const directive of ["default-src 'self'","connect-src 'none'","object-src 'none'","base-uri 'none'","form-action 'none'","frame-ancestors 'none'"])expect(csp).toContain(directive);
+    expect(csp).not.toMatch(/unsafe-inline|unsafe-eval/);
+    function pages(dir:string):string[]{return readdirSync(dir,{withFileTypes:true}).flatMap(entry=>entry.isDirectory()?pages(path.join(dir,entry.name)):entry.name.endsWith('.html')?[path.join(dir,entry.name)]:[])}
+    const htmlFiles=pages('website');expect(htmlFiles.length).toBeGreaterThanOrEqual(13);
+    for(const file of htmlFiles){
+      const html=readFileSync(file,'utf8');
+      expect(html,`${file}: inline event handler`).not.toMatch(/\son\w+\s*=/i);
+      expect(html,`${file}: active embedded content`).not.toMatch(/<(?:iframe|object|embed|form)\b/i);
+      for(const script of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)){
+        const src=script[1].match(/\bsrc=["']([^"']+)["']/i)?.[1];
+        if(src){expect(src,`${file}: script origin`).toMatch(/^\/(?!\/)/);expect(existsSync(path.join('website',src))).toBe(true)}
+        else{
+          expect(script[1],`${file}: executable inline script`).toMatch(/type=["']application\/ld\+json["']/i);
+          expect(()=>JSON.parse(script[2])).not.toThrow();
+          expect(csp,`${file}: missing script hash`).toContain(`'sha256-${createHash('sha256').update(script[2]).digest('base64')}'`);
+        }
+      }
+    }
+  });
+  it('keeps private submission helpers off the site and preserves custom-domain redirects',()=>{
+    for(const file of ['store/START-HERE.html','site-config.json','privacy/content.json','.git/config'])expect(existsSync(path.join('website',file)),file).toBe(false);
+    const {redirects}=JSON.parse(readFileSync('website/vercel.json','utf8'));
+    expect(redirects).toEqual(expect.arrayContaining([
+      expect.objectContaining({source:'/',destination:'https://scrollout.farflash.com/',permanent:true}),
+      expect.objectContaining({source:'/:path(.*)',destination:'https://scrollout.farflash.com/:path',permanent:true}),
+    ]));
+    for(const redirect of redirects)expect(redirect.has).toContainEqual({type:'host',value:'.*\\.vercel\\.app'});
   });
 });

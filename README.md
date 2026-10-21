@@ -83,19 +83,23 @@ Image tiles and edits are temporarily held in the extension's IndexedDB. A reloa
 
 ## Development
 
-Use Node.js 22.12+ or 24+ and npm.
+Use the latest patched Node.js 24 LTS (at least 24.22.1) and npm. Node.js 26.12.1+ in the 26.x line is also supported. `.node-version` selects the 24.x line, and `engine-strict` rejects older, unpatched runtimes during dependency installation.
 
 ```sh
 npm ci
 npm run dev
 npm run typecheck
 npm test
-npm run build
+npm run build:check
+npm run security
 npx playwright install chromium
 npm run test:e2e
+npm run security:site
 ```
 
 Open `http://127.0.0.1:4173/editor.html?demo=1` for the development-only sample editor. The sample is never loaded in the extension. Build regenerates the branded icons, bundles the editor and capture scripts, and writes both `dist/` and the distribution ZIP.
+
+`build:check` rebuilds `dist/` for validation while preserving published ZIPs. Use `npm run build` to package a new release after bumping its version. The development and preview servers bind to loopback, disable cross-origin access, and restrict filesystem reads.
 
 The unit tests check source-pixel geometry, hit testing, export splitting, message validation, and permission/CSP contracts. Browser tests verify editing, actual exported image pixels, PDF downloads, narrow layouts, and the MV3 capture pipeline. The fault-injection tests use an isolated test copy with host permissions and a test-only worker entrypoint. The production security tests load the unmodified distribution. On recent Chrome releases, action tests use `Extensions.triggerAction` to grant `activeTab` through the real extension action; Chrome 120 uses native input as described below. The distributed manifest remains minimal. Test profiles never use your normal browser profile.
 
@@ -110,6 +114,8 @@ Chrome 120.0.6099.109 is available from Google's [Chrome for Testing archive](ht
 Redaction removes covered source pixels before resampling and covers every touched output pixel. Regression tests change the hidden source image and verify identical redacted PNG, JPEG, clipboard, and PDF image data. Temporary-session tests cover reload, duplicate editors, navigation, closing the last editor, and browser-session expiry. Worker interruption and orphan cleanup stop capture and restore the source page. Initial storage failures show an action error before any source-page changes. Worker messages require valid payloads and the appropriate sender, top frame, document, and capture ID. The extension CSP restricts remote resources, frames, embedded objects, scripts, forms, and base URLs.
 
 These checks cover the extension's local trust boundaries and exports. They do not constitute an independent penetration test or verification of every supported Chrome version.
+
+GitHub runs dependency, artifact, website transport/CSP, and browser security checks on changes and weekly. Dependabot security updates, CodeQL, secret scanning, and secret push protection are enabled. Actions use pinned commit SHAs and a read-only job token. See [SECURITY.md](SECURITY.md) for the dated assessment and reporting contact.
 
 ## Chrome 120 compatibility in 1.0.2
 
