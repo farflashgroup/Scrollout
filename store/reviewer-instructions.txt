@@ -1,4 +1,4 @@
-Scrollout 1.0.2 — test instructions
+Scrollout 1.0.3 — test instructions
 
 No account, credentials, payment, subscription, server connection, or special entitlement is required.
 
@@ -14,9 +14,9 @@ No account, credentials, payment, subscription, server connection, or special en
 
 Expected boundaries: chrome:// pages, the Chrome Web Store, some built-in viewers, and other protected pages can reject capture. Nested scroll containers and embedded frames retain their currently visible content. Infinite feeds stop at their initial measured dimensions. Local file capture depends on Chrome's separate Allow access to file URLs setting.
 
-All capture/edit processing is local. No remote executable code, analytics, screenshots upload endpoint, or backend is used. The only permissions are activeTab, scripting, storage, and clipboardWrite.
+All capture/edit processing is local. No remote executable code, analytics, screenshots upload endpoint, or backend is used. Help includes version information, optional release-metadata checks from one static HTTPS file, and instructions for updating unpacked installs. Capture information is never included in a release request. The only permissions are activeTab, scripting, storage, and clipboardWrite.
 
-Validation completed on Chrome 120.0.6099.109 and Chrome 155.0.8059.79 on Windows. All 30 distinct browser checks were verified across complete suites and targeted reruns, plus 13 unit tests. This is internal QA, not an independent security certification.
+Core version 1.0.2 was previously validated on Chrome 120.0.6099.109 and Chrome 155.0.8059.79 on Windows. Version 1.0.3 adds release checks and safe update deferral: 24 unit checks and 39 distinct browser checks were verified across Chromium 153 and targeted Chrome 155 runs, including nine new update integration checks. The first full run had three test-profile startup failures; the affected cases passed targeted reruns. A fresh Chrome 120 run is unavailable on this machine, so these new update flows have not been runtime-tested on 120. This is internal QA, not an independent security certification.
 
 Publisher: FarFlash Group Ltd.
 Support: scrollout@farflash.com

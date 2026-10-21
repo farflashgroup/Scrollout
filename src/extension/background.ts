@@ -2,6 +2,7 @@ import { allSessions, clearSessions, deleteSession, getSession, putSession, putT
 import type { ActiveCapture, CaptureMessage, CaptureSession, PageMetrics } from '../shared/types';
 import { isEditorSender, isEditorUrl, isWorkerMessage, workerMessageTypes } from '../shared/messages';
 import { captureScale } from '../shared/geometry';
+import { registerBrowserUpdates } from './updates';
 
 const ready=(async()=>{
   const {browserSessionToken}=await chrome.storage.session.get('browserSessionToken');
@@ -43,6 +44,7 @@ let mutations:Promise<unknown>=Promise.resolve();
 function serialize<T>(operation:()=>Promise<T>):Promise<T> {
   const result=mutations.then(operation);mutations=result.then(()=>{},()=>{});return result;
 }
+registerBrowserUpdates(operation=>serialize(operation));
 const sleep=(ms:number)=>new Promise(resolve=>setTimeout(resolve,ms));
 function message(error:unknown){return error instanceof Error?error.message:String(error)}
 async function probeEditor(tabId:number,id:string,type='EDITOR_CHECK',documentId?:string):Promise<boolean> {

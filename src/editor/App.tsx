@@ -10,6 +10,7 @@ import type { ExportFormat } from './export';
 import { useDocument } from './useDocument';
 import { Viewer } from './Viewer';
 import type { PaintStyle } from './Viewer';
+import { UpdateNotice, UpdatesPanel } from './Updates';
 
 const swatches=['#17212B','#287DFF','#10A943','#FFC83D','#995BFF'];
 const RedactIcon=forwardRef<SVGSVGElement,LucideProps>(({size=24,...props},ref)=><svg ref={ref} width={size} height={size} viewBox="0 0 24 24" aria-hidden="true" {...props}><path d="M3 4h18v10H3z" fill="currentColor"/><path d="M3 17h18M3 20h18" stroke="currentColor" strokeWidth="1.5"/></svg>);
@@ -26,6 +27,7 @@ function Help({close}:{close:()=>void}) {
     <div className="help-columns"><div><h3>Make an edit</h3><p>Choose a tool and drag on the screenshot. Select an annotation to move it; drag its bottom-right handle to resize. Double-click text to edit it.</p><p>For crop, drag an area and choose Apply crop. Every edit can be undone.</p></div><div><h3>Keyboard shortcuts</h3><p><kbd>V</kbd> Select · <kbd>C</kbd> Crop · <kbd>D</kbd> Draw<br/><kbd>H</kbd> Highlight · <kbd>A</kbd> Arrow · <kbd>S</kbd> Shapes<br/><kbd>T</kbd> Text · <kbd>R</kbd> Redact</p><p><kbd>Ctrl / ⌘ Z</kbd> Undo<br/><kbd>Ctrl / ⌘ Shift Z</kbd> Redo<br/><kbd>Delete</kbd> Remove selection · <kbd>Esc</kbd> Cancel</p></div></div>
     <p className="privacy-note"><ShieldCheck size={20}/> Everything stays on your device. Closing or leaving the last editor for this capture deletes its temporary screenshot and edits. Download anything you want to keep.</p>
     <p className="help-limit">Scrollout captures the initial page length. Independently scrolling panels and frames retain their visible contents. Very large PNG/JPEG exports arrive as numbered parts in a ZIP; PDFs use A4 pages.</p>
+    <UpdatesPanel/>
     <button className="primary-button" onClick={close}>Got it</button>
   </dialog>;
 }
@@ -55,7 +57,7 @@ export function App() {
     return()=>{live=false;if(timer)clearInterval(timer)};
   },[id]);
   if(session?.status==='ready'&&session.document&&tiles.length)return <Editor initial={session.document} tiles={tiles} captureId={session.id}/>;
-  return <div className="app-shell"><header className="app-header"><Brand/><button className="secondary-button" onClick={()=>setHelp(true)}><HelpCircle size={18}/>Help</button></header><main className="waiting-workspace">{error?<div className="empty-state"><h1>This capture is no longer available</h1><p>{error}</p></div>:<Empty session={session}/>}</main><footer className="status-bar"><span>Scrollout</span><span>Screenshots stay on your device</span><span>Every tool is free</span></footer>{help&&<Help close={()=>setHelp(false)}/>}</div>;
+  return <div className="app-shell"><header className="app-header"><Brand/><button className="secondary-button" onClick={()=>setHelp(true)}><HelpCircle size={18}/>Help</button></header><main className="waiting-workspace">{error?<div className="empty-state"><h1>This capture is no longer available</h1><p>{error}</p></div>:<Empty session={session}/>}</main><footer className="status-bar"><span>Scrollout</span><span>Screenshots stay on your device</span><span>Every tool is free</span></footer><UpdateNotice openHelp={()=>setHelp(true)}/>{help&&<Help close={()=>setHelp(false)}/>}</div>;
 }
 function Editor({initial,tiles,captureId}:{initial:EditorDocument;tiles:ScreenshotTile[];captureId:string}) {
   const {doc,commit,undo,redo,canUndo,canRedo}=useDocument(initial);
@@ -100,6 +102,6 @@ function Editor({initial,tiles,captureId}:{initial:EditorDocument;tiles:Screensh
       </>}
     </div><Viewer doc={doc} tiles={tiles} tool={tool} style={style} zoom={zoom} selected={selected} onSelect={setSelected} onCommit={commit} crop={crop} onCrop={setCrop} onFitZoom={setZoom} disabled={busy}/></main></div>
     <footer className="status-bar"><span className="dimensions">{doc.crop.width.toLocaleString()} × {doc.crop.height.toLocaleString()} px</span><span className="status-message" aria-live="polite">{progress||'Screenshots stay on your device'}</span><div className="zoom-controls"><button className="icon-button" aria-label="Zoom out" onClick={()=>setZoom(z=>clamp(z/1.25,.1,4))}><Minus size={20}/></button><span>{Math.round(zoom*100)}%</span><button className="icon-button" aria-label="Zoom in" onClick={()=>setZoom(z=>clamp(z*1.25,.1,4))}><Plus size={20}/></button><button className="secondary-button fit-button" onClick={fit}>Fit</button></div></footer>
-    {toast&&<div className={`toast ${toast.error?'error':''}`} role={toast.error?'alert':'status'}>{toast.error?<HelpCircle size={19}/>:<Check size={19}/>}<span>{toast.text}</span><button className="icon-button" aria-label="Dismiss notification" onClick={()=>setToast(null)}><X size={16}/></button></div>}{help&&<Help close={()=>setHelp(false)}/>}
+    {toast&&<div className={`toast ${toast.error?'error':''}`} role={toast.error?'alert':'status'}>{toast.error?<HelpCircle size={19}/>:<Check size={19}/>}<span>{toast.text}</span><button className="icon-button" aria-label="Dismiss notification" onClick={()=>setToast(null)}><X size={16}/></button></div>}<UpdateNotice openHelp={()=>setHelp(true)}/>{help&&<Help close={()=>setHelp(false)}/>}
   </div>;
 }

@@ -1,6 +1,6 @@
 # Scrollout privacy policy
 
-Updated 2026-10-19. Publisher: FarFlash Group Ltd..
+Updated 2026-10-21. Publisher: FarFlash Group Ltd..
 
 ## What Scrollout does
 
@@ -17,6 +17,10 @@ This information is used only to capture and stitch the page, show and edit the 
 ## Temporary storage and deletion
 
 Screenshot tiles and edits are stored locally in the extension’s IndexedDB. Browser-session storage tracks capture coordination and ownership. Reloading an open editor preserves its latest saved edits. Closing or navigating away from the last editor for a capture deletes its temporary screenshot and edits. A browser restart or extension reload expires temporary sessions; orphaned data is removed when the extension next initializes. Uninstalling the extension removes its extension storage through Chrome. These are logical deletions, not a promise of forensic erasure from device backups or storage media.
+
+## Update checks
+
+Chrome Web Store installations use Chrome’s own update system. Starting in version 1.0.3, Scrollout also checks a small, static public release-information file at https://scrollout.farflash.com/releases.json at most every 12 hours while an editor is open, or when you choose Check for updates in Help. You can disable automatic release checks in Help. The request has no body, version query, cookies, credentials, or referrer and includes no screenshots, edits, page URLs, filenames, or capture metadata. As with ordinary website requests, the host may process request information such as IP address, browser information, origin, and request time. Update settings, the last check and release information, and any pending Chrome update version are stored locally until replaced or the extension is uninstalled. The checker reads version data only; it never downloads or executes remote code. Unpacked installations require you to replace the local extension files and reload in Chrome.
 
 ## Exports, clipboard, and redaction
 

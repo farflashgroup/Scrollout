@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Scrollout",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Capture the whole page. Draw, crop, highlight, redact, and export — free and on your device.",
   "minimum_chrome_version": "120",
   "permissions": [
@@ -30,6 +30,6 @@
     "128": "brand/icon-128.png"
   },
   "content_security_policy": {
-    "extension_pages": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; connect-src 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none';"
+    "extension_pages": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; connect-src 'self' https://scrollout.farflash.com/releases.json; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none';"
   }
 }

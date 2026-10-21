@@ -14,7 +14,7 @@ Injects a bundled, temporary capture script into the selected page. It measures 
 
 ## storage
 
-Uses chrome.storage.session for capture coordination, browser-session identity, and editor ownership. Screenshot tiles, document metadata, and edits are held temporarily in the extension's local IndexedDB so the editor can reload and export. Data is not synced or sent to a server.
+Uses chrome.storage.session for capture coordination, browser-session identity, and editor ownership. Screenshot tiles, document metadata, and edits are held temporarily in the extension's local IndexedDB so the editor can reload and export. Data is not synced or sent to a server. Local storage also keeps the update-check preference, last release metadata, and a pending Chrome update version; these contain no capture data.
 
 ## clipboardWrite
 
@@ -38,4 +38,4 @@ The three limited-use certifications are supported by the current implementation
 
 Privacy URL: https://scrollout.farflash.com/privacy/
 
-The landing page and support/privacy pages are separate websites hosted by Vercel. Hosting providers may process ordinary web request logs. The extension itself does not contact this website to process captures.
+The landing page and support/privacy pages are separate websites hosted by Vercel. Hosting providers may process ordinary web request logs. The extension itself does not contact this website to process captures. Starting in 1.0.3, optional release checks fetch one public version-information file, without screenshot or capture data; Help provides an opt-out.

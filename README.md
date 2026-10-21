@@ -6,7 +6,7 @@
 
 Scrollout is a free Chrome extension for full-page screenshots and local editing. Draw, crop, highlight, add arrows, shapes or text, cover sensitive areas, and export without a paywall. It has no account, backend, analytics, or upload service.
 
-[Website](https://scrollout.farflash.com) - [Download v1.0.2](https://github.com/farflashgroup/Scrollout/releases/tag/v1.0.2) - [Guides](https://scrollout.farflash.com/guides/) - [Privacy](https://scrollout.farflash.com/privacy/) - [Press kit](https://scrollout.farflash.com/press/)
+[Website](https://scrollout.farflash.com) - [Download v1.0.3](https://github.com/farflashgroup/Scrollout/releases/tag/v1.0.3) - [Guides](https://scrollout.farflash.com/guides/) - [Privacy](https://scrollout.farflash.com/privacy/) - [Press kit](https://scrollout.farflash.com/press/)
 
 ![Scrollout’s real screenshot editor with drawing, highlights, arrows, and text](website/assets/press/launch-landscape.png)
 
@@ -14,19 +14,33 @@ The Chrome Web Store submission is pending review as of October 20, 2026. The do
 
 ## Install the ready-to-use extension
 
-Download [Scrollout-1.0.2.zip from the release](https://github.com/farflashgroup/Scrollout/releases/download/v1.0.2/Scrollout-1.0.2.zip) and extract it into a folder you will keep.
+Download [Scrollout-1.0.3.zip from the release](https://github.com/farflashgroup/Scrollout/releases/download/v1.0.3/Scrollout-1.0.3.zip) and extract it into a folder you will keep.
 
 1. Open `chrome://extensions` in desktop Chrome 120 or newer.
 2. Turn on **Developer mode**.
 3. Choose **Load unpacked** and select the extracted folder (or `dist` if you built from source).
 4. Open Chrome's extensions menu and pin **Scrollout**.
 
-The distribution archive is `release/Scrollout-1.0.2.zip`. Extract it first, then load the extracted folder. Chrome does not install an unpacked extension directly from a ZIP.
+The distribution archive is `release/Scrollout-1.0.3.zip`. Extract it first, then load the extracted folder. Chrome does not install an unpacked extension directly from a ZIP.
 
 The archive includes `INSTALL.md` with loading instructions and a short usage guide, along with the brand guide and third-party notices.
-The separate `release/Scrollout-1.0.2-source.zip` contains the source, tests, and build scripts, without dependencies or generated test reports.
+The separate `release/Scrollout-1.0.3-source.zip` contains the source, tests, and build scripts, without dependencies or generated test reports.
 
-For an existing unpacked installation, click **Reload** on Scrollout's card in `chrome://extensions`, then capture again. Reloading the extension expires temporary captures, so export any open work first.
+## Updates
+
+Store installs use Chrome’s automatic update system; enterprise installs follow administrator policy. Unpacked installs get release notices and **Help → Updates**, including a manual check, download, and SHA-256 verification. Export and close your editors, replace the files in the same loaded folder with the new ZIP contents, then click **Reload** in `chrome://extensions`. Source installs require pulling and rebuilding first. Older 1.0.2 copies need one manual update to receive the checker. Reloading unchanged files does not update an unpacked installation.
+
+Release checks fetch one static public JSON file at most every 12 hours while an editor is open. They send no screenshots, annotations, page URLs, filenames, cookies, credentials, or request body. Automatic checks can be disabled in Help; Chrome’s own update system is separate. Checks are bounded, cached, and optional; capture/edit/export still work offline. A downloaded Chrome update waits until capture and all extension pages have closed. No remote code is downloaded or executed by the checker.
+
+Future releases: bump the package/manifest version, build and test, then run `node scripts/store-kit.mjs`, `node scripts/website.mjs`, and `node scripts/package-store.mjs`. Publish the matching ZIP and website together. The website generator writes `releases.json` and its CORS/no-store headers from the packaged version and hash. Set the published store URL only after verifying public installation; its version comes from the recorded published/submitted store version, so an unpacked release is never mistaken for an approved store update.
+
+### Validation of 1.0.3
+
+On October 21, 2026, 24 unit checks passed and 39 distinct browser checks were verified across a full Chromium 153.0.8010.12 run and targeted Chrome 155.0.8059.79 reruns. The initial 36-test run passed 33 checks; three test-profile startup cases passed the targeted rerun. Nine update integration checks cover unpacked/browser/managed guidance, exact metadata requests with the production permissions, caching and opt-out, offline and malformed responses, unavailable preference storage, pending-update deferral with duplicate editors, native update throttling, and narrow windows. Production-dependency audit found no known vulnerabilities. This is internal regression QA.
+
+A fresh Chrome 120 executable could not launch in this environment during the prior QA pass; the new update flows have not been runtime-tested on 120. The build remains targeted at Chrome 120, and the historical 1.0.2 compatibility results below remain separate. The pending store review is still for 1.0.2; 1.0.3 is the downloadable/source release and prepared next store package.
+
+When port 4173 is occupied, set `SCROLLOUT_QA_PORT` to a free test port. The fixture server and all test contexts use that same port.
 
 ## Capture and edit
 

@@ -1,4 +1,4 @@
-# Submit Scrollout 1.0.2
+# Submit Scrollout 1.0.3
 
 ## Publisher account
 
@@ -10,15 +10,17 @@
 
 ## Store draft
 
-- [x] Uploaded release/Scrollout-1.0.2.zip (SHA-256: 5ab3aae82a8eb2e29f88e44ef06044e777c288d5ab8816ec227b218dc927d580).
-- [x] Saved description, English language, Tools category, homepage and support URLs.
-- [x] Uploaded icon, five numbered screenshots, small promo and marquee.
-- [x] Saved single purpose, four permission explanations, no remote code, Website content and Web history disclosures, and privacy URL.
-- [x] Publisher authorized and accepted the three limited-use certifications.
+The recorded Chrome Web Store review is for version 1.0.2. This kit prepares version 1.0.3; it has not been uploaded or submitted by this generator.
+
+- [ ] Uploaded release/Scrollout-1.0.3.zip (SHA-256: 0d093c8de4605c99efda3a1e3a7771f30ad798869f6c869d8b2fbabe557991f5).
+- [ ] Saved description, English language, Tools category, homepage and support URLs.
+- [ ] Uploaded icon, five numbered screenshots, small promo and marquee.
+- [ ] Saved single purpose, four permission explanations, no remote code, Website content and Web history disclosures, and privacy URL.
+- [ ] Publisher authorized and accepted the three limited-use certifications.
 - [x] Public website, privacy and support URLs work over HTTPS; DNS complete.
-- [x] Saved reviewer-instructions-short.txt in the dashboard (441 of 500 allowed characters). Full internal test guidance is in reviewer-instructions.txt.
-- [x] Free of charge, Public, all regions.
-- [x] Submitted for Google review. Automatic publication: enabled.
+- [ ] Saved reviewer-instructions-short.txt in the dashboard (441 of 500 allowed characters). Full internal test guidance is in reviewer-instructions.txt.
+- [ ] Free of charge, Public, all regions.
+- [ ] Submitted for Google review. Automatic publication: enabled.
 
 Draft: https://chrome.google.com/webstore/devconsole/9406c6b1-b2f4-4509-94ad-0146d2c7884f/ajlhmigmaeodaedpgjmngkchnjoenmkm/edit/listing
 
@@ -30,4 +32,4 @@ Current review status: Pending review. See submission-state.json for the recorde
 
 Google will publish automatically after approval. Once live, check the public listing. Set storeUrl in publisher.json to the real published listing URL, regenerate the website, and verify that the installation CTA and instructions switch to Chrome Web Store installation. Keep submission helpers outside website/.
 
-Official requirements checked on 2026-10-19 are listed in asset-provenance.json.
+Official requirements checked on 2026-10-21 are listed in asset-provenance.json.

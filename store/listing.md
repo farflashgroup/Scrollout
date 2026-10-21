@@ -1,6 +1,6 @@
 # Scrollout Chrome Web Store listing
 
-Prepared 2026-10-19. Version 1.0.2.
+Prepared 2026-10-21. Version 1.0.3.
 
 | Field | Value |
 | --- | --- |

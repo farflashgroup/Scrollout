@@ -2,14 +2,22 @@
 
 **Capture the whole page. Make it yours.**
 
-1. Extract `Scrollout-1.0.2.zip` into a folder you will keep.
+1. Extract `Scrollout-1.0.3.zip` into a folder you will keep.
 2. Open `chrome://extensions` in desktop Chrome 120 or newer.
 3. Turn on **Developer mode**, click **Load unpacked**, and select the extracted folder containing `manifest.json`.
 4. Pin Scrollout from Chrome's extensions menu.
 
 If you are using the source project, load its `dist` folder instead.
 
-To update an existing unpacked installation, click **Reload** on Scrollout's card in `chrome://extensions`. Export open work first: reloading the extension expires its temporary captures.
+## Updates
+
+Chrome Web Store installs update automatically through Chrome. Export your work and close all Scrollout editors to allow a ready update to install. Organization-managed installs follow administrator policy.
+
+For an unpacked installation, open **Help → Updates** to see the installed version, check for a release, and download the ZIP. Export your open screenshots and close the editors. Extract the ZIP and replace the files in the **same folder you originally loaded**, then click **Reload** on Scrollout's card in `chrome://extensions`. Reload alone does not fetch new files. Source builds require pulling the latest source, running `npm ci` and `npm run build`, then Reload.
+
+Versions 1.0.2 and earlier need this one-time manual replacement to receive the checker. Chrome does not permit extensions to overwrite their own unpacked files. Once the store edition is public, installing that edition provides Chrome-managed updates; export and close your work before removing the unpacked copy to avoid duplicate icons.
+
+Starting in 1.0.3, release checks run at most every 12 hours while an editor is open, with an opt-out in Help. They fetch a fixed public version file; screenshots, edits, page URLs, and filenames are never sent. Offline checks fail quietly and editing still works. No remote executable code is fetched. Reloading the extension expires temporary captures, so export anything you want to keep first.
 
 ## Use it
 

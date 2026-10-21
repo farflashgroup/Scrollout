@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import sharp from 'sharp';
-import { browserOptions, captureArgs } from './browser';
+import { browserOptions, captureArgs, testBaseUrl } from './browser';
 
 let context:BrowserContext,worker:Worker,folder:string;
 test.describe('real MV3 capture pipeline',()=>{
@@ -21,14 +21,14 @@ test.describe('real MV3 capture pipeline',()=>{
     // Branded Chrome 137+ removed startup loading; Chrome 120 predates the CDP
     // loader. Support both without modifying the extension under test.
     const cdp=await context.browser()!.newBrowserCDPSession();
-    try{await cdp.send('Extensions.loadUnpacked',{path:extension})}
+    try{if(!context.serviceWorkers().length)await cdp.send('Extensions.loadUnpacked',{path:extension})}
     catch(error){if(!/wasn't found|not found|Unknown method/.test(String(error)))throw error}
     worker=context.serviceWorkers()[0]??await context.waitForEvent('serviceworker');
-    await expect.poll(()=>worker.evaluate(()=>typeof (globalThis as any).__scrolloutStart==='function')).toBe(true);
+    await expect.poll(async()=>{worker=context.serviceWorkers().find(w=>w.url().endsWith('/test-background.js'))??worker;try{return await worker.evaluate(()=>typeof (globalThis as any).__scrolloutStart==='function')}catch{return false}}).toBe(true);
   });
   test.afterEach(async()=>{await context?.close();if(folder)await fs.rm(folder,{recursive:true,force:true})});
   async function start(){await worker.evaluate(async()=>{const tabs=await chrome.tabs.query({active:true,currentWindow:true});await (globalThis as any).__scrolloutStart(tabs[0])})}
-  async function source(suffix=''){const page=await context.newPage();await page.goto(`http://127.0.0.1:4173/tests/fixtures/capture.html${suffix}`);await page.bringToFront();await page.evaluate(()=>scrollTo({top:77,left:30,behavior:'instant'}));return page}
+  async function source(suffix=''){const page=await context.newPage();await page.goto(`${testBaseUrl}/tests/fixtures/capture.html${suffix}`);await page.bringToFront();await page.evaluate(()=>scrollTo({top:77,left:30,behavior:'instant'}));return page}
   async function editor(){await expect.poll(()=>context.pages().find(p=>p.url().includes('editor.html?capture='))?.url()).toBeTruthy();return context.pages().find(p=>p.url().includes('editor.html?capture='))!}
   test('stitches both axes, lazy images, initial feed length, and restores the page',async()=>{
     const page=await source('?grow');const size=await page.evaluate(()=>({width:document.documentElement.scrollWidth,height:document.documentElement.scrollHeight}));await start();const edit=await editor();await expect(edit.getByTestId('editor-canvas')).toBeVisible({timeout:30000});

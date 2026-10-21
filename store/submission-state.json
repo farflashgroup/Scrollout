@@ -25,6 +25,15 @@
   "price": "Free of charge",
   "visibility": "Public",
   "regions": "All regions",
-  "dataDisclosures": ["Website content", "Web history"],
-  "archiveSha256": "5ab3aae82a8eb2e29f88e44ef06044e777c288d5ab8816ec227b218dc927d580"
+  "dataDisclosures": [
+    "Website content",
+    "Web history"
+  ],
+  "archiveSha256": "5ab3aae82a8eb2e29f88e44ef06044e777c288d5ab8816ec227b218dc927d580",
+  "nextPackage": {
+    "version": "1.0.3",
+    "archiveSha256": "0d093c8de4605c99efda3a1e3a7771f30ad798869f6c869d8b2fbabe557991f5",
+    "status": "Prepared and tested; not uploaded or submitted. Existing 1.0.2 review retained.",
+    "preparedOn": "2026-10-21"
+  }
 }

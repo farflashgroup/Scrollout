@@ -1,4 +1,7 @@
 // All contexts, including editor page fixtures, must use the selected browser.
+export const testPort=Number(process.env.SCROLLOUT_QA_PORT||4173);
+if(!Number.isInteger(testPort)||testPort<1024||testPort>65535)throw Error('Invalid QA port');
+export const testBaseUrl=`http://127.0.0.1:${testPort}`;
 export const browserOptions = process.env.SCROLLOUT_QA_CHROME
   ? { executablePath: process.env.SCROLLOUT_QA_CHROME }
   : { channel: 'chromium' };

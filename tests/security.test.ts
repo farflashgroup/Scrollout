@@ -29,5 +29,6 @@ describe('extension trust boundaries',()=>{
     expect(manifest.permissions).toEqual(['activeTab','scripting','storage','clipboardWrite']);expect(manifest.host_permissions).toBeUndefined();expect(manifest.web_accessible_resources).toBeUndefined();expect(manifest.externally_connectable).toBeUndefined();
     const csp=manifest.content_security_policy.extension_pages;for(const directive of ["default-src 'self'","script-src 'self'","connect-src 'self'","object-src 'none'","frame-src 'none'","base-uri 'none'","form-action 'none'"])expect(csp).toContain(directive);
     expect(csp).not.toContain('unsafe-eval');
+    expect(csp.match(/connect-src[^;]+/)?.[0]).toBe("connect-src 'self' https://scrollout.farflash.com/releases.json");
   });
 });

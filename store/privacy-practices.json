@@ -3,7 +3,7 @@
   "permissionJustifications": {
     "activeTab": "Used only after the user invokes Scrollout on the active tab. It allows the extension to capture visible page tiles and read the selected page title and hostname to label the temporary capture. It does not grant persistent access to all websites.",
     "scripting": "Injects a bundled, temporary capture script into the selected page. It measures the document, scrolls through the initial page area, handles fixed/sticky elements, and restores page styles and the original scroll position after capture or cancellation.",
-    "storage": "Uses chrome.storage.session for capture coordination, browser-session identity, and editor ownership. Screenshot tiles, document metadata, and edits are held temporarily in the extension's local IndexedDB so the editor can reload and export. Data is not synced or sent to a server.",
+    "storage": "Uses chrome.storage.session for capture coordination, browser-session identity, and editor ownership. Screenshot tiles, document metadata, and edits are held temporarily in the extension's local IndexedDB so the editor can reload and export. Data is not synced or sent to a server. Local storage also keeps the update-check preference, last release metadata, and a pending Chrome update version; these contain no capture data.",
     "clipboardWrite": "Writes a flattened PNG to the clipboard only when the user clicks Copy image in the editor. Scrollout does not read clipboard contents."
   },
   "remoteCode": false,
@@ -12,7 +12,7 @@
     "webHistory": "Only the title and hostname of the page the user captures, for identifying that capture; no background browsing history."
   },
   "dataUse": "Only to provide the requested capture, local editor, temporary session restoration, and user-chosen export or clipboard copy.",
-  "transmission": "No automatic transmission, sale, advertising, analytics, or server-side screenshot storage.",
+  "transmission": "No screenshot, annotation, page URL, filename, or capture-metadata transmission. Optional automatic release checks fetch one static public version file without credentials, cookies, referrers, or a request body; ordinary hosting request information may be processed. No sale, advertising, analytics, or server-side screenshot storage.",
   "certifications": {
     "noSaleOrUnrelatedTransfers": true,
     "noUnrelatedPurpose": true,

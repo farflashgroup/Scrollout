@@ -1,5 +1,5 @@
 import { test, expect, chromium, type BrowserContext, type Worker, type Page } from '@playwright/test';
-import { browserOptions, captureArgs } from './browser';
+import { browserOptions, captureArgs, testBaseUrl } from './browser';
 import { randomUUID } from 'node:crypto';
 import { build } from 'esbuild';
 import fs from 'node:fs/promises';
@@ -10,6 +10,7 @@ import { unzlibSync } from 'fflate';
 import http from 'node:http';
 import sharp from 'sharp';
 import type { Socket } from 'node:net';
+import { RELEASE_URL } from '../../src/shared/updates';
 
 test('fractional redactions cover every touched output pixel at native and PDF scales',async({page})=>{
   const bundle=await build({entryPoints:['src/editor/renderer.ts'],bundle:true,format:'iife',globalName:'ScrolloutRenderer',write:false});
@@ -97,12 +98,13 @@ test.describe('production extension security and temporary ownership',()=>{
     const native=!!process.env.SCROLLOUT_QA_ACTION_FILE;
     if(native)test.setTimeout(180000);
     context=await chromium.launchPersistentContext(profile,{...browserOptions,headless:!native,viewport:null,ignoreDefaultArgs:['--disable-extensions'],args:[...captureArgs().filter(arg=>!native||arg!=='--headless=new'),'--enable-unsafe-extension-debugging',`--load-extension=${path.resolve('dist')}`]});
+    await context.route(RELEASE_URL,route=>route.fulfill({contentType:'application/json',headers:{'Access-Control-Allow-Origin':'*'},body:JSON.stringify({schemaVersion:1,version:'1.0.3',sha256:'a'.repeat(64),storeVersion:null,storeUrl:null})}));
     const cdp=await context.browser()!.newBrowserCDPSession();legacyActions=false;
-    try{({id}=await cdp.send('Extensions.loadUnpacked',{path:path.resolve('dist')}))}
+    try{if(!context.serviceWorkers().length)({id}=await cdp.send('Extensions.loadUnpacked',{path:path.resolve('dist')}))}
     catch(error){if(!/wasn't found|not found|Unknown method/.test(String(error)))throw error;legacyActions=true}
     worker=context.serviceWorkers()[0]??await context.waitForEvent('serviceworker');
     id=new URL(worker.url()).host;
-    await expect.poll(()=>worker.evaluate(async()=>!!(await chrome.storage.session.get('browserSessionToken')).browserSessionToken)).toBe(true);
+    await expect.poll(async()=>{worker=context.serviceWorkers().find(w=>w.url().endsWith('/background.js'))??worker;try{return await worker.evaluate(async()=>!!(await chrome.storage.session.get('browserSessionToken')).browserSessionToken)}catch{return false}}).toBe(true);
     if(legacyActions&&native){
       // Configure Chrome's existing action shortcut in this throwaway profile.
       // The production manifest, scripts, and permissions remain unmodified.
@@ -180,7 +182,7 @@ test.describe('production extension security and temporary ownership',()=>{
     }finally{for(const socket of sockets)socket.destroy();await new Promise<void>(resolve=>server.close(()=>resolve()))}
   });
   test('initial storage failure shows an action error and leaves the source untouched',async()=>{
-    const source=await context.newPage();await source.goto('http://127.0.0.1:4173/tests/fixtures/capture.html');await source.bringToFront();await source.evaluate(()=>scrollTo({left:30,top:77,behavior:'instant'}));
+    const source=await context.newPage();await source.goto(`${testBaseUrl}/tests/fixtures/capture.html`);await source.bringToFront();await source.evaluate(()=>scrollTo({left:30,top:77,behavior:'instant'}));
     await worker.evaluate(()=>{const original=IDBObjectStore.prototype.put;IDBObjectStore.prototype.put=function(...args:Parameters<typeof original>){if(this.name==='sessions')throw new DOMException('Device storage is full.','QuotaExceededError');return original.apply(this,args)}});
     await triggerAction(source);
     await expect.poll(()=>worker.evaluate(async()=>{const[tab]=await chrome.tabs.query({active:true,currentWindow:true});return {badge:await chrome.action.getBadgeText({tabId:tab.id}),title:await chrome.action.getTitle({tabId:tab.id})}})).toEqual({badge:'!',title:'Could not start capture: Device storage is full.'});
@@ -188,8 +190,8 @@ test.describe('production extension security and temporary ownership',()=>{
   });
   test('native Chrome action grants activeTab without host permissions and rejects child-frame commands',async()=>{
     const errors:string[]=[];context.on('weberror',event=>errors.push(event.error().message));context.on('console',message=>{if(message.type()==='error'&&message.location().url.startsWith(`chrome-extension://${id}/`))errors.push(message.text())});
-    const unexpectedNetwork:string[]=[];context.on('request',request=>{if(/^https?:/.test(request.url())&&!request.url().startsWith('http://127.0.0.1:4173/'))unexpectedNetwork.push(request.url())});
-    const cdp=await context.browser()!.newBrowserCDPSession(),source=await context.newPage();await source.goto('http://127.0.0.1:4173/tests/fixtures/capture.html');
+    const unexpectedNetwork:string[]=[];context.on('request',request=>{if(/^https?:/.test(request.url())&&!request.url().startsWith(testBaseUrl+'/')&&request.url()!==RELEASE_URL)unexpectedNetwork.push(request.url())});
+    const cdp=await context.browser()!.newBrowserCDPSession(),source=await context.newPage();await source.goto(`${testBaseUrl}/tests/fixtures/capture.html`);
     await source.evaluate(async()=>{const frame=document.createElement('iframe');frame.style.cssText='position:absolute;left:0;top:0;width:10px;height:10px';frame.src=location.href;document.body.append(frame);await new Promise(resolve=>frame.onload=resolve)});
     await source.bringToFront();await source.evaluate(()=>scrollTo({left:30,top:77,behavior:'instant'}));
     const version=await cdp.send('Browser.getVersion');
