@@ -3,7 +3,7 @@
   "publisherId": "9406c6b1-b2f4-4509-94ad-0146d2c7884f",
   "itemId": "ajlhmigmaeodaedpgjmngkchnjoenmkm",
   "draftUrl": "https://chrome.google.com/webstore/devconsole/9406c6b1-b2f4-4509-94ad-0146d2c7884f/ajlhmigmaeodaedpgjmngkchnjoenmkm/edit/listing",
-  "reviewStatus": "Pending review",
+  "reviewStatus": "Published - public",
   "submittedOn": "2026-10-19",
   "submittedTimezone": "America/Toronto",
   "publisherDisplayNameSaved": true,
@@ -33,7 +33,12 @@
   "nextPackage": {
     "version": "1.0.3",
     "archiveSha256": "0d093c8de4605c99efda3a1e3a7771f30ad798869f6c869d8b2fbabe557991f5",
-    "status": "Prepared and tested; not uploaded or submitted. Existing 1.0.2 review retained.",
+    "status": "Prepared and tested; not uploaded or submitted. Version 1.0.2 remains the published store version.",
     "preparedOn": "2026-10-21"
-  }
+  },
+  "publishedVersion": "1.0.2",
+  "storeUrl": "https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm",
+  "publicationVerifiedOn": "2026-10-21",
+  "publicationVerifiedTimezone": "America/Toronto",
+  "publicInstallControlVerified": true
 }

@@ -1,18 +1,21 @@
 {
   "preparedOn": "2026-10-20",
   "publisher": "FarFlash Group Ltd.",
-  "storeStatus": "Pending review; checked in authenticated dashboard",
+  "storeStatus": "Published - public (1.0.2); dashboard and normal public installation page verified",
   "channels": [
     {
       "name": "AlternativeTo",
       "url": "https://alternativeto.net/faq/#add-a-new-application",
-      "status": "Submitted to normal free review queue",
-      "notes": "User signed in; email confirmed. Free / MIT / Google Chrome / FarFlash Group Ltd., source URL, screenshot tags, privacy features, icon and three actual screenshots submitted. GoFullPage association saved and visible. Your app submissions confirms Normal queue / Waiting since today. Only the submitting account can see the app until approval. No paid priority; the provider warns that the normal queue is very long and review is not guaranteed.",
+      "status": "Published; store-link update submitted for moderation",
+      "notes": "Existing entry is now public with Free/MIT/Google Chrome, logo, three screenshots and maker attribution preserved. Submitted the official Chrome Web Store platform link and replaced pending-review availability with store 1.0.2 and newer ZIP/source 1.0.3. Confirmation: Your suggestions have been submitted; an admin will approve them. No duplicate or paid priority.",
       "rules": "https://alternativeto.net/about/terms/",
-      "checkedOn": "2026-10-20",
-      "publicListingUrl": null,
+      "checkedOn": "2026-10-21",
+      "publicListingUrl": "https://alternativeto.net/software/scrollout/about/",
       "submittedOn": "2026-10-20",
-      "confirmationUrl": "https://alternativeto.net/my-submissions/"
+      "confirmationUrl": "https://alternativeto.net/my-submissions/",
+      "storeUrl": "https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm",
+      "storeLinkUpdatedOn": "2026-10-21",
+      "storeLinkStatus": "Submitted; awaiting moderator approval"
     },
     {
       "name": "Alternative.me",
@@ -36,23 +39,29 @@
       "name": "SaaSHub",
       "url": "https://www.saashub.com/services/submit",
       "status": "Submitted and ownership verified; awaiting approval",
-      "notes": "Free entry confirmed; still Pending approval. Ownership verified using requested support-email link. MIT/open-source status, GitHub and guides links, description, logo, three real screenshots, three feature summaries, Google Chrome platform, and Free=yes / Trial=no / Paid=no pricing saved. Terms accepted with explicit user approval.",
+      "notes": "Existing verified-owner description saved with the official Chrome Web Store URL as a Markdown link, published version 1.0.2 and separate newer ZIP/source 1.0.3. Owner edit form retained the URL and public description displays current availability, but the provider renders the link label without a clickable anchor. The directory entry remains Pending approval. Existing MIT/free pricing, source and guides links, Chrome platform, logo, three screenshots and feature summaries preserved. No paid placement or new terms.",
       "rules": "https://www.saashub.com/site/product_verification",
-      "checkedOn": "2026-10-20",
+      "checkedOn": "2026-10-21",
       "publicListingUrl": "https://www.saashub.com/scrollout",
       "submittedOn": "2026-10-20",
       "confirmationUrl": "https://www.saashub.com/scrollout/added",
-      "ownershipVerified": true
+      "ownershipVerified": true,
+      "storeUrl": "https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm",
+      "storeLinkUpdatedOn": "2026-10-21",
+      "storeLinkStatus": "Saved in description; new availability visible; provider strips hyperlink while listing remains pending"
     },
     {
       "name": "LibHunt",
       "url": "https://www.libhunt.com/repo/submit",
-      "status": "Published; license-name correction awaiting moderation",
-      "notes": "Automatically approved. Source, docs, website, TypeScript and screenshot/editor/privacy topics verified in public listing. Canonical MIT License correction suggested because the initial raw MIT label was incorrectly marked not OSI-approved; review is pending.",
+      "status": "Published; store-link and license corrections awaiting moderation",
+      "notes": "Existing entry retained. Suggested a two-sentence description with the verified Chrome Web Store 1.0.2 installation URL, preserving official website/docs and canonical MIT License correction. Maker note distinguishes newer ZIP/source 1.0.3. Confirmation: suggested changes will be applied as soon as approved. The public MIT/OSI metadata warning remains a provider error pending correction.",
       "rules": "https://www.libhunt.com/site/project_submit",
-      "checkedOn": "2026-10-20",
+      "checkedOn": "2026-10-21",
       "publicListingUrl": "https://www.libhunt.com/r/Scrollout",
-      "submittedOn": "2026-10-20"
+      "submittedOn": "2026-10-20",
+      "storeUrl": "https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm",
+      "storeLinkUpdatedOn": "2026-10-21",
+      "storeLinkStatus": "Suggested update submitted; awaiting moderation"
     },
     {
       "name": "FossHub",
@@ -62,18 +71,23 @@
       "rules": "https://www.fosshub.com/faq.html",
       "checkedOn": "2026-10-20",
       "publicListingUrl": null,
-      "submittedOn": "2026-10-20"
+      "submittedOn": "2026-10-20",
+      "storeLinkStatus": "No editable listing; earlier contact suggestion remains pending",
+      "storeLinkLimit": "No public listing or owner editor exists yet; did not send additional outreach."
     },
     {
       "name": "DevHunt",
       "url": "https://devhunt.org/login",
       "status": "Public free listing created; promotional launch queued",
-      "notes": "Free spot chosen; no payment. Public page has approved logo, three real editor screenshots, Browser Extension/Open Source/QA categories, actual source and website, and maker disclosure. Page states version 1.0.2 downloadable now while CWS review is pending. DevHunt assigns the free promotion slot to Oct 7, 2031; paid launch offers skipped. Automatic AI replies disabled.",
+      "notes": "Existing maker comment edited to include verified Chrome Web Store URL, published 1.0.2 and newer ZIP/source 1.0.3. Main description updated with an Add Scrollout to Chrome HTML link; editor retained changes after navigation and the provider confirmed Your launch has been updated successfully. Public main description still showed old pending-review copy on reload, so public propagation is not confirmed. Free listing, logo, screenshots, categories, maker attribution and website preserved. Free promotional slot remains Oct 7, 2031; no paid upgrade. Automatic AI replies remain disabled.",
       "rules": "https://devhunt.org/faq",
-      "checkedOn": "2026-10-20",
+      "checkedOn": "2026-10-21",
       "publicListingUrl": "https://devhunt.org/tool/scrollout",
       "submittedOn": "2026-10-20",
-      "launchOn": "2031-10-07"
+      "launchOn": "2031-10-07",
+      "storeUrl": "https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm",
+      "storeLinkUpdatedOn": "2026-10-21",
+      "storeLinkStatus": "Saved successfully in tool editor; store URL visible in edited maker note; public main description still stale"
     },
     {
       "name": "SourceForge",
@@ -88,7 +102,7 @@
       "name": "Product Hunt",
       "url": "https://www.producthunt.com/launch",
       "status": "Launch draft prepared",
-      "notes": "Personal maker account required; company account prohibited. Wait for normal Chrome Web Store installation. No upvote requests.",
+      "notes": "Personal maker account required; company account prohibited. Normal Chrome Web Store availability was verified Oct 21, 2026; launch draft is ready for later human review. No launch performed in the approval-rollout heartbeat. No upvote requests.",
       "rules": "https://help.producthunt.com/en/articles/17350772-launch-guide",
       "checkedOn": "2026-10-20",
       "publicListingUrl": null
@@ -160,12 +174,15 @@
       "name": "Awesome Screenshot Tools",
       "url": "https://github.com/aitaskorchestra/awesome-screenshot-tools",
       "status": "Pull request open; not merged",
-      "notes": "One entry appended to Browser Extensions per CONTRIBUTING.md. Maker affiliation disclosed. Repo fork farflashgroup/awesome-screenshot-tools, branch add-scrollout.",
+      "notes": "Existing PR 8 body now links the verified Chrome Web Store 1.0.2 installation and newer ZIP/source 1.0.3; obsolete pending-store statement replaced. The proposed directory entry already links the official website. PR remains open and mergeable; no new PR, comment or outreach.",
       "rules": "https://github.com/aitaskorchestra/awesome-screenshot-tools/blob/main/CONTRIBUTING.md",
-      "checkedOn": "2026-10-20",
+      "checkedOn": "2026-10-21",
       "publicListingUrl": null,
       "submittedOn": "2026-10-20",
-      "confirmationUrl": "https://github.com/aitaskorchestra/awesome-screenshot-tools/pull/8"
+      "confirmationUrl": "https://github.com/aitaskorchestra/awesome-screenshot-tools/pull/8",
+      "storeUrl": "https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm",
+      "storeLinkUpdatedOn": "2026-10-21",
+      "storeLinkStatus": "Existing PR body updated and verified; PR remains open"
     }
   ],
   "excluded": [
@@ -193,8 +210,9 @@
   "ownedChannels": [
     {
       "name": "GitHub",
-      "status": "Published release and updated repository About/topics/README",
-      "url": "https://github.com/farflashgroup/Scrollout/releases/tag/v1.0.2"
+      "status": "Public releases v1.0.2 and v1.0.3 installation notes updated with the verified store link and separate version availability",
+      "url": "https://github.com/farflashgroup/Scrollout/releases/tag/v1.0.3",
+      "updatedOn": "2026-10-21"
     },
     {
       "name": "Website",
@@ -207,6 +225,30 @@
       "url": "https://search.google.com/search-console/sitemaps?resource_id=https%3A%2F%2Fscrollout.farflash.com%2F",
       "verifiedOn": "2026-10-20",
       "verificationFile": "website/google41361d58f7a08956.html"
+    },
+    {
+      "name": "Chrome Web Store",
+      "status": "Published - public; Add to Chrome verified",
+      "version": "1.0.2",
+      "url": "https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm",
+      "verifiedOn": "2026-10-21"
     }
-  ]
+  ],
+  "storeVerifiedOn": "2026-10-21",
+  "storeUrl": "https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm",
+  "rollout": {
+    "checkedOn": "2026-10-21",
+    "publishedStoreVersion": "1.0.2",
+    "downloadVersion": "1.0.3",
+    "websiteStatus": "Prepared and passed 83 local checks; deployment verification pending",
+    "accessibleDirectoryUpdatesCompleted": true,
+    "providerLimitations": [
+      "AlternativeTo store-link edit awaits moderation.",
+      "LibHunt store-link and canonical MIT corrections await moderation.",
+      "SaaSHub listing awaits approval; the saved Markdown store URL renders as plain label.",
+      "DevHunt confirmed the main-description save, but its public main copy is stale; edited maker note contains the store URL.",
+      "FossHub has no editable entry; no additional outreach sent."
+    ],
+    "monitor": "Pause after custom-domain deployment is verified."
+  }
 }

@@ -18,7 +18,9 @@ Every tool and export is free. Save PNG, JPEG, or paginated A4 PDF, or copy a fl
 
 The extension has no accounts, analytics, backend, screenshot upload service, subscription, or paid upgrade. Screenshots never upload to FarFlash Group Ltd., its publisher. Captures are temporary: export before closing the last editor. Desktop Chrome 120+; ordinary document scrolling is supported, while nested panels and embedded frames keep their visible content. Source code is MIT licensed.
 
-Current availability: version 1.0.2 is downloadable for unpacked installation. Chrome Web Store review is pending. Use the website’s current installation instructions.
+Current availability: version 1.0.2 is public in the Chrome Web Store. Version 1.0.3 is also downloadable for unpacked/source installation. Use the website’s current installation instructions.
+
+Chrome Web Store: https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm
 
 ## AlternativeTo fields
 
@@ -39,7 +41,7 @@ Title: Scrollout
 
 Tagline: Local full-page screenshots and annotations for Chrome
 
-Description: Capture a long page, point to a UI bug with arrows or text, crop the relevant area, redact private details, and export PNG, JPEG, or A4 PDF. Scrollout is MIT licensed and processes screenshots locally. Every tool is free, with no account or paid upgrade. Desktop Chrome 120+. Captures are temporary; export before closing the editor. Version 1.0.2 is downloadable now while Chrome Web Store review is pending.
+Description: Capture a long page, point to a UI bug with arrows or text, crop the relevant area, redact private details, and export PNG, JPEG, or A4 PDF. Scrollout is MIT licensed and processes screenshots locally. Every tool is free, with no account or paid upgrade. Desktop Chrome 120+. Captures are temporary; export before closing the editor. Version 1.0.2 is available in the Chrome Web Store; a newer 1.0.3 ZIP/source release is also available.
 
 Categories, if offered: Browser Extension, Testing/QA, Open Source, Developer Productivity. Choose the free permanent listing; no weekly launch fee is authorized.
 
@@ -59,7 +61,7 @@ Every tool and export is included: annotations, crop, opaque black redaction, un
 
 We’d welcome feedback on the editing workflow and captures of tricky page layouts. Please remove private details before sharing an example with us.
 
-Launch gate: use a personal maker account and wait until the normal Chrome Web Store installation route is live. No request for upvotes. No invented testimonials or user counts. Gallery: the five real editor screenshots; thumbnail: the approved square symbol; social preview: landscape launch artwork.
+Launch gate: use a personal maker account and use the verified public Chrome Web Store installation route. No request for upvotes. No invented testimonials or user counts. Gallery: the five real editor screenshots; thumbnail: the approved square symbol; social preview: landscape launch artwork.
 
 ## r/chrome_extensions draft
 
@@ -74,7 +76,7 @@ Screenshots are processed on your device and never upload to us. There is no acc
 Current download and instructions: https://scrollout.farflash.com/
 Source: https://github.com/farflashgroup/Scrollout
 
-Version 1.0.2 is downloadable for unpacked installation; Chrome Web Store review is still pending. It targets desktop Chrome 120+. Captures are temporary, so export before closing the last editor. Nested scrolling panels retain their visible contents.
+Version 1.0.2 is available in the Chrome Web Store. A newer 1.0.3 ZIP/source release is also available. It targets desktop Chrome 120+. Captures are temporary, so export before closing the last editor. Nested scrolling panels retain their visible contents.
 
 Feedback about the editor and difficult page layouts would help. Please keep private content out of shared examples.
 
@@ -86,10 +88,10 @@ Meet Scrollout: full-page screenshots with every editing tool included. Draw, cr
 
 Free, open source, and completely local. Screenshots never upload to FarFlash.
 
-Try version 1.0.2: https://scrollout.farflash.com/
+Install from the Chrome Web Store: https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm
 Source: https://github.com/farflashgroup/Scrollout
 
-Chrome Web Store review is pending; the website currently provides the unpacked download and instructions.
+The website also provides the 1.0.3 ZIP/source release and manual installation instructions.
 
 ## Short social post
 

@@ -10,7 +10,7 @@
 
 ## Store draft
 
-The recorded Chrome Web Store review is for version 1.0.2. This kit prepares version 1.0.3; it has not been uploaded or submitted by this generator.
+The recorded Chrome Web Store item is version 1.0.2 (Published - public). This kit prepares version 1.0.3; it has not been uploaded or submitted by this generator.
 
 - [ ] Uploaded release/Scrollout-1.0.3.zip (SHA-256: 0d093c8de4605c99efda3a1e3a7771f30ad798869f6c869d8b2fbabe557991f5).
 - [ ] Saved description, English language, Tools category, homepage and support URLs.
@@ -26,10 +26,10 @@ Draft: https://chrome.google.com/webstore/devconsole/9406c6b1-b2f4-4509-94ad-014
 
 Item ID: ajlhmigmaeodaedpgjmngkchnjoenmkm
 
-Current review status: Pending review. See submission-state.json for the recorded state. A draft or review submission is not a published listing.
+Current review status: Published - public. See submission-state.json for the recorded state. A draft or review submission is not a published listing.
 
 ## After approval
 
-Google will publish automatically after approval. Once live, check the public listing. Set storeUrl in publisher.json to the real published listing URL, regenerate the website, and verify that the installation CTA and instructions switch to Chrome Web Store installation. Keep submission helpers outside website/.
+Public installation was verified on 2026-10-21 for version 1.0.2. Set storeUrl in publisher.json to the real published listing URL, regenerate the website, and verify that the installation CTA and instructions switch to Chrome Web Store installation. Keep submission helpers outside website/.
 
 Official requirements checked on 2026-10-21 are listed in asset-provenance.json.

@@ -6,15 +6,17 @@
 
 Scrollout is a free Chrome extension for full-page screenshots and local editing. Draw, crop, highlight, add arrows, shapes or text, cover sensitive areas, and export without a paywall. It has no account, backend, analytics, or upload service.
 
-[Website](https://scrollout.farflash.com) - [Download v1.0.3](https://github.com/farflashgroup/Scrollout/releases/tag/v1.0.3) - [Guides](https://scrollout.farflash.com/guides/) - [Privacy](https://scrollout.farflash.com/privacy/) - [Press kit](https://scrollout.farflash.com/press/)
+[Add to Chrome](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm) - [Website](https://scrollout.farflash.com) - [Download v1.0.3](https://github.com/farflashgroup/Scrollout/releases/tag/v1.0.3) - [Guides](https://scrollout.farflash.com/guides/) - [Privacy](https://scrollout.farflash.com/privacy/) - [Press kit](https://scrollout.farflash.com/press/)
 
 ![Scrollout’s real screenshot editor with drawing, highlights, arrows, and text](website/assets/press/launch-landscape.png)
 
-The Chrome Web Store submission is pending review as of October 20, 2026. The downloadable extension is available now; follow the unpacked installation instructions below.
+Scrollout 1.0.2 is public in the [Chrome Web Store](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm), verified October 21, 2026. The newer 1.0.3 ZIP/source release remains available with the update-checking improvements; it is prepared for the next store submission.
 
 ## Install the ready-to-use extension
 
-Download [Scrollout-1.0.3.zip from the release](https://github.com/farflashgroup/Scrollout/releases/download/v1.0.3/Scrollout-1.0.3.zip) and extract it into a folder you will keep.
+For the Chrome-managed installation, [open Scrollout in the Chrome Web Store](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm), choose **Add to Chrome**, and pin Scrollout from the extensions menu.
+
+For the unpacked/source edition, download [Scrollout-1.0.3.zip from the release](https://github.com/farflashgroup/Scrollout/releases/download/v1.0.3/Scrollout-1.0.3.zip) and extract it into a folder you will keep.
 
 1. Open `chrome://extensions` in desktop Chrome 120 or newer.
 2. Turn on **Developer mode**.
@@ -38,7 +40,7 @@ Future releases: bump the package/manifest version, build and test, then run `no
 
 On October 21, 2026, 24 unit checks passed and 39 distinct browser checks were verified across a full Chromium 153.0.8010.12 run and targeted Chrome 155.0.8059.79 reruns. The initial 36-test run passed 33 checks; three test-profile startup cases passed the targeted rerun. Nine update integration checks cover unpacked/browser/managed guidance, exact metadata requests with the production permissions, caching and opt-out, offline and malformed responses, unavailable preference storage, pending-update deferral with duplicate editors, native update throttling, and narrow windows. Production-dependency audit found no known vulnerabilities. This is internal regression QA.
 
-A fresh Chrome 120 executable could not launch in this environment during the prior QA pass; the new update flows have not been runtime-tested on 120. The build remains targeted at Chrome 120, and the historical 1.0.2 compatibility results below remain separate. The pending store review is still for 1.0.2; 1.0.3 is the downloadable/source release and prepared next store package.
+A fresh Chrome 120 executable could not launch in this environment during the prior QA pass; the new update flows have not been runtime-tested on 120. The build remains targeted at Chrome 120, and the historical 1.0.2 compatibility results below remain separate. Version 1.0.2 is now public in the Chrome Web Store; 1.0.3 remains the downloadable/source release and prepared next store package.
 
 When port 4173 is occupied, set `SCROLLOUT_QA_PORT` to a free test port. The fixture server and all test contexts use that same port.
 
