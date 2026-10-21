@@ -32,7 +32,7 @@ Checked October 21, 2026. Store-link rollout is recorded below; directory modera
 | FossHub | Product suggestion sent; contact form confirmed receipt. No published entry or editor exists yet; no new outreach sent. |
 | [Awesome Screenshot Tools PR](https://github.com/aitaskorchestra/awesome-screenshot-tools/pull/8) | One factual Browser Extensions entry submitted under the contribution rules. PR body updated with the live store URL; still open and not merged. |
 
-No directory fees or placements were purchased. Additional channels and their account, publication, or community-rule requirements are recorded in `submissions.json`. Launch copy and a disclosed technical article draft are prepared for appropriate later publication. See `QA.md` for responsive website checks and the fresh Chrome 120 launch limitation.
+No directory fees or placements were purchased. Additional channels and their account, publication, or community-rule requirements are recorded in `submissions.json`. Launch copy and a disclosed technical article draft are prepared for appropriate later publication. The October 21 store-link rollout passed 83 local checks and 70 production checks, including mobile/desktop layout, a real ZIP download and checksum, all 13 sitemap routes, internal helper 404s, custom-domain redirects and immutable-deployment protection. Production deployment is READY. The approval heartbeat is paused; directory moderation and public-cache limits are recorded in the tracker. See `QA.md` for earlier extension QA and the fresh Chrome 120 launch limitation.
 
 ## Positioning
 

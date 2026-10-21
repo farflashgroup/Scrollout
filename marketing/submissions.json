@@ -216,8 +216,9 @@
     },
     {
       "name": "Website",
-      "status": "Eight guides, press kit, social assets, canonical/Article/BreadcrumbList metadata and sitemap live",
-      "url": "https://scrollout.farflash.com/guides/"
+      "status": "Chrome Web Store installation links live on homepage, guide CTAs and press page; newer ZIP/source download retained",
+      "url": "https://scrollout.farflash.com/#install",
+      "verifiedOn": "2026-10-21"
     },
     {
       "name": "Google Search Console",
@@ -240,7 +241,7 @@
     "checkedOn": "2026-10-21",
     "publishedStoreVersion": "1.0.2",
     "downloadVersion": "1.0.3",
-    "websiteStatus": "Prepared and passed 83 local checks; deployment verification pending",
+    "websiteStatus": "Production READY and custom domain verified; desktop/mobile store installation, download and privacy routes passed",
     "accessibleDirectoryUpdatesCompleted": true,
     "providerLimitations": [
       "AlternativeTo store-link edit awaits moderation.",
@@ -249,6 +250,22 @@
       "DevHunt confirmed the main-description save, but its public main copy is stale; edited maker note contains the store URL.",
       "FossHub has no editable entry; no additional outreach sent."
     ],
-    "monitor": "Pause after custom-domain deployment is verified."
+    "monitor": "PAUSED after confirmed publication and accessible rollout; provider moderation and cache limitations recorded above.",
+    "deploymentId": "dpl_GnUy7r3hjh4KButwEJVnsLwCQaf8",
+    "websiteCommit": "7fa24d5fb0f4824a624933863b179b638e0a0155",
+    "validation": {
+      "localChecks": 83,
+      "productionChecks": 70,
+      "widths": [
+        320,
+        390,
+        1440
+      ],
+      "sitemapPages": 13,
+      "zipSha256": "0d093c8de4605c99efda3a1e3a7771f30ad798869f6c869d8b2fbabe557991f5",
+      "customDomainRedirectsVerified": true,
+      "immutableDeploymentProtectionVerified": true,
+      "internalHelpers404": true
+    }
   }
 }
