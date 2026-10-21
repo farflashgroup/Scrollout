@@ -34,4 +34,24 @@ jobs:
       - run: npm run security
       - run: npx playwright install --with-deps chromium
       - run: npm run security:site
-      - run: npx playwright test tests/e2e/security.spec.ts tests/e2e/updates.spec.ts
+      - run: npx playwright test
+      - name: Verify the published store package
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs/promises';
+          import path from 'node:path';
+          import assert from 'node:assert/strict';
+          import { unzipSync } from 'fflate';
+          const {storeVersion}=JSON.parse(await fs.readFile('website/releases.json','utf8'));
+          assert.match(storeVersion,/^\d+(\.\d+){0,3}$/);
+          const root=path.resolve('.qa/published');
+          const files=unzipSync(await fs.readFile(`website/downloads/Scrollout-${storeVersion}.zip`));
+          for(const [name,bytes] of Object.entries(files)){
+            const target=path.resolve(root,name);
+            assert.ok(target.startsWith(root+path.sep)&&!name.includes('\\'));
+            await fs.mkdir(path.dirname(target),{recursive:true});
+            await fs.writeFile(target,bytes);
+          }
+          NODE
+          SCROLLOUT_QA_EXTENSION_DIR=.qa/published npx playwright test tests/e2e/security.spec.ts --grep 'production extension security'

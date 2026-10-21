@@ -96,11 +96,12 @@ test.describe('production extension security and temporary ownership',()=>{
   test.beforeEach(async()=>{
     profile=await fs.mkdtemp(path.join(os.tmpdir(),'scrollout-security-'));
     const native=!!process.env.SCROLLOUT_QA_ACTION_FILE;
+    const extensionPath=path.resolve(process.env.SCROLLOUT_QA_EXTENSION_DIR||'dist');
     if(native)test.setTimeout(180000);
-    context=await chromium.launchPersistentContext(profile,{...browserOptions,headless:!native,viewport:null,ignoreDefaultArgs:['--disable-extensions'],args:[...captureArgs().filter(arg=>!native||arg!=='--headless=new'),'--enable-unsafe-extension-debugging',`--load-extension=${path.resolve('dist')}`]});
+    context=await chromium.launchPersistentContext(profile,{...browserOptions,headless:!native,viewport:null,ignoreDefaultArgs:['--disable-extensions'],args:[...captureArgs().filter(arg=>!native||arg!=='--headless=new'),'--enable-unsafe-extension-debugging',`--load-extension=${extensionPath}`]});
     await context.route(RELEASE_URL,route=>route.fulfill({contentType:'application/json',headers:{'Access-Control-Allow-Origin':'*'},body:JSON.stringify({schemaVersion:1,version:'1.0.3',sha256:'a'.repeat(64),storeVersion:null,storeUrl:null})}));
     const cdp=await context.browser()!.newBrowserCDPSession();legacyActions=false;
-    try{if(!context.serviceWorkers().length)({id}=await cdp.send('Extensions.loadUnpacked',{path:path.resolve('dist')}))}
+    try{if(!context.serviceWorkers().length)({id}=await cdp.send('Extensions.loadUnpacked',{path:extensionPath}))}
     catch(error){if(!/wasn't found|not found|Unknown method/.test(String(error)))throw error;legacyActions=true}
     worker=context.serviceWorkers()[0]??await context.waitForEvent('serviceworker');
     id=new URL(worker.url()).host;
