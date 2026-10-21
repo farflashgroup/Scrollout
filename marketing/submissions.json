@@ -1,0 +1,182 @@
+{
+  "preparedOn": "2026-10-20",
+  "publisher": "FarFlash Group Ltd.",
+  "storeStatus": "Pending review; checked in authenticated dashboard",
+  "channels": [
+    {
+      "name": "AlternativeTo",
+      "url": "https://alternativeto.net/faq/#add-a-new-application",
+      "status": "Account needed",
+      "notes": "Verified email login; factual software description with no URLs or contacts inside it. Free queue heavily backlogged; optional paid priority skipped.",
+      "rules": "https://alternativeto.net/about/terms/",
+      "checkedOn": "2026-10-20",
+      "publicListingUrl": null
+    },
+    {
+      "name": "Alternative.me",
+      "url": "https://alternative.me/how-to/submit-software/",
+      "status": "Account needed",
+      "notes": "Account dashboard submission. Confirm any fees in the live form; none shown in official instructions.",
+      "rules": "https://alternative.me/terms/",
+      "checkedOn": "2026-10-20",
+      "publicListingUrl": null
+    },
+    {
+      "name": "OpenAlternative",
+      "url": "https://openalternative.co/submit",
+      "status": "Account needed",
+      "notes": "Curated open-source alternatives; sign-in required. Pricing and detailed submission rules must be checked after login.",
+      "rules": "https://openalternative.co/about",
+      "checkedOn": "2026-10-20",
+      "publicListingUrl": null
+    },
+    {
+      "name": "SaaSHub",
+      "url": "https://www.saashub.com/services/submit",
+      "status": "Form to prepare",
+      "notes": "Public downloadable 1.0.2, not an announced-only product. Form rejects unreleased products; company-email or HTML ownership verification is free. Requires accepting terms at submission.",
+      "rules": "https://www.saashub.com/site/product_verification",
+      "checkedOn": "2026-10-20",
+      "publicListingUrl": null
+    },
+    {
+      "name": "LibHunt",
+      "url": "https://www.libhunt.com/repo/submit",
+      "status": "Access unverified",
+      "notes": "Official repository submission exists; direct research fetch returned 403. Inspect in normal browser, do not bypass access checks.",
+      "rules": "https://www.libhunt.com/site/project_submit",
+      "checkedOn": "2026-10-20",
+      "publicListingUrl": null
+    },
+    {
+      "name": "FossHub",
+      "url": "https://www.fosshub.com/contact.html",
+      "status": "Prepared, not sent",
+      "notes": "Factual maker-attributed suggestion filled in normal browser; send once public press kit is live.",
+      "rules": "https://www.fosshub.com/faq.html",
+      "checkedOn": "2026-10-20",
+      "publicListingUrl": null
+    },
+    {
+      "name": "DevHunt",
+      "url": "https://devhunt.org/login",
+      "status": "Sign-in needed",
+      "notes": "GitHub sign-in page reached; no browser session. Free permanent listing; skip $19 weekly launch and $49 boost.",
+      "rules": "https://devhunt.org/faq",
+      "checkedOn": "2026-10-20",
+      "publicListingUrl": null
+    },
+    {
+      "name": "SourceForge",
+      "url": "https://sourceforge.net/create/",
+      "status": "Hold",
+      "notes": "Only create if maintaining a real release mirror; avoid empty duplicate project for backlinks.",
+      "rules": "https://sourceforge.net/create/",
+      "checkedOn": "2026-10-20",
+      "publicListingUrl": null
+    },
+    {
+      "name": "Product Hunt",
+      "url": "https://www.producthunt.com/launch",
+      "status": "Launch draft prepared",
+      "notes": "Personal maker account required; company account prohibited. Wait for normal Chrome Web Store installation. No upvote requests.",
+      "rules": "https://help.producthunt.com/en/articles/17350772-launch-guide",
+      "checkedOn": "2026-10-20",
+      "publicListingUrl": null
+    },
+    {
+      "name": "r/chrome_extensions",
+      "url": "https://www.reddit.com/r/chrome_extensions/",
+      "status": "Draft prepared",
+      "notes": "One factual post with Self Promotion flair. Do not spam across subreddits or solicit votes. Check current rules before posting.",
+      "rules": "https://www.reddit.com/r/chrome_extensions/",
+      "checkedOn": "2026-10-20",
+      "publicListingUrl": null
+    },
+    {
+      "name": "r/SideProject",
+      "url": "https://www.reddit.com/r/SideProject/",
+      "status": "Alternative channel, not simultaneous campaign",
+      "notes": "Feedback-focused project post; inspect live rules and account before sending.",
+      "rules": "https://old.reddit.com/r/SideProject/",
+      "checkedOn": "2026-10-20",
+      "publicListingUrl": null
+    },
+    {
+      "name": "r/coolgithubprojects",
+      "url": "https://www.reddit.com/r/coolgithubprojects/",
+      "status": "Rules need live check",
+      "notes": "Source-first project-sharing fit. Full specific rule block not exposed in research; inspect before posting.",
+      "rules": "https://www.reddit.com/r/coolgithubprojects/",
+      "checkedOn": "2026-10-20",
+      "publicListingUrl": null
+    },
+    {
+      "name": "r/opensource",
+      "url": "https://www.reddit.com/r/opensource/",
+      "status": "Human-written only",
+      "notes": "Current rules prohibit all AI-generated posts. OSI license and Promotional flair required; no agent draft or post.",
+      "rules": "https://www.reddit.com/r/opensource/",
+      "checkedOn": "2026-10-20",
+      "publicListingUrl": null
+    },
+    {
+      "name": "Hacker News",
+      "url": "https://news.ycombinator.com/showhn.html",
+      "status": "Human-written only",
+      "notes": "Current HN guidelines prohibit generated/AI-edited text and automated submissions. Maker must write and submit personally.",
+      "rules": "https://news.ycombinator.com/newsguidelines.html",
+      "checkedOn": "2026-10-20",
+      "publicListingUrl": null
+    },
+    {
+      "name": "DEV Community",
+      "url": "https://dev.to/new",
+      "status": "Technical draft prepared",
+      "notes": "Substantive educational article, not promotional teaser/backlinks. Ownership and AI-assistance disclosures included; human technical review pending.",
+      "rules": "https://dev.to/code-of-conduct",
+      "checkedOn": "2026-10-20",
+      "publicListingUrl": null
+    },
+    {
+      "name": "Hashnode",
+      "url": "https://hashnode.com/",
+      "status": "Account needed; technical draft available",
+      "notes": "One substantive reviewed technical post; no bulk automated SEO campaign. Free browser editor; API/CLI writes require Pro.",
+      "rules": "https://hashnode.com/code-of-conduct",
+      "checkedOn": "2026-10-20",
+      "publicListingUrl": null
+    },
+    {
+      "name": "Awesome Screenshot Tools",
+      "url": "https://github.com/aitaskorchestra/awesome-screenshot-tools",
+      "status": "PR to submit",
+      "notes": "Append concise entry to Browser Extensions, disclose maker affiliation, actively maintained MIT project.",
+      "rules": "https://github.com/aitaskorchestra/awesome-screenshot-tools/blob/main/CONTRIBUTING.md",
+      "checkedOn": "2026-10-20",
+      "publicListingUrl": null
+    }
+  ],
+  "excluded": [
+    {
+      "name": "BetaList",
+      "reason": "All submissions paid; no spend authorized.",
+      "source": "https://betalist.com/support"
+    },
+    {
+      "name": "AlternativeOSS.com",
+      "reason": "Live domain parked/for sale; exclude stale search results.",
+      "source": "https://alternativeoss.com/"
+    },
+    {
+      "name": "OpenSourceAlternative.to",
+      "reason": "Requires self-hosted software; Chrome extension does not fit.",
+      "source": "https://www.opensourcealternative.to/submit"
+    },
+    {
+      "name": "r/chrome",
+      "reason": "Extension promotion directed to r/chrome_extensions; skip.",
+      "source": "https://www.reddit.com/r/chrome/"
+    }
+  ]
+}

@@ -2,13 +2,23 @@
 
 **Capture the whole page. Make it yours.**
 
+**Free, open source, and completely local.**
+
 Scrollout is a free Chrome extension for full-page screenshots and local editing. Draw, crop, highlight, add arrows, shapes or text, cover sensitive areas, and export without a paywall. It has no account, backend, analytics, or upload service.
+
+[Website](https://scrollout.farflash.com) - [Download v1.0.2](https://github.com/farflashgroup/Scrollout/releases/tag/v1.0.2) - [Guides](https://scrollout.farflash.com/guides/) - [Privacy](https://scrollout.farflash.com/privacy/) - [Press kit](https://scrollout.farflash.com/press/)
+
+![Scrollout’s real screenshot editor with drawing, highlights, arrows, and text](website/assets/press/launch-landscape.png)
+
+The Chrome Web Store submission is pending review as of October 20, 2026. The downloadable extension is available now; follow the unpacked installation instructions below.
 
 ## Install the ready-to-use extension
 
+Download [Scrollout-1.0.2.zip from the release](https://github.com/farflashgroup/Scrollout/releases/download/v1.0.2/Scrollout-1.0.2.zip) and extract it into a folder you will keep.
+
 1. Open `chrome://extensions` in desktop Chrome 120 or newer.
 2. Turn on **Developer mode**.
-3. Choose **Load unpacked** and select the `dist` folder inside this project.
+3. Choose **Load unpacked** and select the extracted folder (or `dist` if you built from source).
 4. Open Chrome's extensions menu and pin **Scrollout**.
 
 The distribution archive is `release/Scrollout-1.0.2.zip`. Extract it first, then load the extracted folder. Chrome does not install an unpacked extension directly from a ZIP.
@@ -110,12 +120,15 @@ See [the brand guide](BRAND.md) for logo usage and design tokens. Bundled Inter 
 
 The submission materials are in `store/`. Open `store/START-HERE.html` for copyable listing text, permission explanations, reviewer instructions, and previews of all store graphics. `store/submission-checklist.md` lists account steps and the exact extension ZIP to upload. The store-kit ZIP is a preparation bundle, not an extension upload.
 
-The public landing page, privacy policy, and support page are in `website/`, prepared for `https://scrollout.farflash.com`. The site has no account system, added analytics, or remote fonts/scripts. It offers the tested extension ZIP until `store/publisher.json` contains the live Chrome Web Store URL. Hosting request logs are disclosed separately from the extension's local-only screenshot processing.
+The public landing page, privacy policy, support, guides, and press kit are in `website/`, deployed at `https://scrollout.farflash.com`. The site has no account system, added analytics, or remote fonts/scripts. It offers the tested extension ZIP until `store/publisher.json` contains the live Chrome Web Store URL. Hosting request logs are disclosed separately from the extension's local screenshot processing.
+
+Public editorial content lives in `scripts/guide-content.mjs`. The guide renderer generates canonical links, Article and BreadcrumbList metadata, and the sitemap. JSON-LD scripts use exact CSP hashes. `marketing/` holds launch copy and the submission tracker; it is source documentation, not part of the deployed website. `store/START-HERE.html` is also excluded from the public deployment.
 
 ```sh
 node scripts/store-kit.mjs
 # With npm run dev already serving on port 4173:
 node scripts/store-screenshots.mjs
+node scripts/marketing-assets.mjs
 node scripts/website.mjs
 node scripts/package-store.mjs
 # Optional local website preview on port 4174:

@@ -1,0 +1,27 @@
+{
+  "preparedOn": "2026-10-20",
+  "provenance": "Approved unmodified SVG logo; real editor screenshot from store/assets; locally bundled Inter outlined through Fontkit; deterministic SVG and Sharp exports.",
+  "exports": [
+    {
+      "name": "launch-landscape.png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 79152,
+      "sha256": "68672e652e351920ba14f2f38986aa73755caa779129cc0330c43db86078b5bd"
+    },
+    {
+      "name": "launch-square.png",
+      "width": 1080,
+      "height": 1080,
+      "bytes": 131293,
+      "sha256": "cb01156f3a13307ab29209aa6514c19eac74c08f5ed10cfaf851a876b284ac0a"
+    },
+    {
+      "name": "launch-portrait.png",
+      "width": 1080,
+      "height": 1350,
+      "bytes": 148941,
+      "sha256": "25222e62da7bb19cec90995e6baa8a0fa7e90a89016bc78a5caae2a1c9e430db"
+    }
+  ]
+}

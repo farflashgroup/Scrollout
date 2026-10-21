@@ -20,13 +20,13 @@ await fs.writeFile('store/START-HERE.html',`<!doctype html><html lang="en"><head
 const files={};
 async function collect(dir,prefix,target=files){for(const item of await fs.readdir(dir,{withFileTypes:true})){if(item.isDirectory())await collect(path.join(dir,item.name),prefix+item.name+'/',target);else target[prefix+item.name]=new Uint8Array(await fs.readFile(path.join(dir,item.name)))}}
 await collect('store','store/');await collect('website','website/');
-for(const name of ['store-kit.mjs','store-screenshots.mjs','website.mjs','serve-website.mjs','package-store.mjs'])files['scripts/'+name]=new Uint8Array(await fs.readFile('scripts/'+name));
+for(const name of ['store-kit.mjs','store-screenshots.mjs','website.mjs','guides.mjs','guide-content.mjs','marketing-assets.mjs','serve-website.mjs','package-store.mjs'])files['scripts/'+name]=new Uint8Array(await fs.readFile('scripts/'+name));
 for(const name of ['mark.svg','lockup.svg','Inter-LICENSE.txt'])files['public/brand/'+name]=new Uint8Array(await fs.readFile('public/brand/'+name));
 files.LICENSE=new Uint8Array(await fs.readFile('LICENSE'));
 const distribution=await fs.readFile(`release/Scrollout-${version}.zip`);files[`release/Scrollout-${version}.zip`]=new Uint8Array(distribution);
 const checksums=Object.entries(files).map(([name,bytes])=>hash(bytes)+'  '+name).join('\n')+'\n';files['SHA256SUMS.txt']=new TextEncoder().encode(checksums);
 const filename=`release/Scrollout-${version}-store-kit.zip`;await fs.writeFile(filename,zipSync(files,{level:6}));
-const source={};for(const dir of ['src','public','scripts','tests','store','website'])await collect(dir,dir+'/',source);
+const source={};for(const dir of ['src','public','scripts','tests','store','website','marketing'])await collect(dir,dir+'/',source);
 for(const file of ['package.json','package-lock.json','editor.html','tsconfig.json','vite.config.ts','playwright.config.ts','.gitignore','README.md','INSTALL.md','BRAND.md','THIRD_PARTY_NOTICES.md','LICENSE','CONTRIBUTING.md','SECURITY.md'])source[file]=new Uint8Array(await fs.readFile(file));
 await fs.writeFile(`release/Scrollout-${version}-source.zip`,zipSync(source,{level:6}));
 console.log(JSON.stringify({file:filename,files:Object.keys(files).length,bytes:(await fs.stat(filename)).size,sha256:hash(await fs.readFile(filename)),assets:assets.length,unchangedDistributionSha256:hash(distribution)},null,2));

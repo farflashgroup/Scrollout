@@ -20,7 +20,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+          "value": "default-src 'self'; script-src 'self' 'sha256-qEoZPYn5WvcTGMrLxeKeijFQN3S5vdmaVgKP8i5tUr4=' 'sha256-bd42XkbONASCgILO8ZJOMAobykcY+UUNf5msSzjh3BA=' 'sha256-PeP+F/ygzyOMOBIKQ/GBHqC778L3VnSHnxhDgwAqWCg=' 'sha256-Y6Qey2qa46aVdQj3DepYAKuOQ2/mlLMaQbnrV4EIq10=' 'sha256-U+rhLp0eRJnCQKgd0ZE2W2zlOzjdoylGej5SrsaqVd4=' 'sha256-94vghZEOI6oAzRfTfpWmpkhPeex2rCcjWfkVkE7dVvE=' 'sha256-ClNFjODlcccCz2k7gPL1e1Kpx6OG0wOD2n9LdKKnUMA=' 'sha256-nfomSQFITVioqs559MxmycrbfnDGSFOqgvO1O4BSz5I='; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
         },
         {
           "key": "Permissions-Policy",
