@@ -14,6 +14,24 @@ Version 1.0.2 is publicly downloadable and MIT licensed. The Chrome Web Store da
 - Public press kit: https://scrollout.farflash.com/press/
 - Privacy: https://scrollout.farflash.com/privacy/
 
+## Published work and submission results
+
+Checked October 20, 2026. These are completed actions, not estimates of reach or acceptance:
+
+| Channel | Result |
+| --- | --- |
+| Website | Eight guides, press kit, three launch artwork sizes, and 13-route sitemap are live. The requested headline reads “Free, open source, and completely local”; site text uses hyphens instead of middle dots. |
+| Google Search Console | Ownership verified. Sitemap status is Success with 13 discovered pages; indexing is not guaranteed. |
+| [GitHub release](https://github.com/farflashgroup/Scrollout/releases/tag/v1.0.2) | Version 1.0.2 extension ZIP and public press ZIP published. Repository About, topics, and README updated. |
+| [LibHunt](https://www.libhunt.com/r/Scrollout) | Public entry automatically approved. A correction from the raw MIT label to the provider's canonical MIT License is awaiting moderation; the current OSI warning is a directory metadata error. The repository remains MIT licensed. |
+| [DevHunt](https://devhunt.org/tool/scrollout) | Public free entry with logo, three real editor screenshots, and maker comment. Its free promotional slot is October 7, 2031. Scrollout itself is downloadable now. Paid boosts were skipped and automatic AI replies disabled. |
+| AlternativeTo | Complete free submission, verified email, three screenshots, and GoFullPage alternative association. Normal queue confirmed; private until approved. Provider warns review may take a very long time and is not guaranteed. |
+| [SaaSHub](https://www.saashub.com/scrollout) | Submission and ownership verified; still Pending approval. Logo, three screenshots, description, features, Chrome platform, MIT/source links, and free pricing saved. |
+| FossHub | Product suggestion sent; contact form confirmed receipt. No published entry yet. |
+| [Awesome Screenshot Tools PR](https://github.com/aitaskorchestra/awesome-screenshot-tools/pull/8) | One factual Browser Extensions entry submitted under the contribution rules. PR open; not merged. |
+
+No directory fees or placements were purchased. Additional channels and their account, publication, or community-rule requirements are recorded in `submissions.json`. Launch copy and a disclosed technical article draft are prepared for appropriate later publication. See `QA.md` for responsive website checks and the fresh Chrome 120 launch limitation.
+
 ## Positioning
 
 **Free, open source, and completely local**

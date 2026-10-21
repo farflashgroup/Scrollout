@@ -6,11 +6,13 @@
     {
       "name": "AlternativeTo",
       "url": "https://alternativeto.net/faq/#add-a-new-application",
-      "status": "Account needed",
-      "notes": "Verified email login; factual software description with no URLs or contacts inside it. Free queue heavily backlogged; optional paid priority skipped.",
+      "status": "Submitted to normal free review queue",
+      "notes": "User signed in; email confirmed. Free / MIT / Google Chrome / FarFlash Group Ltd., source URL, screenshot tags, privacy features, icon and three actual screenshots submitted. GoFullPage association saved and visible. Your app submissions confirms Normal queue / Waiting since today. Only the submitting account can see the app until approval. No paid priority; the provider warns that the normal queue is very long and review is not guaranteed.",
       "rules": "https://alternativeto.net/about/terms/",
       "checkedOn": "2026-10-20",
-      "publicListingUrl": null
+      "publicListingUrl": null,
+      "submittedOn": "2026-10-20",
+      "confirmationUrl": "https://alternativeto.net/my-submissions/"
     },
     {
       "name": "Alternative.me",
@@ -33,38 +35,45 @@
     {
       "name": "SaaSHub",
       "url": "https://www.saashub.com/services/submit",
-      "status": "Form to prepare",
-      "notes": "Public downloadable 1.0.2, not an announced-only product. Form rejects unreleased products; company-email or HTML ownership verification is free. Requires accepting terms at submission.",
+      "status": "Submitted and ownership verified; awaiting approval",
+      "notes": "Free entry confirmed; still Pending approval. Ownership verified using requested support-email link. MIT/open-source status, GitHub and guides links, description, logo, three real screenshots, three feature summaries, Google Chrome platform, and Free=yes / Trial=no / Paid=no pricing saved. Terms accepted with explicit user approval.",
       "rules": "https://www.saashub.com/site/product_verification",
       "checkedOn": "2026-10-20",
-      "publicListingUrl": null
+      "publicListingUrl": "https://www.saashub.com/scrollout",
+      "submittedOn": "2026-10-20",
+      "confirmationUrl": "https://www.saashub.com/scrollout/added",
+      "ownershipVerified": true
     },
     {
       "name": "LibHunt",
       "url": "https://www.libhunt.com/repo/submit",
-      "status": "Access unverified",
-      "notes": "Official repository submission exists; direct research fetch returned 403. Inspect in normal browser, do not bypass access checks.",
+      "status": "Published; license-name correction awaiting moderation",
+      "notes": "Automatically approved. Source, docs, website, TypeScript and screenshot/editor/privacy topics verified in public listing. Canonical MIT License correction suggested because the initial raw MIT label was incorrectly marked not OSI-approved; review is pending.",
       "rules": "https://www.libhunt.com/site/project_submit",
       "checkedOn": "2026-10-20",
-      "publicListingUrl": null
+      "publicListingUrl": "https://www.libhunt.com/r/Scrollout",
+      "submittedOn": "2026-10-20"
     },
     {
       "name": "FossHub",
       "url": "https://www.fosshub.com/contact.html",
-      "status": "Prepared, not sent",
-      "notes": "Factual maker-attributed suggestion filled in normal browser; send once public press kit is live.",
+      "status": "Suggestion sent; awaiting review",
+      "notes": "Contact form confirmed: Your message has been sent to FOSShub. Maker affiliation, public website, MIT source, version 1.0.2 availability and pending CWS review disclosed.",
       "rules": "https://www.fosshub.com/faq.html",
       "checkedOn": "2026-10-20",
-      "publicListingUrl": null
+      "publicListingUrl": null,
+      "submittedOn": "2026-10-20"
     },
     {
       "name": "DevHunt",
       "url": "https://devhunt.org/login",
-      "status": "Sign-in needed",
-      "notes": "GitHub sign-in page reached; no browser session. Free permanent listing; skip $19 weekly launch and $49 boost.",
+      "status": "Public free listing created; promotional launch queued",
+      "notes": "Free spot chosen; no payment. Public page has approved logo, three real editor screenshots, Browser Extension/Open Source/QA categories, actual source and website, and maker disclosure. Page states version 1.0.2 downloadable now while CWS review is pending. DevHunt assigns the free promotion slot to Oct 7, 2031; paid launch offers skipped. Automatic AI replies disabled.",
       "rules": "https://devhunt.org/faq",
       "checkedOn": "2026-10-20",
-      "publicListingUrl": null
+      "publicListingUrl": "https://devhunt.org/tool/scrollout",
+      "submittedOn": "2026-10-20",
+      "launchOn": "2031-10-07"
     },
     {
       "name": "SourceForge",
@@ -150,11 +159,13 @@
     {
       "name": "Awesome Screenshot Tools",
       "url": "https://github.com/aitaskorchestra/awesome-screenshot-tools",
-      "status": "PR to submit",
-      "notes": "Append concise entry to Browser Extensions, disclose maker affiliation, actively maintained MIT project.",
+      "status": "Pull request open; not merged",
+      "notes": "One entry appended to Browser Extensions per CONTRIBUTING.md. Maker affiliation disclosed. Repo fork farflashgroup/awesome-screenshot-tools, branch add-scrollout.",
       "rules": "https://github.com/aitaskorchestra/awesome-screenshot-tools/blob/main/CONTRIBUTING.md",
       "checkedOn": "2026-10-20",
-      "publicListingUrl": null
+      "publicListingUrl": null,
+      "submittedOn": "2026-10-20",
+      "confirmationUrl": "https://github.com/aitaskorchestra/awesome-screenshot-tools/pull/8"
     }
   ],
   "excluded": [
@@ -177,6 +188,25 @@
       "name": "r/chrome",
       "reason": "Extension promotion directed to r/chrome_extensions; skip.",
       "source": "https://www.reddit.com/r/chrome/"
+    }
+  ],
+  "ownedChannels": [
+    {
+      "name": "GitHub",
+      "status": "Published release and updated repository About/topics/README",
+      "url": "https://github.com/farflashgroup/Scrollout/releases/tag/v1.0.2"
+    },
+    {
+      "name": "Website",
+      "status": "Eight guides, press kit, social assets, canonical/Article/BreadcrumbList metadata and sitemap live",
+      "url": "https://scrollout.farflash.com/guides/"
+    },
+    {
+      "name": "Google Search Console",
+      "status": "Ownership verified; sitemap Success; 13 discovered pages",
+      "url": "https://search.google.com/search-console/sitemaps?resource_id=https%3A%2F%2Fscrollout.farflash.com%2F",
+      "verifiedOn": "2026-10-20",
+      "verificationFile": "website/google41361d58f7a08956.html"
     }
   ]
 }
