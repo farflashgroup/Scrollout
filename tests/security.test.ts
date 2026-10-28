@@ -53,7 +53,9 @@ describe('public website trust boundaries',()=>{
       const html=readFileSync(file,'utf8');
       expect(html,`${file}: inline event handler`).not.toMatch(/\son\w+\s*=/i);
       expect(html,`${file}: active embedded content`).not.toMatch(/<(?:iframe|object|embed|form)\b/i);
-      for(const script of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)){
+      // HTML also closes script elements with whitespace or attributes after
+      // the tag name. Include those forms so the assertions cannot skip them.
+      for(const script of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\b[^>]*>/gi)){
         const src=script[1].match(/\bsrc=["']([^"']+)["']/i)?.[1];
         if(src){expect(src,`${file}: script origin`).toMatch(/^\/(?!\/)/);expect(existsSync(path.join('website',src))).toBe(true)}
         else{
