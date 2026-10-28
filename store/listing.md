@@ -1,6 +1,6 @@
 # Scrollout Chrome Web Store listing
 
-Prepared 2026-10-21. Version 1.0.3.
+Prepared 2026-10-21. Version 1.0.4.
 
 | Field | Value |
 | --- | --- |
@@ -39,7 +39,7 @@ LOCAL AND TEMPORARY
 Screenshots and edits are processed on your device. Scrollout has no analytics or screenshot upload service. Temporary captures survive editor reloads, but closing or leaving the last editor for a capture deletes its temporary screenshot and edits. Restarting Chrome expires temporary sessions. Download anything you want to keep. Downloaded files and clipboard copies remain under your control.
 
 GOOD TO KNOW
-Desktop Chrome 120 or newer. Chrome-owned pages and other protected pages can restrict capture. Independently scrolling panels and embedded frames keep their visible contents. Infinite feeds stop at their initial length. Switching tabs, scrolling manually, navigating, or changing the viewport interrupts capture.
+Desktop Chrome 120 or newer. Chrome-owned pages and other protected pages can restrict capture. On app pages where the document does not scroll, Scrollout captures a large, fully visible main scrolling panel. Small widgets, other panels, and embedded frames keep their visible contents. Infinite feeds stop at their initial length. Switching tabs, scrolling manually, navigating, or changing the viewport interrupts capture.
 
 Support: scrollout@farflash.com
 Privacy: https://scrollout.farflash.com/privacy/

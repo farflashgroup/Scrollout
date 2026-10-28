@@ -1,4 +1,4 @@
-Scrollout 1.0.3 — test instructions
+Scrollout 1.0.4 — test instructions
 
 No account, credentials, payment, subscription, server connection, or special entitlement is required.
 
@@ -12,11 +12,11 @@ No account, credentials, payment, subscription, server connection, or special en
 8. Reload an editor to verify the saved temporary document survives. Closing or navigating away from the last editor for that capture removes the temporary capture. Browser restart/extension reload expires old captures; the next worker initialization removes orphan data.
 9. On a long source page, invoke the toolbar a second time or press Escape on the source page to cancel. Switching tabs, manual scrolling, navigation, and viewport changes also cancel and restore the page.
 
-Expected boundaries: chrome:// pages, the Chrome Web Store, some built-in viewers, and other protected pages can reject capture. Nested scroll containers and embedded frames retain their currently visible content. Infinite feeds stop at their initial measured dimensions. Local file capture depends on Chrome's separate Allow access to file URLs setting.
+Expected boundaries: chrome:// pages, the Chrome Web Store, some built-in viewers, and other protected pages can reject capture. A large, fully visible main panel is captured when the document itself does not scroll. Other panels, small widgets, and embedded frames retain their visible contents. Infinite feeds stop at their initial measured dimensions. Local file capture depends on Chrome's separate Allow access to file URLs setting.
 
 All capture/edit processing is local. No remote executable code, analytics, screenshots upload endpoint, or backend is used. Help includes version information, optional release-metadata checks from one static HTTPS file, and instructions for updating unpacked installs. Capture information is never included in a release request. The only permissions are activeTab, scripting, storage, and clipboardWrite.
 
-Core version 1.0.2 was previously validated on Chrome 120.0.6099.109 and Chrome 155.0.8059.79 on Windows. Version 1.0.3 adds release checks and safe update deferral: 24 unit checks and 39 distinct browser checks were verified across Chromium 153 and targeted Chrome 155 runs, including nine new update integration checks. The first full run had three test-profile startup failures; the affected cases passed targeted reruns. A fresh Chrome 120 run is unavailable on this machine, so these new update flows have not been runtime-tested on 120. This is internal QA, not an independent security certification.
+Version 1.0.4 was validated on Windows with Chrome 156.0.8078.47: all 27 unit and 43 browser checks passed, and the full dependency audit found zero known vulnerabilities. New fixtures exercise both-axis main-panel capture, virtualized rows, final tiles, cancellation/restoration, 125% zoom with 2x display scaling and fractional borders/padding, and stable editor fitting. Existing checks cover capture interruptions, storage failures, exports, redaction, message validation, CSP, temporary ownership, and updates. The fixtures contain synthetic data only. The build targets Chrome 120, but these new flows have not been runtime-tested on 120; core version 1.0.2 was historically tested on Chrome 120.0.6099.109. This is internal QA, not an independent security certification.
 
 Publisher: FarFlash Group Ltd.
 Support: scrollout@farflash.com

@@ -29,6 +29,9 @@ export interface PageMetrics {
   width:number; height:number; viewportWidth:number; viewportHeight:number;
   contentWidth:number; contentHeight:number; pixelRatio?:number;
 }
+// A native viewport can contribute several pieces when the main scroll surface
+// is an application panel: page header, scrolling content, and page footer.
+export interface CaptureRegion { source:Rect; destination:Rect }
 export interface ActiveCapture {
   id:string; tabId:number; windowId:number; metrics?:PageMetrics;
   documentId?:string;
@@ -37,7 +40,7 @@ export interface ActiveCapture {
 export type CaptureMessage =
   | {type:'START';id:string}
   | {type:'STOP';id:string;reason:string}
-  | {type:'TILE';id:string;sequence:number;total:number;x:number;y:number;metrics:PageMetrics}
+  | {type:'TILE';id:string;sequence:number;total:number;x:number;y:number;metrics:PageMetrics;regions?:CaptureRegion[]}
   | {type:'DONE';id:string}
   | {type:'FAILED';id:string;reason:string}
   | {type:'HEARTBEAT';id:string}

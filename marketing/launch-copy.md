@@ -16,7 +16,7 @@ Scrollout captures an entire webpage and opens a simple editor on your device. D
 
 Every tool and export is free. Save PNG, JPEG, or paginated A4 PDF, or copy a flattened PNG to the clipboard. Large image exports become numbered parts in a ZIP.
 
-The extension has no accounts, analytics, backend, screenshot upload service, subscription, or paid upgrade. Screenshots never upload to FarFlash Group Ltd., its publisher. Captures are temporary: export before closing the last editor. Desktop Chrome 120+; ordinary document scrolling is supported, while nested panels and embedded frames keep their visible content. Source code is MIT licensed.
+The extension has no accounts, analytics, backend, screenshot upload service, subscription, or paid upgrade. Screenshots never upload to FarFlash Group Ltd., its publisher. Captures are temporary: export before closing the last editor. Desktop Chrome 120+; version 1.0.4 adds automatic capture of a large main scrolling panel when the document itself does not scroll. Other panels, small widgets, and embedded frames keep their visible content. Source code is MIT licensed.
 
 Current availability: version 1.0.2 is public in the Chrome Web Store. Version 1.0.3 is also downloadable for unpacked/source installation. Use the website’s current installation instructions.
 
@@ -76,7 +76,7 @@ Screenshots are processed on your device and never upload to us. There is no acc
 Current download and instructions: https://scrollout.farflash.com/
 Source: https://github.com/farflashgroup/Scrollout
 
-Version 1.0.2 is available in the Chrome Web Store. A newer 1.0.3 ZIP/source release is also available. It targets desktop Chrome 120+. Captures are temporary, so export before closing the last editor. Nested scrolling panels retain their visible contents.
+Version 1.0.2 is available in the Chrome Web Store. A newer 1.0.4 ZIP/source release is also available, with main-panel capture and editor sizing fixes. It targets desktop Chrome 120+. Captures are temporary, so export before closing the last editor. Small widgets, other panels, and embedded frames retain their visible contents.
 
 Feedback about the editor and difficult page layouts would help. Please keep private content out of shared examples.
 

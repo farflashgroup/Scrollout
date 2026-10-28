@@ -4,7 +4,7 @@
 
 Keep Chrome up to date to receive browser security fixes. Chrome 120 is the minimum compatibility version.
 
-1. Extract `Scrollout-1.0.3.zip` into a folder you will keep.
+1. Extract `Scrollout-1.0.4.zip` into a folder you will keep.
 2. Open `chrome://extensions` in desktop Chrome 120 or newer.
 3. Turn on **Developer mode**, click **Load unpacked**, and select the extracted folder containing `manifest.json`.
 4. Pin Scrollout from Chrome's extensions menu.
@@ -34,7 +34,7 @@ Use **Undo / Redo**, the color and size controls, and **Fit** to adjust your wor
 
 All capture and editing happens on your device, with no account, uploads, analytics, or paywall. Reloading an editor preserves its latest saved edits. Closing or navigating away from the last editor for a capture deletes that capture. Browser restarts and extension reloads expire temporary sessions. Export anything you want to keep.
 
-Protected pages may disallow capture. Navigating, switching tabs, manually scrolling, or changing the viewport cancels capture. Independently scrolling panels and embedded frames keep their visible contents; infinite feeds stop at their initial document length.
+Protected pages may disallow capture. Navigating, switching tabs, manually scrolling, or changing the viewport cancels capture. On app pages where the document does not scroll, Scrollout captures a large, fully visible main scrolling panel automatically. Small widgets, additional panels, and embedded frames keep their visible contents. Infinite feeds stop at their initial length.
 
 ## Quick check after installation
 

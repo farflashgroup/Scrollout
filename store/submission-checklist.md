@@ -1,4 +1,4 @@
-# Submit Scrollout 1.0.3
+# Submit Scrollout 1.0.4
 
 ## Publisher account
 
@@ -10,23 +10,21 @@
 
 ## Store draft
 
-The recorded Chrome Web Store item is version 1.0.2 (Published - public). This kit prepares version 1.0.3; it has not been uploaded or submitted by this generator.
-
-- [ ] Uploaded release/Scrollout-1.0.3.zip (SHA-256: 0d093c8de4605c99efda3a1e3a7771f30ad798869f6c869d8b2fbabe557991f5).
-- [ ] Saved description, English language, Tools category, homepage and support URLs.
-- [ ] Uploaded icon, five numbered screenshots, small promo and marquee.
-- [ ] Saved single purpose, four permission explanations, no remote code, Website content and Web history disclosures, and privacy URL.
-- [ ] Publisher authorized and accepted the three limited-use certifications.
+- [x] Uploaded release/Scrollout-1.0.4.zip (SHA-256: 2df1cd5be6e04b79b3460c3941ded4b247875258079b7522aa1e93e72d1d7d8b).
+- [x] Saved description, English language, Tools category, homepage and support URLs.
+- [x] Uploaded icon, five numbered screenshots, small promo and marquee.
+- [x] Saved single purpose, four permission explanations, no remote code, Website content and Web history disclosures, and privacy URL.
+- [x] Publisher authorized and accepted the three limited-use certifications.
 - [x] Public website, privacy and support URLs work over HTTPS; DNS complete.
-- [ ] Saved reviewer-instructions-short.txt in the dashboard (441 of 500 allowed characters). Full internal test guidance is in reviewer-instructions.txt.
-- [ ] Free of charge, Public, all regions.
-- [ ] Submitted for Google review. Automatic publication: enabled.
+- [x] Saved reviewer-instructions-short.txt in the dashboard (maximum 500 characters). Full internal test guidance is in reviewer-instructions.txt.
+- [x] Free of charge, Public, all regions.
+- [x] Submitted for Google review. Automatic publication: enabled.
 
 Draft: https://chrome.google.com/webstore/devconsole/9406c6b1-b2f4-4509-94ad-0146d2c7884f/ajlhmigmaeodaedpgjmngkchnjoenmkm/edit/listing
 
 Item ID: ajlhmigmaeodaedpgjmngkchnjoenmkm
 
-Current review status: Published - public. See submission-state.json for the recorded state. A draft or review submission is not a published listing.
+Current review status: Pending review. See submission-state.json for the recorded state. A draft or review submission is not a published listing.
 
 ## After approval
 

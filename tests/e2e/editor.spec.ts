@@ -35,6 +35,39 @@ test('responsive chrome and help remain usable',async({page})=>{
   const evidenceDir=process.env.SCROLLOUT_QA_EVIDENCE_DIR??path.join(os.tmpdir(),'scrollout-evidence');await fs.mkdir(evidenceDir,{recursive:true});await page.screenshot({path:path.join(evidenceDir,'editor-mobile.png')});
   await page.setViewportSize({width:1600,height:1000});await page.reload();await page.getByRole('button',{name:'Draw',exact:true}).click();await drag(page,{x:680,y:300},{x:930,y:330});await page.screenshot({path:path.join(evidenceDir,'editor-desktop.png')});
 });
+
+test('initial fit uses the real workspace and fractional layout remains stable',async({page})=>{
+  await page.setViewportSize({width:1536,height:864});
+  const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
+  await page.goto('/editor.html?capture=stable-viewport');
+  await page.evaluate(async()=>{
+    const canvas=document.createElement('canvas');canvas.width=canvas.height=12;const ctx=canvas.getContext('2d')!;ctx.fillStyle='#17212b';ctx.fillRect(0,0,12,12);const blob=await new Promise<Blob>(resolve=>canvas.toBlob(b=>resolve(b!)));
+    const open=indexedDB.open('scrollout-temporary',1),db=await new Promise<IDBDatabase>(resolve=>{open.onsuccess=()=>resolve(open.result)}),tx=db.transaction(['sessions','tiles'],'readwrite');
+    tx.objectStore('sessions').put({id:'stable-viewport',status:'ready',progress:100,sourceTabId:0,sourceWindowId:0,sourceTitle:'Synthetic panel',sourceHost:'example.com',createdAt:0,editorTabIds:[],document:{width:4000,height:1113,crop:{x:0,y:0,width:4000,height:1113},annotations:[],filename:'Synthetic panel',sourceHost:'example.com',createdAt:0}});
+    tx.objectStore('tiles').put({id:'stable-viewport:0',captureId:'stable-viewport',sequence:0,x:0,y:0,width:4000,height:1113,sourceX:0,sourceY:0,sourceWidth:12,sourceHeight:12,blob});await new Promise<void>(resolve=>{tx.oncomplete=()=>resolve()});db.close();
+  });
+  await page.reload();await expect(page.getByTestId('editor-canvas')).toBeVisible();
+  await expect.poll(async()=>{
+    const width=await page.locator('.base-canvas').evaluate(e=>e.getBoundingClientRect().width);
+    return {shown:await page.locator('.zoom-controls span').innerText(),expected:`${Math.round(Math.min(.5,Math.max(.1,(width-96)/4000))*100)}%`};
+  }).toMatchObject({shown:'31%',expected:'31%'});
+  await page.locator('.editor-main').evaluate(e=>{(e as HTMLElement).style.width='calc(100% - 0.25px)';(e as HTMLElement).style.height='calc(100% - 0.25px)'});
+  await page.getByRole('button',{name:'Fit',exact:true}).click();
+  const observations=await page.evaluate(async()=>{
+    const viewport=document.querySelector('.viewport')!,canvas=document.querySelector('.base-canvas') as HTMLCanvasElement;
+    await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+    const frames=[];
+    for(let i=0;i<40;i++){
+      await new Promise(resolve=>requestAnimationFrame(resolve));
+      frames.push({width:canvas.width,height:canvas.height,scrollX:viewport.scrollLeft,scrollY:viewport.scrollTop,pixel:[...canvas.getContext('2d')!.getImageData(Math.floor(canvas.width/2),Math.floor(canvas.height/2),1,1).data]});
+    }
+    return {frames,canvasWidth:canvas.getBoundingClientRect().width,spaceHeight:document.querySelector('.scroll-space')!.getBoundingClientRect().height,canvasHeight:canvas.getBoundingClientRect().height,availableWidth:viewport.getBoundingClientRect().width-((viewport as HTMLElement).offsetWidth-viewport.clientWidth)};
+  });
+  expect(observations.canvasWidth).toBeLessThanOrEqual(observations.availableWidth);
+  expect(observations.spaceHeight).toBeGreaterThanOrEqual(observations.canvasHeight);
+  expect(new Set(observations.frames.map(frame=>JSON.stringify(frame))).size).toBe(1);
+  expect(errors).toEqual([]);
+});
 test('oversized images export complete ZIP parts and explain clipboard limits',async({page})=>{
   await page.goto('/editor.html?capture=oversized-fixture');
   await page.evaluate(async()=>{

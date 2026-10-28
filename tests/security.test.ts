@@ -20,6 +20,11 @@ describe('extension trust boundaries',()=>{
   it('rejects object error messages, oversized IDs, and prototype-like keys',()=>{
     for(const value of [{type:'FAILED',id:'capture-123',reason:{}},{type:'OWN',id:'x'.repeat(129)},{type:'OWN',id:'../capture'},{type:'OWN',id:''},...['__proto__','constructor','prototype'].map(id=>({type:'OWN',id}))])expect(isWorkerMessage(value)).toBe(false);
   });
+  it('accepts bounded panel regions and rejects offscreen or oversized fragments',()=>{
+    const region={source:{x:50,y:70,width:500,height:400},destination:{x:50,y:170,width:500,height:400}};
+    expect(isWorkerMessage({...tile,regions:[region]})).toBe(true);
+    for(const regions of [[],[null],[{...region,source:{...region.source,x:-1}}],[{...region,source:{...region.source,x:850}}],[{...region,destination:{...region.destination,y:650}}],[{...region,destination:{...region.destination,width:501}}],Array(4).fill(region)])expect(isWorkerMessage({...tile,regions})).toBe(false);
+  });
   it('requires the exact editor origin, path, capture ID, and top frame',()=>{
     expect(isEditorUrl(`${editorUrl}?capture=capture-123`,'capture-123',editorUrl)).toBe(true);
     for(const url of [`${editorUrl}?capture=other`,`${editorUrl}.html?capture=capture-123`,'https://example.com/editor.html?capture=capture-123','chrome-extension://other/editor.html?capture=capture-123','not a URL',undefined])expect(isEditorUrl(url,'capture-123',editorUrl)).toBe(false);

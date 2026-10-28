@@ -1,0 +1,10 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Scrollout synthetic panel fixture</title><style>
+html,body{margin:0;height:100%;overflow:hidden;font:16px Arial,sans-serif}*{box-sizing:border-box}.app{position:fixed;inset:0;display:grid;grid-template-rows:72px minmax(0,1fr) 44px}header{background:#ff6359;padding:20px}footer{background:#17212b;color:white;padding:10px}.layout{display:grid;grid-template-columns:120px minmax(0,1fr);min-height:0}aside{background:#eee;overflow:auto}.aside-content{height:2000px}.panel{overflow:auto;min-width:0;min-height:0;scroll-behavior:smooth}.sticky{position:sticky;top:0;height:40px;background:#ffc83d;z-index:2}.content{position:relative;width:1600px;height:2500px;background:#dbeee9}.stripe{position:absolute;left:0;width:1600px;height:100px;background:#0b8f78}.one{top:700px}.two{top:1500px}.end{position:absolute;left:1500px;top:2400px;width:80px;height:60px;background:#287dff}.virtual-row{position:absolute;left:0;width:1600px;height:50px;padding:12px}.virtual-end{background:#287dff}
+</style></head><body><div class="app"><header>Application header - synthetic content only</header><div class="layout"><aside><div class="aside-content">Small secondary sidebar</div></aside><main class="panel"><div class="sticky">Panel navigation</div><div class="content"><div class="stripe one"></div><div class="stripe two"></div><div class="end"></div></div></main></div><footer>Application footer</footer></div><script>
+if(location.search.includes('virtual')){
+ const panel=document.querySelector('.panel'),content=document.querySelector('.content');
+ content.style.height='4000px';
+ function rows(){const start=Math.max(0,Math.floor((panel.scrollTop-40)/50)-2),end=Math.min(80,start+Math.ceil(panel.clientHeight/50)+5);content.replaceChildren();for(let n=start;n<end;n++){const row=document.createElement('div');row.className='virtual-row'+(n===79?' virtual-end':'');row.style.top=n*50+'px';row.textContent='Synthetic row '+String(n+1).padStart(3,'0');content.append(row)}}
+ panel.addEventListener('scroll',()=>requestAnimationFrame(rows));rows();
+}
+</script></body></html>

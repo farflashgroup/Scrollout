@@ -6,27 +6,27 @@
 
 Scrollout is a free Chrome extension for full-page screenshots and local editing. Draw, crop, highlight, add arrows, shapes or text, cover sensitive areas, and export without a paywall. It has no account, backend, analytics, or upload service.
 
-[Add to Chrome](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm) - [Website](https://scrollout.farflash.com) - [Download v1.0.3](https://github.com/farflashgroup/Scrollout/releases/tag/v1.0.3) - [Guides](https://scrollout.farflash.com/guides/) - [Privacy](https://scrollout.farflash.com/privacy/) - [Press kit](https://scrollout.farflash.com/press/)
+[Add to Chrome](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm) - [Website](https://scrollout.farflash.com) - [Download v1.0.4](https://github.com/farflashgroup/Scrollout/releases/tag/v1.0.4) - [Guides](https://scrollout.farflash.com/guides/) - [Privacy](https://scrollout.farflash.com/privacy/) - [Press kit](https://scrollout.farflash.com/press/)
 
 ![Scrollout’s real screenshot editor with drawing, highlights, arrows, and text](website/assets/press/launch-landscape.png)
 
-Scrollout 1.0.2 is public in the [Chrome Web Store](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm), verified October 21, 2026. The newer 1.0.3 ZIP/source release remains available with the update-checking improvements; it is prepared for the next store submission.
+Scrollout 1.0.2 is public in the [Chrome Web Store](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm), verified October 28, 2026. The newer 1.0.4 ZIP/source release fixes editor sizing and adds capture of large scrolling app panels, including virtualized lists. It also includes the 1.0.3 update-checking improvements. Version 1.0.4 was submitted for store review on October 28 with automatic publication after approval; the installed store version will receive these changes after Google's review.
 
 ## Install the ready-to-use extension
 
 For the Chrome-managed installation, [open Scrollout in the Chrome Web Store](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm), choose **Add to Chrome**, and pin Scrollout from the extensions menu.
 
-For the unpacked/source edition, download [Scrollout-1.0.3.zip from the release](https://github.com/farflashgroup/Scrollout/releases/download/v1.0.3/Scrollout-1.0.3.zip) and extract it into a folder you will keep.
+For the unpacked/source edition, download [Scrollout-1.0.4.zip from the release](https://github.com/farflashgroup/Scrollout/releases/download/v1.0.4/Scrollout-1.0.4.zip) and extract it into a folder you will keep.
 
 1. Open `chrome://extensions` in desktop Chrome 120 or newer.
 2. Turn on **Developer mode**.
 3. Choose **Load unpacked** and select the extracted folder (or `dist` if you built from source).
 4. Open Chrome's extensions menu and pin **Scrollout**.
 
-The distribution archive is `release/Scrollout-1.0.3.zip`. Extract it first, then load the extracted folder. Chrome does not install an unpacked extension directly from a ZIP.
+The distribution archive is `release/Scrollout-1.0.4.zip`. Extract it first, then load the extracted folder. Chrome does not install an unpacked extension directly from a ZIP.
 
 The archive includes `INSTALL.md` with loading instructions and a short usage guide, along with the brand guide and third-party notices.
-The separate `release/Scrollout-1.0.3-source.zip` contains the source, tests, and build scripts, without dependencies or generated test reports.
+The separate `release/Scrollout-1.0.4-source.zip` contains the source, tests, and build scripts, without dependencies or generated test reports.
 
 ## Updates
 
@@ -36,11 +36,17 @@ Release checks fetch one static public JSON file at most every 12 hours while an
 
 Future releases: bump the package/manifest version, build and test, then run `node scripts/store-kit.mjs`, `node scripts/website.mjs`, and `node scripts/package-store.mjs`. Publish the matching ZIP and website together. The website generator writes `releases.json` and its CORS/no-store headers from the packaged version and hash. Set the published store URL only after verifying public installation; its version comes from the recorded published/submitted store version, so an unpacked release is never mistaken for an approved store update.
 
-### Validation of 1.0.3
+### Validation of 1.0.4
+
+On October 28, 2026, all 27 unit checks and 43 browser checks passed on Windows with Chrome 156.0.8078.47. New coverage verifies both axes of a main app panel, final-tile pixels, virtualized rows, cancellation and exact scroll restoration, and 125% browser zoom with 2x display scaling and fractional borders/padding. The editor regression checks initial fit against the measured workspace and stable canvas dimensions, pixels, and scroll offsets at fractional sizes. Existing checks cover drawing, crop coordinates, undo/redo, PNG/JPEG/PDF/clipboard redaction, oversized exports, temporary ownership, malformed messages, CSP, and safe update handling. The full dependency audit found zero known vulnerabilities.
+
+Tests use synthetic fixtures, without real guest or customer data. Chrome 120 remains the build target; these new panel and sizing fixes have not been runtime-tested on Chrome 120. A large, fully visible main panel is selected only when the document itself does not scroll; other nested widgets and embedded frames retain their visible contents.
+
+### Historical validation of 1.0.3
 
 On October 21, 2026, 24 unit checks passed and 39 distinct browser checks were verified across a full Chromium 153.0.8010.12 run and targeted Chrome 155.0.8059.79 reruns. The initial 36-test run passed 33 checks; three test-profile startup cases passed the targeted rerun. Nine update integration checks cover unpacked/browser/managed guidance, exact metadata requests with the production permissions, caching and opt-out, offline and malformed responses, unavailable preference storage, pending-update deferral with duplicate editors, native update throttling, and narrow windows. Production-dependency audit found no known vulnerabilities. This is internal regression QA.
 
-A fresh Chrome 120 executable could not launch in this environment during the prior QA pass; the new update flows have not been runtime-tested on 120. The build remains targeted at Chrome 120, and the historical 1.0.2 compatibility results below remain separate. Version 1.0.2 is now public in the Chrome Web Store; 1.0.3 remains the downloadable/source release and prepared next store package.
+A fresh Chrome 120 executable could not launch in this environment during that QA pass; the new update flows were not runtime-tested on 120. The build remains targeted at Chrome 120, and the historical 1.0.2 compatibility results below remain separate.
 
 When port 4173 is occupied, set `SCROLLOUT_QA_PORT` to a free test port. The fixture server and all test contexts use that same port.
 
@@ -76,7 +82,7 @@ Image tiles and edits are temporarily held in the extension's IndexedDB. A reloa
 ## Capture boundaries
 
 - Capture covers the document length present when you start. Lazy images within that region can load; an infinite feed is not extended indefinitely.
-- Independent scrolling panels and frames retain the contents currently visible inside them.
+- When the document itself does not scroll, Scrollout automatically captures a large, fully visible main scrolling panel, across both axes. Other panels, small widgets, and embedded frames retain their visible contents. Virtualized lists are captured as their rows appear during scrolling.
 - Chrome-owned pages, the Chrome Web Store, some PDF viewers, and other protected pages may disallow full-page capture. Local files require Chrome's **Allow access to file URLs** setting.
 - Changing tabs, manually scrolling, resizing the viewport, or navigating cancels an active capture and restores the source page.
 - Fixed overlays appear once; sticky elements are temporarily returned to their normal flow. Responsive or continuously changing pages may need another capture after they settle.

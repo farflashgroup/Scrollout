@@ -59,6 +59,42 @@ test.describe('real MV3 capture pipeline',()=>{
     await duplicate.reload();await expect(duplicate.getByText('This capture is no longer available')).toBeVisible();
     await expect(duplicate.getByText(/temporary capture has expired/)).toBeVisible();await expect(duplicate.getByTestId('editor-canvas')).toHaveCount(0);
   });
+  test('captures both axes of a dominant application panel with header, footer and restored scroll',async()=>{
+    const page=await context.newPage();await page.goto(`${testBaseUrl}/tests/fixtures/panel.html`);await page.bringToFront();
+    const expected=await page.evaluate(()=>{const panel=document.querySelector('.panel')!;panel.scrollTo({left:17,top:77,behavior:'instant'});const r=panel.getBoundingClientRect();return {width:innerWidth+panel.scrollWidth-panel.clientWidth,height:innerHeight+panel.scrollHeight-panel.clientHeight,panelX:r.left+panel.clientLeft,panelY:r.top+panel.clientTop}});
+    await start();const edit=await editor();await expect(edit.getByTestId('editor-canvas')).toBeVisible({timeout:30000});
+    await expect(edit.locator('.dimensions')).toHaveText(`${expected.width.toLocaleString()} × ${expected.height.toLocaleString()} px`);
+    await edit.getByRole('button',{name:'Export',exact:true}).click();const wait=edit.waitForEvent('download');await edit.getByRole('menuitem',{name:'PNG image'}).click();const image=await sharp((await (await wait).path())!).raw().toBuffer({resolveWithObject:true});
+    const pixel=(x:number,y:number)=>{const i=(Math.round(y)*image.info.width+Math.round(x))*image.info.channels;return [...image.data.subarray(i,i+3)]};
+    expect(pixel(200,20)).toEqual([255,99,89]);expect(pixel(expected.panelX+1540,expected.panelY+40+2430)).toEqual([40,125,255]);expect(pixel(200,expected.height-20)).toEqual([23,33,43]);
+    expect(pixel(expected.panelX+700,expected.panelY+40+750)).toEqual([11,143,120]);expect(pixel(expected.panelX+700,expected.panelY+40+1550)).toEqual([11,143,120]);
+    expect(await page.evaluate(()=>{const panel=document.querySelector('.panel')!;return {x:panel.scrollLeft,y:panel.scrollTop,sticky:getComputedStyle(document.querySelector('.sticky')!).position}})).toEqual({x:17,y:77,sticky:'sticky'});
+    if(process.env.SCROLLOUT_QA_EVIDENCE_DIR){await fs.mkdir(process.env.SCROLLOUT_QA_EVIDENCE_DIR,{recursive:true});await edit.screenshot({path:path.join(process.env.SCROLLOUT_QA_EVIDENCE_DIR,'panel-editor.png')});await sharp(image.data,{raw:image.info}).png().toFile(path.join(process.env.SCROLLOUT_QA_EVIDENCE_DIR,'panel-export.png'))}
+  });
+  test('panel captures preserve final pixels at 125% zoom and high DPI with fractional borders and padding',{annotation:{type:'high-dpi',description:'2x native display scale'}},async()=>{
+    const page=await context.newPage();await page.goto(`${testBaseUrl}/tests/fixtures/panel.html`);await page.bringToFront();
+    await worker.evaluate(async()=>{const [tab]=await chrome.tabs.query({active:true,currentWindow:true});await chrome.tabs.setZoom(tab.id!,1.25)});
+    await page.addStyleTag({content:'.panel{border:1.25px solid #555;padding:5.25px}'});
+    const origin=await page.evaluate(()=>{const panel=document.querySelector('.panel')!,content=document.querySelector('.content')!,r=content.getBoundingClientRect();return {x:r.left,y:r.top,viewportWidth:innerWidth,viewportHeight:innerHeight}});
+    const scale=await worker.evaluate(async dimensions=>{const [tab]=await chrome.tabs.query({active:true,currentWindow:true}),data=await chrome.tabs.captureVisibleTab(tab.windowId,{format:'png'}),bytes=Uint8Array.from(atob(data.slice(data.indexOf(',')+1)),c=>c.charCodeAt(0)),bitmap=await createImageBitmap(new Blob([bytes],{type:'image/png'}));const value={x:bitmap.width/dimensions.viewportWidth,y:bitmap.height/dimensions.viewportHeight};bitmap.close();await chrome.storage.session.set({lastScreenshotAt:Date.now()});return value},origin);
+    await start();const edit=await editor();await expect(edit.getByTestId('editor-canvas')).toBeVisible({timeout:30000});
+    await edit.getByRole('button',{name:'Export',exact:true}).click();const wait=edit.waitForEvent('download');await edit.getByRole('menuitem',{name:'PNG image'}).click();const image=await sharp((await (await wait).path())!).raw().toBuffer({resolveWithObject:true});
+    const pixel=(x:number,y:number)=>{const i=(Math.round(y*scale.y)*image.info.width+Math.round(x*scale.x))*image.info.channels;return [...image.data.subarray(i,i+3)]};
+    expect(pixel(origin.x+1540,origin.y+2430)).toEqual([40,125,255]);
+    for(const y of [725,750,775,1525,1550,1575])expect(pixel(origin.x+700,origin.y+y)).toEqual([11,143,120]);
+    expect(pixel(200,20)).toEqual([255,99,89]);expect(pixel(200,image.info.height/scale.y-20)).toEqual([23,33,43]);
+    expect(await page.evaluate(()=>getComputedStyle(document.querySelector('.sticky')!).position)).toBe('sticky');
+  });
+  test('captures virtualized panel rows beyond the original viewport and restores on cancellation',async()=>{
+    const page=await context.newPage();await page.goto(`${testBaseUrl}/tests/fixtures/panel.html?virtual`);await page.bringToFront();
+    const origin=await page.evaluate(()=>{const panel=document.querySelector('.panel')!,r=panel.getBoundingClientRect();return{x:r.left+panel.clientLeft,y:r.top+panel.clientTop}});
+    await start();const edit=await editor();await expect(edit.getByTestId('editor-canvas')).toBeVisible({timeout:30000});
+    await edit.getByRole('button',{name:'Export',exact:true}).click();const wait=edit.waitForEvent('download');await edit.getByRole('menuitem',{name:'PNG image'}).click();const image=await sharp((await (await wait).path())!).raw().toBuffer({resolveWithObject:true}),i=((origin.y+40+3975)*image.info.width+origin.x+900)*image.info.channels;
+    expect([...image.data.subarray(i,i+3)]).toEqual([40,125,255]);
+    await edit.close();await page.bringToFront();await page.evaluate(()=>document.querySelector('.panel')!.scrollTo({left:17,top:77,behavior:'instant'}));await start();const cancelled=await editor();await expect.poll(()=>worker.evaluate(async()=>((await chrome.storage.session.get('activeCapture')).activeCapture as any)?.completed??0)).toBeGreaterThan(0);
+    await page.evaluate(()=>document.querySelector('.panel')!.scrollTo({top:900,behavior:'instant'}));await expect(cancelled.getByText('We couldn’t finish this capture')).toBeVisible();
+    expect(await page.evaluate(()=>{const panel=document.querySelector('.panel')!;return{x:panel.scrollLeft,y:panel.scrollTop}})).toEqual({x:17,y:77});
+  });
   test('switching tabs cancels and restores source styles and scrolling',async()=>{
     const page=await source();await start();const edit=await editor();await expect.poll(()=>worker.evaluate(async()=>((await chrome.storage.session.get('activeCapture')).activeCapture as any)?.completed??0)).toBeGreaterThan(0);
     const other=await context.newPage();await other.goto('about:blank');await other.bringToFront();await expect(edit.getByText('We couldn’t finish this capture')).toBeVisible();await expect(edit.getByText(/Capture cancelled because you changed tabs/)).toBeVisible();expect(await page.evaluate(()=>scrollY)).toBe(77);expect(await page.evaluate(()=>getComputedStyle(document.querySelector('.sticky')!).position)).toBe('sticky');
