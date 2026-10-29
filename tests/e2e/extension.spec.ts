@@ -88,13 +88,14 @@ test.describe('real MV3 capture pipeline',()=>{
   for(const zoom of [1.25,1.3])test(`vertical panels at ${zoom*100}% zoom capture each row once without phantom horizontal tiles`,async()=>{
     const page=await context.newPage();await page.goto(`${testBaseUrl}/tests/fixtures/panel.html?virtual&vertical`);await page.bringToFront();
     await worker.evaluate(async factor=>{const [tab]=await chrome.tabs.query({active:true,currentWindow:true});await chrome.tabs.setZoom(tab.id!,factor);const capture=chrome.tabs.captureVisibleTab.bind(chrome.tabs);(globalThis as any).__captureTimes=[];chrome.tabs.captureVisibleTab=(async(...args:any[])=>{(globalThis as any).__captureTimes.push(Date.now());return (capture as any)(...args)}) as typeof chrome.tabs.captureVisibleTab},zoom);
-    const expected=await page.evaluate(()=>{const panel=document.querySelector('.panel')!,r=panel.getBoundingClientRect(),content=document.querySelector('.content')!.getBoundingClientRect();return {captures:Math.ceil(panel.scrollHeight/r.height),x:content.left+300,y:content.top+3975,viewportWidth:innerWidth,viewportHeight:innerHeight}});
+    const expected=await page.evaluate(()=>{const panel=document.querySelector('.panel')!,r=panel.getBoundingClientRect(),content=document.querySelector('.content')!.getBoundingClientRect();return {captures:Math.ceil(panel.scrollHeight/r.height),x:content.left+300,y:content.top+3975,viewportWidth:innerWidth,viewportHeight:innerHeight,pixelRatio:devicePixelRatio}});
     await start();const edit=await editor();await expect(edit.getByTestId('editor-canvas')).toBeVisible({timeout:30000});
     const times=await worker.evaluate(()=>(globalThis as any).__captureTimes as number[]);expect(times).toHaveLength(expected.captures);for(let i=1;i<times.length;i++)expect(times[i]-times[i-1]).toBeGreaterThanOrEqual(550);
     await edit.getByRole('button',{name:'Export',exact:true}).click();const wait=edit.waitForEvent('download');await edit.getByRole('menuitem',{name:'PNG image'}).click();const image=await sharp((await (await wait).path())!).raw().toBuffer({resolveWithObject:true});
-    // The panel has no horizontal overflow: output remains one native viewport wide.
-    expect(image.info.width).toBe(Math.round(expected.viewportWidth*zoom));
-    const i=(Math.round(expected.y*zoom)*image.info.width+Math.round(expected.x*zoom))*image.info.channels;expect([...image.data.subarray(i,i+3)]).toEqual([40,125,255]);
+    // Chrome may report a ratio just below the requested zoom; use its actual
+    // display scale when rounding the one-viewport output and final-row pixel.
+    expect(image.info.width).toBe(Math.round(expected.viewportWidth*expected.pixelRatio));
+    const i=(Math.round(expected.y*expected.pixelRatio)*image.info.width+Math.round(expected.x*expected.pixelRatio))*image.info.channels;expect([...image.data.subarray(i,i+3)]).toEqual([40,125,255]);
     expect(await page.evaluate(()=>({x:document.querySelector('.panel')!.scrollLeft,y:document.querySelector('.panel')!.scrollTop}))).toEqual({x:0,y:0});
   });
   test('capture completion opens the editor when background polling is suspended',async()=>{
