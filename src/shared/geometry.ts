@@ -1,5 +1,8 @@
 import type { Annotation, PageMetrics, Point, Rect } from './types';
 export const clamp=(value:number,min:number,max:number)=>Math.max(min,Math.min(max,value));
+// CSSOM scroll/client sizes are rounded, while the visible content box can be
+// fractional at browser zoom. A non-scrolling axis has exactly that visible size.
+export const scrollExtent=(scroll:number,client:number,visible:number)=>scroll>client?Math.max(scroll,visible):visible;
 export function captureScale(width:number,height:number,metrics:Pick<PageMetrics,'viewportWidth'|'viewportHeight'|'pixelRatio'>) {
   const ratio=metrics.pixelRatio,tolerance=Math.max(1,(ratio??1)/2)+.000001;
   // innerWidth/innerHeight are rounded CSS pixels. Prefer a matching native

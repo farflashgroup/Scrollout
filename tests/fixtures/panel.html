@@ -7,4 +7,5 @@ if(location.search.includes('virtual')){
  function rows(){const start=Math.max(0,Math.floor((panel.scrollTop-40)/50)-2),end=Math.min(80,start+Math.ceil(panel.clientHeight/50)+5);content.replaceChildren();for(let n=start;n<end;n++){const row=document.createElement('div');row.className='virtual-row'+(n===79?' virtual-end':'');row.style.top=n*50+'px';row.textContent='Synthetic row '+String(n+1).padStart(3,'0');content.append(row)}}
  panel.addEventListener('scroll',()=>requestAnimationFrame(rows));rows();
 }
+if(location.search.includes('vertical')){const style=document.createElement('style');style.textContent='.content,.stripe,.virtual-row{width:100%}.end{left:auto;right:20px}';document.head.append(style)}
 </script></body></html>

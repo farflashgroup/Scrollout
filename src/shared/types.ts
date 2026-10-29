@@ -17,6 +17,7 @@ export interface EditorDocument {
 }
 export interface ScreenshotTile extends Rect {
   id:string; captureId:string; sequence:number;
+  bitmapId?:string;
   sourceX:number; sourceY:number; sourceWidth:number; sourceHeight:number;
   blob:Blob;
 }

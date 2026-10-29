@@ -33,7 +33,12 @@ export async function updateSession(id:string,update:(s:CaptureSession)=>Capture
   const request=store.get(id);request.onsuccess=()=>{if(request.result)store.put(update(request.result))};await done;
 }
 export async function putTile(value:ScreenshotTile) {
-  const tx=(await db()).transaction('tiles','readwrite');const done=finished(tx);tx.objectStore('tiles').put(value);await done;
+  return putTiles([value]);
+}
+export async function putTiles(values:ScreenshotTile[]) {
+  const tx=(await db()).transaction('tiles','readwrite');const done=finished(tx),store=tx.objectStore('tiles');
+  try{for(const value of values)store.put(value)}catch(error){tx.abort();await done.catch(()=>{});throw error}
+  await done;
 }
 export async function getTiles(id:string):Promise<ScreenshotTile[]> {
   const values=await result<ScreenshotTile[]>((await db()).transaction('tiles').objectStore('tiles').index('captureId').getAll(id));

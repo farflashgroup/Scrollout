@@ -1,7 +1,8 @@
-import { allSessions, clearSessions, deleteSession, getSession, putSession, putTile, updateSession } from '../shared/db';
-import type { ActiveCapture, CaptureMessage, CaptureSession, PageMetrics } from '../shared/types';
+import { allSessions, clearSessions, deleteSession, getSession, putSession, putTiles, updateSession } from '../shared/db';
+import type { ActiveCapture, CaptureMessage, CaptureSession, PageMetrics, ScreenshotTile } from '../shared/types';
 import { isEditorSender, isEditorUrl, isWorkerMessage, workerMessageTypes } from '../shared/messages';
 import { captureScale } from '../shared/geometry';
+import { decodeScreenshot } from '../shared/png';
 import { registerBrowserUpdates } from './updates';
 
 const ready=(async()=>{
@@ -146,19 +147,20 @@ async function captureTile(msg:Extract<CaptureMessage,{type:'TILE'}>,sender:chro
   }
   const after=await chrome.tabs.query({active:true,windowId:job.windowId});
   if(after[0]?.id!==job.tabId||(await active())?.id!==job.id)throw new Error('Capture cancelled because you changed tabs.');
-  const bytes=Uint8Array.from(atob(data.slice(data.indexOf(',')+1)),char=>char.charCodeAt(0));
-  const blob=new Blob([bytes],{type:'image/png'});const bitmap=await createImageBitmap(blob);
-  const {x:sx,y:sy}=captureScale(bitmap.width,bitmap.height,m);bitmap.close();
+  const screenshot=decodeScreenshot(data),{blob}=screenshot;
+  const {x:sx,y:sy}=captureScale(screenshot.width,screenshot.height,m);
   if(job.scaleX&&Math.abs(sx-job.scaleX)>.001||job.scaleY&&Math.abs(sy-job.scaleY)>.001)throw new Error('The browser viewport or zoom changed during capture. Try again.');
   const width=Math.round(m.width*sx),height=Math.round(m.height*sy);
   const regions=msg.regions??[{source:{x:0,y:0,width:Math.min(m.contentWidth,m.width-msg.x),height:Math.min(m.contentHeight,m.height-msg.y)},destination:{x:msg.x,y:msg.y,width:Math.min(m.contentWidth,m.width-msg.x),height:Math.min(m.contentHeight,m.height-msg.y)}}];
+  const tiles:ScreenshotTile[]=[];
   for(let index=0;index<regions.length;index++){
     const {source:s,destination:d}=regions[index];
     const x=Math.round(d.x*sx),y=Math.round(d.y*sy),tileWidth=Math.min(Math.round((d.x+d.width)*sx),width)-x,tileHeight=Math.min(Math.round((d.y+d.height)*sy),height)-y;
     const sourceX=Math.round(s.x*sx),sourceY=Math.round(s.y*sy),sourceWidth=Math.round((s.x+s.width)*sx)-sourceX,sourceHeight=Math.round((s.y+s.height)*sy)-sourceY;
     if(Math.min(tileWidth,tileHeight,sourceWidth,sourceHeight)<=0)throw new Error('The page changed size during capture.');
-    await putTile({id:`${job.id}:${msg.sequence}:${index}`,captureId:job.id,sequence:msg.sequence*3+index,x,y,width:tileWidth,height:tileHeight,sourceX,sourceY,sourceWidth,sourceHeight,blob});
+    tiles.push({id:`${job.id}:${msg.sequence}:${index}`,bitmapId:`${job.id}:${msg.sequence}`,captureId:job.id,sequence:msg.sequence*3+index,x,y,width:tileWidth,height:tileHeight,sourceX,sourceY,sourceWidth,sourceHeight,blob});
   }
+  await putTiles(tiles);
   if((await active())?.id!==job.id){if(!await getSession(job.id))await deleteSession(job.id);throw new Error('Capture cancelled.');}
   job={...job,metrics:m,scaleX:sx,scaleY:sy,completed:msg.sequence+1,total:msg.total};await saveActive(job);
   const progress=Math.round(job.completed/job.total*100);

@@ -6,27 +6,27 @@
 
 Scrollout is a free Chrome extension for full-page screenshots and local editing. Draw, crop, highlight, add arrows, shapes or text, cover sensitive areas, and export without a paywall. It has no account, backend, analytics, or upload service.
 
-[Add to Chrome](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm) - [Website](https://scrollout.farflash.com) - [Download v1.0.4](https://github.com/farflashgroup/Scrollout/releases/tag/v1.0.4) - [Guides](https://scrollout.farflash.com/guides/) - [Privacy](https://scrollout.farflash.com/privacy/) - [Press kit](https://scrollout.farflash.com/press/)
+[Add to Chrome](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm) - [Website](https://scrollout.farflash.com) - [Download v1.0.5](https://github.com/farflashgroup/Scrollout/releases/tag/v1.0.5) - [Guides](https://scrollout.farflash.com/guides/) - [Privacy](https://scrollout.farflash.com/privacy/) - [Press kit](https://scrollout.farflash.com/press/)
 
 ![Scrollout’s real screenshot editor with drawing, highlights, arrows, and text](website/assets/press/launch-landscape.png)
 
-Scrollout 1.0.2 is public in the [Chrome Web Store](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm), verified October 28, 2026. The newer 1.0.4 ZIP/source release fixes editor sizing and adds capture of large scrolling app panels, including virtualized lists. It also includes the 1.0.3 update-checking improvements. Version 1.0.4 was submitted for store review on October 28 with automatic publication after approval; the installed store version will receive these changes after Google's review.
+Scrollout 1.0.2 is public in the [Chrome Web Store](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm), verified October 28, 2026. The newer 1.0.5 ZIP/source release improves capture speed and editor loading, including the panel-capture and editor-sizing fixes from 1.0.4 and update notices from 1.0.3. Version 1.0.4 was submitted for store review on October 28 with automatic publication after approval. The 1.0.5 download is separate from that pending store update.
 
 ## Install the ready-to-use extension
 
 For the Chrome-managed installation, [open Scrollout in the Chrome Web Store](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm), choose **Add to Chrome**, and pin Scrollout from the extensions menu.
 
-For the unpacked/source edition, download [Scrollout-1.0.4.zip from the release](https://github.com/farflashgroup/Scrollout/releases/download/v1.0.4/Scrollout-1.0.4.zip) and extract it into a folder you will keep.
+For the unpacked/source edition, download [Scrollout-1.0.5.zip from the release](https://github.com/farflashgroup/Scrollout/releases/download/v1.0.5/Scrollout-1.0.5.zip) and extract it into a folder you will keep.
 
 1. Open `chrome://extensions` in desktop Chrome 120 or newer.
 2. Turn on **Developer mode**.
 3. Choose **Load unpacked** and select the extracted folder (or `dist` if you built from source).
 4. Open Chrome's extensions menu and pin **Scrollout**.
 
-The distribution archive is `release/Scrollout-1.0.4.zip`. Extract it first, then load the extracted folder. Chrome does not install an unpacked extension directly from a ZIP.
+The distribution archive is `release/Scrollout-1.0.5.zip`. Extract it first, then load the extracted folder. Chrome does not install an unpacked extension directly from a ZIP.
 
 The archive includes `INSTALL.md` with loading instructions and a short usage guide, along with the brand guide and third-party notices.
-The separate `release/Scrollout-1.0.4-source.zip` contains the source, tests, and build scripts, without dependencies or generated test reports.
+The separate `release/Scrollout-1.0.5-source.zip` contains the source, tests, and build scripts, without dependencies or generated test reports.
 
 ## Updates
 
@@ -36,7 +36,15 @@ Release checks fetch one static public JSON file at most every 12 hours while an
 
 Future releases: bump the package/manifest version, build and test, then run `node scripts/store-kit.mjs`, `node scripts/website.mjs`, and `node scripts/package-store.mjs`. Publish the matching ZIP and website together. The website generator writes `releases.json` and its CORS/no-store headers from the packaged version and hash. Set the published store URL only after verifying public installation; its version comes from the recorded published/submitted store version, so an unpacked release is never mistaken for an approved store update.
 
-### Validation of 1.0.4
+### Capture speed in 1.0.5
+
+Panel dimensions now distinguish actual overflow from rounded CSSOM sizes. This avoids capturing a duplicate horizontal column at fractional zoom, and prevents a non-scrolling axis from shrinking the output dimensions. The worker reads native dimensions from the PNG header without decompressing each screenshot, batches fragments from one screenshot into one storage transaction, and the editor shares their decoded bitmap. Capture completion signals open the editor immediately, with polling retained as a fallback. Sticky style changes are batched after measurement to avoid repeated layout work.
+
+In a synthetic 4,040 CSS-pixel virtualized list at 130% Chrome zoom, 1.0.4 used 18 screenshots and took 10.804 seconds; 1.0.5 used nine and took 5.174 seconds on the same Windows/Chrome 156 setup. This is approximately 52% less time for that rounding-affected case. At 100% zoom, both used seven screenshots and took about four seconds. These are internal measurements, not a general speed guarantee. [Chrome limits this screenshot API to two calls per second](https://developer.chrome.com/docs/extensions/reference/api/tabs#property-MAX_CAPTURE_VISIBLE_TAB_CALLS_PER_SECOND); Scrollout keeps its minimum 550 ms spacing and full-resolution PNG capture.
+
+On October 28, 2026, all 31 unit checks and 46 browser checks passed on Windows with Chrome 156.0.8078.47. New regressions verify 125% and 130% vertical panel captures use one column, reach the last virtualized row, restore scrolling, and maintain at least 550 ms between native screenshot calls. Completion notification is tested with background polling suspended. Unit checks cover PNG dimensions/bytes and shared bitmap decoding; existing export, redaction, ownership, CSP, interruption, and update tests also pass. The full dependency audit found zero known vulnerabilities. Chrome 120 remains the build target; these new performance changes have not been runtime-tested on Chrome 120.
+
+### Historical validation of 1.0.4
 
 On October 28, 2026, all 27 unit checks and 43 browser checks passed on Windows with Chrome 156.0.8078.47. New coverage verifies both axes of a main app panel, final-tile pixels, virtualized rows, cancellation and exact scroll restoration, and 125% browser zoom with 2x display scaling and fractional borders/padding. The editor regression checks initial fit against the measured workspace and stable canvas dimensions, pixels, and scroll offsets at fractional sizes. Existing checks cover drawing, crop coordinates, undo/redo, PNG/JPEG/PDF/clipboard redaction, oversized exports, temporary ownership, malformed messages, CSP, and safe update handling. The full dependency audit found zero known vulnerabilities.
 

@@ -1,14 +1,14 @@
 {
   "preparedOn": "2026-10-21",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "logo": "public/brand/mark.svg and lockup-white.svg; approved vector artwork; unchanged paths",
   "typeface": "Bundled Inter; outlined glyphs in promo SVGs; SIL Open Font License",
   "screenshots": "Actual editor rendered at 1280×800 through scripts/store-screenshots.mjs, with the development-only Fieldnotes example content and real editor gestures. No fabricated UI or outside website assets.",
   "formats": "PNG; full-bleed 1280×800 screenshots, 440×280 small promo, 1400×560 optional marquee, 128×128 transparent icon",
   "extensionArchive": {
-    "path": "release/Scrollout-1.0.4.zip",
-    "bytes": 610662,
-    "sha256": "2df1cd5be6e04b79b3460c3941ded4b247875258079b7522aa1e93e72d1d7d8b"
+    "path": "release/Scrollout-1.0.5.zip",
+    "bytes": 611091,
+    "sha256": "b5cd5d2e5db941dfa32423cb91632d4de21184ed73d6a746bbdc340e3fbf3aa1"
   },
   "officialRequirements": [
     "https://developer.chrome.com/docs/webstore/images",

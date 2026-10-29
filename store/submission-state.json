@@ -40,6 +40,12 @@
     "submittedOn": "2026-10-28",
     "automaticPublishing": true
   },
+  "preparedPackage": {
+    "version": "1.0.5",
+    "archiveSha256": "b5cd5d2e5db941dfa32423cb91632d4de21184ed73d6a746bbdc340e3fbf3aa1",
+    "preparedOn": "2026-10-28",
+    "status": "Tested performance release for ZIP/source distribution. Not uploaded or submitted; the 1.0.4 store review remains separate."
+  },
   "publishedVersion": "1.0.2",
   "storeUrl": "https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm",
   "publicationVerifiedOn": "2026-10-21",

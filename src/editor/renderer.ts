@@ -8,9 +8,10 @@ export class TileCache {
   private disposed=false;
   async load(tile:ScreenshotTile):Promise<ImageBitmap> {
     if(this.disposed)throw new Error('Rendering cancelled.');
-    const found=this.cache.get(tile.id);if(found){this.cache.delete(tile.id);this.cache.set(tile.id,found);return found}
-    let pending=this.pending.get(tile.id);
-    if(!pending){pending=createImageBitmap(tile.blob).then(image=>{this.pending.delete(tile.id);if(this.disposed){image.close();throw new Error('Rendering cancelled.')}this.cache.set(tile.id,image);this.bytes+=image.width*image.height*4;while(this.cache.size>1&&(this.cache.size>12||this.bytes>96*1024*1024)){const key=this.cache.keys().next().value!;if(key!==tile.id){const old=this.cache.get(key)!;this.bytes-=old.width*old.height*4;old.close();this.cache.delete(key)}else break}return image});this.pending.set(tile.id,pending)}
+    const id=tile.bitmapId??tile.id;
+    const found=this.cache.get(id);if(found){this.cache.delete(id);this.cache.set(id,found);return found}
+    let pending=this.pending.get(id);
+    if(!pending){pending=createImageBitmap(tile.blob).then(image=>{if(this.disposed){image.close();throw new Error('Rendering cancelled.')}this.cache.set(id,image);this.bytes+=image.width*image.height*4;while(this.cache.size>1&&(this.cache.size>12||this.bytes>96*1024*1024)){const key=this.cache.keys().next().value!;if(key!==id){const old=this.cache.get(key)!;this.bytes-=old.width*old.height*4;old.close();this.cache.delete(key)}else break}return image}).finally(()=>this.pending.delete(id));this.pending.set(id,pending)}
     return pending;
   }
   clear(){this.disposed=true;this.cache.forEach(image=>image.close());this.cache.clear();this.bytes=0}

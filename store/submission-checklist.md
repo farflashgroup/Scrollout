@@ -1,4 +1,4 @@
-# Submit Scrollout 1.0.4
+# Submit Scrollout 1.0.5
 
 ## Publisher account
 
@@ -10,15 +10,17 @@
 
 ## Store draft
 
-- [x] Uploaded release/Scrollout-1.0.4.zip (SHA-256: 2df1cd5be6e04b79b3460c3941ded4b247875258079b7522aa1e93e72d1d7d8b).
-- [x] Saved description, English language, Tools category, homepage and support URLs.
-- [x] Uploaded icon, five numbered screenshots, small promo and marquee.
-- [x] Saved single purpose, four permission explanations, no remote code, Website content and Web history disclosures, and privacy URL.
-- [x] Publisher authorized and accepted the three limited-use certifications.
+The published Chrome Web Store version is 1.0.2. The recorded submission is version 1.0.4 (Pending review). This kit prepares version 1.0.5; it has not been uploaded or submitted by this generator.
+
+- [ ] Uploaded release/Scrollout-1.0.5.zip (SHA-256: b5cd5d2e5db941dfa32423cb91632d4de21184ed73d6a746bbdc340e3fbf3aa1).
+- [ ] Saved description, English language, Tools category, homepage and support URLs.
+- [ ] Uploaded icon, five numbered screenshots, small promo and marquee.
+- [ ] Saved single purpose, four permission explanations, no remote code, Website content and Web history disclosures, and privacy URL.
+- [ ] Publisher authorized and accepted the three limited-use certifications.
 - [x] Public website, privacy and support URLs work over HTTPS; DNS complete.
-- [x] Saved reviewer-instructions-short.txt in the dashboard (maximum 500 characters). Full internal test guidance is in reviewer-instructions.txt.
-- [x] Free of charge, Public, all regions.
-- [x] Submitted for Google review. Automatic publication: enabled.
+- [ ] Saved reviewer-instructions-short.txt in the dashboard (maximum 500 characters). Full internal test guidance is in reviewer-instructions.txt.
+- [ ] Free of charge, Public, all regions.
+- [ ] Submitted for Google review. Automatic publication: enabled.
 
 Draft: https://chrome.google.com/webstore/devconsole/9406c6b1-b2f4-4509-94ad-0146d2c7884f/ajlhmigmaeodaedpgjmngkchnjoenmkm/edit/listing
 

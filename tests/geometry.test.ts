@@ -1,10 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { bounds, canSingleImage, captureScale, exportParts, hitTest, intersect, normalizeRect, resizeAnnotation, scrollPositions, translate } from '../src/shared/geometry';
+import { bounds, canSingleImage, captureScale, exportParts, hitTest, intersect, normalizeRect, resizeAnnotation, scrollExtent, scrollPositions, translate } from '../src/shared/geometry';
 import { safeFilename } from '../src/editor/export';
 import type { Annotation } from '../src/shared/types';
 
 const arrow:Annotation={id:'arrow',kind:'arrow',x:10,y:20,width:100,height:100,color:'#FF6359',opacity:1,strokeWidth:4,fontSize:32,points:[{x:10,y:20},{x:110,y:120}]};
 describe('full-page geometry',()=>{
+  it('keeps non-scrolling axes at their exact visible extent despite CSSOM rounding',()=>{
+    for(const visible of [598.4,570.7692260742188,778]){const rounded=Math.round(visible);expect(scrollPositions(scrollExtent(rounded,rounded,visible),visible)).toEqual([0]);expect(scrollExtent(rounded,rounded,visible)).toBe(visible)}
+    expect(scrollExtent(1600,571,570.7692260742188)).toBe(1600);
+  });
   it('covers short pages and overlapping final viewports without gaps',()=>{expect(scrollPositions(500,900)).toEqual([0]);expect(scrollPositions(2500,900)).toEqual([0,900,1600]);expect(scrollPositions(2700,900)).toEqual([0,900,1800])});
   it('covers every source pixel even with fractional CSS viewport sizes',()=>{const positions=scrollPositions(3017.5,811.25);let end=0;for(const p of positions){expect(p).toBeLessThanOrEqual(end);end=p+811.25}expect(end).toBe(3017.5)});
   it('preserves native zoom through rounded viewport metrics and falls back for emulated displays',()=>{

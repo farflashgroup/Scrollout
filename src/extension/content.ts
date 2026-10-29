@@ -1,4 +1,4 @@
-import { scrollPositions } from '../shared/geometry';
+import { scrollExtent, scrollPositions } from '../shared/geometry';
 import type { CaptureMessage, PageMetrics, CaptureRegion } from '../shared/types';
 
 // Injection is idempotent; this script deliberately lives in the isolated world.
@@ -59,16 +59,20 @@ if(!scope.__scrolloutInstalled){
     const fixed:HTMLElement[]=[];
     function set(element:HTMLElement,property:string,value:string){changes.push({element,property,value:element.style.getPropertyValue(property),priority:element.style.getPropertyPriority(property)});element.style.setProperty(property,value,'important')}
     const style=document.createElement('style');style.textContent='html,body,* {scroll-behavior:auto!important;scroll-snap-type:none!important;overflow-anchor:none!important;animation-play-state:paused!important;transition:none!important;caret-color:transparent!important}';document.documentElement.append(style);
+    const sticky:HTMLElement[]=[];
     for(const element of document.querySelectorAll<HTMLElement>('body *')){
       const position=getComputedStyle(element).position;
-      if(position==='sticky'&&(!panel||panel.contains(element))){set(element,'position','relative');set(element,'top','auto');set(element,'bottom','auto');set(element,'left','auto');set(element,'right','auto')}
+      if(position==='sticky'&&(!panel||panel.contains(element)))sticky.push(element);
       else if(position==='fixed'&&(!panel||!element.contains(panel)))fixed.push(element);
     }
+    // Read positions first; interleaving sticky writes with style reads forces
+    // repeated style/layout work on large documents.
+    for(const element of sticky){set(element,'position','relative');set(element,'top','auto');set(element,'bottom','auto');set(element,'left','auto');set(element,'right','auto')}
     const r=panel?.getBoundingClientRect(),css=panel?getComputedStyle(panel):undefined;
     const borderX=Number.parseFloat(css?.borderLeftWidth??'0')||0,borderY=Number.parseFloat(css?.borderTopWidth??'0')||0;
     const clip=panel&&r&&size?{x:r.left+borderX,y:r.top+borderY,width:size.width,height:size.height}:undefined;
     const client={width:panel?.clientWidth,height:panel?.clientHeight};
-    const surface={width:panel?.scrollWidth??view.width,height:panel?.scrollHeight??view.height,viewportWidth:clip?.width??view.contentWidth,viewportHeight:clip?.height??view.contentHeight};
+    const surface={width:panel&&clip?scrollExtent(panel.scrollWidth,panel.clientWidth,clip.width):view.width,height:panel&&clip?scrollExtent(panel.scrollHeight,panel.clientHeight,clip.height):view.height,viewportWidth:clip?.width??view.contentWidth,viewportHeight:clip?.height??view.contentHeight};
     const initial:PageMetrics=clip?{...view,width:view.contentWidth+surface.width-clip.width,height:view.contentHeight+surface.height-clip.height}:view;
     let expectedX=savedX,expectedY=savedY,restored=false;let watchdog:ReturnType<typeof setInterval>|undefined;
     const offset=()=>({x:panel?.scrollLeft??scrollX,y:panel?.scrollTop??scrollY});

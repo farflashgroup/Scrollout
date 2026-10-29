@@ -1,4 +1,4 @@
-Scrollout 1.0.4 — test instructions
+Scrollout 1.0.5 — test instructions
 
 No account, credentials, payment, subscription, server connection, or special entitlement is required.
 
@@ -16,7 +16,7 @@ Expected boundaries: chrome:// pages, the Chrome Web Store, some built-in viewer
 
 All capture/edit processing is local. No remote executable code, analytics, screenshots upload endpoint, or backend is used. Help includes version information, optional release-metadata checks from one static HTTPS file, and instructions for updating unpacked installs. Capture information is never included in a release request. The only permissions are activeTab, scripting, storage, and clipboardWrite.
 
-Version 1.0.4 was validated on Windows with Chrome 156.0.8078.47: all 27 unit and 43 browser checks passed, and the full dependency audit found zero known vulnerabilities. New fixtures exercise both-axis main-panel capture, virtualized rows, final tiles, cancellation/restoration, 125% zoom with 2x display scaling and fractional borders/padding, and stable editor fitting. Existing checks cover capture interruptions, storage failures, exports, redaction, message validation, CSP, temporary ownership, and updates. The fixtures contain synthetic data only. The build targets Chrome 120, but these new flows have not been runtime-tested on 120; core version 1.0.2 was historically tested on Chrome 120.0.6099.109. This is internal QA, not an independent security certification.
+Version 1.0.5 was validated on Windows with Chrome 156.0.8078.47: all 31 unit and 46 browser checks passed, and the full dependency audit found zero known vulnerabilities. New regressions verify 125% and 130% vertical panels capture one column, reach final virtualized rows, restore scrolling, preserve at least 550 ms between native captures, and open the editor with background polling suspended. PNG-header parsing and shared bitmap decoding have unit coverage. Existing capture, redaction, export, CSP, ownership, interruption, and update checks also passed. A 130% synthetic-list benchmark used nine captures in 5.174 seconds, versus 18 in 10.804 seconds in 1.0.4; this is a specific rounding-affected case, not a general speed guarantee. The build targets Chrome 120, but these new flows have not been runtime-tested on 120. This is internal QA, not an independent security certification.
 
 Publisher: FarFlash Group Ltd.
 Support: scrollout@farflash.com

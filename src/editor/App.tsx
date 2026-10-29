@@ -38,10 +38,21 @@ export function App() {
   const id=new URLSearchParams(location.search).get('capture');
   const [session,setSession]=useState<CaptureSession|null>(null),[tiles,setTiles]=useState<ScreenshotTile[]>([]),[help,setHelp]=useState(false),[error,setError]=useState('');
   useEffect(()=>{
-    let live=true,loaded=false,initialized=false;
+    let live=true,loaded=false,initialized=false,loading=false,again=false;
+    let timer:ReturnType<typeof setInterval>|undefined;
     async function load(){
-      if(!id||!initialized)return;try{const found=await getSession(id);if(!live)return;if(!found){setError('This temporary capture has expired. Click Scrollout on a website to take a new screenshot.');return}setSession(found);if(found.status==='ready'&&!loaded){const images=await getTiles(id);if(live){loaded=true;setTiles(images)}}}catch(e){if(live)setError(e instanceof Error?e.message:'Could not open the screenshot.')}
+      if(!id||!initialized||!live||loaded)return;
+      if(loading){again=true;return}loading=true;
+      try{do{
+        again=false;const found=await getSession(id);if(!live)return;
+        if(!found){loaded=true;setError('This temporary capture has expired. Click Scrollout on a website to take a new screenshot.');return}
+        setSession(found);
+        if(found.status==='ready'){const images=await getTiles(id);if(live){loaded=true;setTiles(images)}}
+        else if(found.status==='error')loaded=true;
+      }while(again&&live&&!loaded)}catch(e){if(live){loaded=true;setError(e instanceof Error?e.message:'Could not open the screenshot.')}}finally{loading=false;if(loaded)clearInterval(timer)}
     }
+    const onChanged=(message:{type?:string;id?:string},sender:chrome.runtime.MessageSender)=>{if(sender.id===chrome.runtime.id&&message?.type==='SESSION_CHANGED'&&message.id===id)void load()};
+    if(isExtension())chrome.runtime.onMessage.addListener(onChanged);
     if(import.meta.env.DEV&&!isExtension()&&new URLSearchParams(location.search).has('demo')){void import('./demo').then(m=>m.demo()).then(data=>{if(live){setSession(data.session);setTiles(data.tiles)}})}
     else {void (async()=>{
       try{
@@ -53,8 +64,8 @@ export function App() {
         initialized=true;await load();
       }catch(e){if(live)setError(e instanceof Error?e.message:'Could not open the temporary session.')}
     })()}
-    const timer=id?setInterval(()=>{if(!loaded)void load()},500):undefined;
-    return()=>{live=false;if(timer)clearInterval(timer)};
+    timer=id?setInterval(()=>{void load()},500):undefined;
+    return()=>{live=false;clearInterval(timer);if(isExtension())chrome.runtime.onMessage.removeListener(onChanged)};
   },[id]);
   if(session?.status==='ready'&&session.document&&tiles.length)return <Editor initial={session.document} tiles={tiles} captureId={session.id}/>;
   return <div className="app-shell"><header className="app-header"><Brand/><button className="secondary-button" onClick={()=>setHelp(true)}><HelpCircle size={18}/>Help</button></header><main className="waiting-workspace">{error?<div className="empty-state"><h1>This capture is no longer available</h1><p>{error}</p></div>:<Empty session={session}/>}</main><footer className="status-bar"><span>Scrollout</span><span>Screenshots stay on your device</span><span>Every tool is free</span></footer><UpdateNotice openHelp={()=>setHelp(true)}/>{help&&<Help close={()=>setHelp(false)}/>}</div>;
