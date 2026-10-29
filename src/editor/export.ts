@@ -37,5 +37,7 @@ export async function exportImage(doc:EditorDocument,tiles:ScreenshotTile[],form
 }
 export async function copyImage(doc:EditorDocument,tiles:ScreenshotTile[]) {
   if(!canSingleImage(doc.crop.width,doc.crop.height))throw new Error('This screenshot is too large for the clipboard. Export PNG parts or a PDF instead.');
-  const cache=new TileCache();try{const blob=await flatten(doc.crop,doc,tiles,cache);await navigator.clipboard.write([new ClipboardItem({'image/png':blob})])}finally{cache.clear()}
+  const cache=new TileCache(),png=flatten(doc.crop,doc,tiles,cache);
+  // Begin the write during the click; image rendering may outlast activation.
+  try{await navigator.clipboard.write([new ClipboardItem({'image/png':png})])}finally{await Promise.allSettled([png]);cache.clear()}
 }

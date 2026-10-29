@@ -1,14 +1,15 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { PointerEvent as ReactPointerEvent } from 'react';
 import { bounds, clamp, hitTest, intersect, normalizeRect, resizeAnnotation, translate } from '../shared/geometry';
 import type { Annotation, EditorDocument, Point, Rect, ScreenshotTile, Tool } from '../shared/types';
 import { drawAnnotation, renderRegion, TileCache } from './renderer';
+import { ScreenshotMenu } from './ScreenshotMenu';
 
 export interface PaintStyle {color:string;strokeWidth:number;opacity:number;fontSize:number}
 interface Props {
   doc:EditorDocument;tiles:ScreenshotTile[];tool:Tool;style:PaintStyle;zoom:number;
   selected:string|null;onSelect:(id:string|null)=>void;onCommit:(doc:EditorDocument)=>void;
-  crop:Rect|null;onCrop:(r:Rect|null)=>void;onFitZoom:(z:number)=>void;disabled:boolean;
+  crop:Rect|null;onCrop:(r:Rect|null)=>void;onFitZoom:(z:number)=>void;disabled:boolean;onCopy:()=>void;
 }
 interface Gesture {start:Point;original?:Annotation;mode:'new'|'move'|'resize';draft?:Annotation;crop?:Rect}
 export function Viewer(props:Props) {
@@ -16,6 +17,8 @@ export function Viewer(props:Props) {
   const scrollRef=useRef<HTMLDivElement>(null),base=useRef<HTMLCanvasElement>(null),overlay=useRef<HTMLCanvasElement>(null),cache=useRef(new TileCache());
   const [viewport,setViewport]=useState({width:0,height:0}),[scroll,setScroll]=useState({x:0,y:0}),[draft,setDraft]=useState<Annotation|null>(null);
   const [editing,setEditing]=useState<{x:number;y:number;text:string;original?:Annotation}|null>(null);
+  const [menu,setMenu]=useState<Point|null>(null);
+  const closeMenu=useCallback((restoreFocus=false)=>{setMenu(null);if(restoreFocus)overlay.current?.focus({preventScroll:true})},[]);
   const gesture=useRef<Gesture|null>(null),drawVersion=useRef(0),lastZoom=useRef(zoom),didFit=useRef(false);
   const padding=16,spaceWidth=Math.max(viewport.width,doc.crop.width*zoom+96),paperLeft=(spaceWidth-doc.crop.width*zoom)/2;
   const region:Rect={x:doc.crop.x+(scroll.x-paperLeft)/zoom,y:doc.crop.y+(scroll.y-padding)/zoom,width:viewport.width/zoom,height:viewport.height/zoom};
@@ -34,6 +37,7 @@ export function Viewer(props:Props) {
   useEffect(()=>{if(viewport.width>100&&!didFit.current){didFit.current=true;props.onFitZoom(clamp((viewport.width-96)/doc.crop.width,.1,.5))}},[viewport.width,doc.crop.width,props.onFitZoom]);
   useEffect(()=>{if(zoom!==lastZoom.current){const ratio=zoom/lastZoom.current,last=scrollRef.current!;last.scrollTop=Math.max(0,(last.scrollTop+last.clientHeight/2-padding)*ratio-last.clientHeight/2+padding);last.scrollLeft=Math.max(0,(last.scrollLeft+last.clientWidth/2)*ratio-last.clientWidth/2);lastZoom.current=zoom}},[zoom]);
   useEffect(()=>()=>{drawVersion.current++;cache.current.clear()},[]);
+  useEffect(()=>{if(disabled)closeMenu()},[disabled,closeMenu]);
   useEffect(()=>{const cancel=(event:KeyboardEvent)=>{if(event.key==='Escape'){gesture.current=null;setDraft(null);setEditing(null);onCrop(null)}};document.addEventListener('keydown',cancel);return()=>document.removeEventListener('keydown',cancel)},[onCrop]);
   useEffect(()=>{
     if(!viewport.width||!viewport.height)return;
@@ -105,13 +109,27 @@ export function Viewer(props:Props) {
   function doubleClick(event:React.MouseEvent<HTMLCanvasElement>) {
     if(tool!=='select'||disabled)return;const p=point(event),hit=[...doc.annotations].reverse().find(a=>a.kind==='text'&&hitTest(a,p,5/zoom));if(hit)setEditing({x:hit.x,y:hit.y,text:hit.text??'',original:hit});
   }
+  function openMenu(event:React.MouseEvent<HTMLCanvasElement>) {
+    // Chrome's canvas menu would copy only this transparent, viewport-sized
+    // annotation layer. Copy the flattened document through the editor instead.
+    const rect=event.currentTarget.getBoundingClientRect(),x=event.clientX-rect.left,y=event.clientY-rect.top;
+    if(x<paper.x||x>paper.x+paper.width||y<paper.y||y>paper.y+paper.height)return;
+    event.preventDefault();if(!disabled&&!gesture.current)setMenu({x:event.clientX,y:event.clientY});
+  }
+  function menuKey(event:React.KeyboardEvent<HTMLCanvasElement>) {
+    if(event.key!=='ContextMenu'&&!(event.shiftKey&&event.key==='F10'))return;
+    event.preventDefault();event.stopPropagation();if(disabled||gesture.current)return;
+    const rect=event.currentTarget.getBoundingClientRect();
+    setMenu({x:rect.left+(Math.max(0,paper.x)+Math.min(viewport.width,paper.x+paper.width))/2,y:rect.top+(Math.max(0,paper.y)+Math.min(viewport.height,paper.y+paper.height))/2});
+  }
   return <div className="viewport" ref={scrollRef} onScroll={event=>{const x=event.currentTarget.scrollLeft,y=event.currentTarget.scrollTop;setScroll(old=>old.x===x&&old.y===y?old:{x,y})}} aria-label="Screenshot workspace">
     <div className="scroll-space" style={{width:spaceWidth,height:Math.max(viewport.height,doc.crop.height*zoom+padding*2)}}>
       <div className="canvas-stack" style={{width:viewport.width,height:viewport.height}}>
         <canvas ref={base} className="base-canvas" style={{width:viewport.width,height:viewport.height}}/>
-        <canvas ref={overlay} data-testid="editor-canvas" className={`paint-canvas cursor-${tool}`} style={{width:viewport.width,height:viewport.height}} onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={()=>{gesture.current=null;setDraft(null)}} onDoubleClick={doubleClick} role="img" aria-label={`Screenshot of ${doc.sourceHost||doc.filename}. Active tool: ${tool}.`}/>
+        <canvas ref={overlay} data-testid="editor-canvas" className={`paint-canvas cursor-${tool}`} style={{width:viewport.width,height:viewport.height}} onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={()=>{gesture.current=null;setDraft(null)}} onDoubleClick={doubleClick} onContextMenu={openMenu} onKeyDown={menuKey} tabIndex={0} role="img" aria-label={`Screenshot of ${doc.sourceHost||doc.filename}. Active tool: ${tool}.`}/>
         {editing&&<textarea autoFocus aria-label="Annotation text" className="text-editor" value={editing.text} style={{left:(editing.x-region.x)*zoom,top:(editing.y-region.y)*zoom,color:editing.original?.color??style.color,fontSize:(editing.original?.fontSize??style.fontSize)*zoom,width:Math.max(160,Math.min(500,paper.width)),minHeight:50}} onChange={event=>setEditing({...editing,text:event.target.value})} onBlur={finishText} onKeyDown={event=>{event.stopPropagation();if(event.key==='Escape')setEditing(null);if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();finishText()}}}/>} 
       </div>
     </div>
+    {menu&&<ScreenshotMenu point={menu} onClose={closeMenu} onCopy={props.onCopy}/>}
   </div>;
 }

@@ -1,4 +1,4 @@
-Scrollout 1.0.5 — test instructions
+Scrollout 1.0.6 — test instructions
 
 No account, credentials, payment, subscription, server connection, or special entitlement is required.
 
@@ -8,7 +8,7 @@ No account, credentials, payment, subscription, server connection, or special en
 4. Choose Draw or Highlight and drag on the screenshot. Add an arrow, shape, or text. Select an annotation to move/resize it; Delete removes it. Ctrl+Z undoes an edit, Ctrl+Shift+Z redoes it.
 5. Choose Crop, drag a region, then Apply crop or press Enter. Undo restores the previous crop.
 6. Choose Redact and drag a black box. Redaction is fully opaque. Exported pixels are flattened; originals remain available only in the temporary editor for undo.
-7. Open Export and save PNG, JPEG, or PDF. PDF output uses A4 pages. Click Copy image to write PNG to the clipboard. Very large images are split into numbered parts in one ZIP; oversized clipboard copies show an explanatory error.
+7. Open Export and save PNG, JPEG, or PDF. PDF output uses A4 pages. Click Copy image, or right-click the screenshot and choose Copy image, to write the full edited crop as PNG to the clipboard. Very large images are split into numbered parts in one ZIP; oversized clipboard copies show an explanatory error.
 8. Reload an editor to verify the saved temporary document survives. Closing or navigating away from the last editor for that capture removes the temporary capture. Browser restart/extension reload expires old captures; the next worker initialization removes orphan data.
 9. On a long source page, invoke the toolbar a second time or press Escape on the source page to cancel. Switching tabs, manual scrolling, navigation, and viewport changes also cancel and restore the page.
 
@@ -16,7 +16,7 @@ Expected boundaries: chrome:// pages, the Chrome Web Store, some built-in viewer
 
 All capture/edit processing is local. No remote executable code, analytics, screenshots upload endpoint, or backend is used. Help includes version information, optional release-metadata checks from one static HTTPS file, and instructions for updating unpacked installs. Capture information is never included in a release request. The only permissions are activeTab, scripting, storage, and clipboardWrite.
 
-Version 1.0.5 was validated on Windows with Chrome 156.0.8078.47: all 31 unit and 46 browser checks passed, and the full dependency audit found zero known vulnerabilities. New regressions verify 125% and 130% vertical panels capture one column, reach final virtualized rows, restore scrolling, preserve at least 550 ms between native captures, and open the editor with background polling suspended. PNG-header parsing and shared bitmap decoding have unit coverage. Existing capture, redaction, export, CSP, ownership, interruption, and update checks also passed. A 130% synthetic-list benchmark used nine captures in 5.174 seconds, versus 18 in 10.804 seconds in 1.0.4; this is a specific rounding-affected case, not a general speed guarantee. The build targets Chrome 120, but these new flows have not been runtime-tested on 120. This is internal QA, not an independent security certification.
+Version 1.0.6 was validated on Windows with Chromium 153.0.8010.12: all 31 unit and 49 browser checks passed, and the full dependency audit found zero known vulnerabilities. Right-click copy is tested with an actual paste into a separate page, full cropped dimensions, offscreen pixels, annotations, opaque fractional redactions, and pixel equality with PNG export. The unmodified production build passes using its four existing permissions. Menu keyboard controls, outside clicks, scrolling, narrow windows, and oversized-copy errors are covered. Other capture, redaction, export, CSP, ownership, interruption, and update checks pass. Test profiles now load each extension once to avoid a startup/CDP loader race. The build targets Chrome 120, but these new clipboard flows have not been runtime-tested on 120. This is internal QA, not an independent security certification.
 
 Publisher: FarFlash Group Ltd.
 Support: scrollout@farflash.com

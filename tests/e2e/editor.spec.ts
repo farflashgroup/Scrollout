@@ -77,6 +77,7 @@ test('oversized images export complete ZIP parts and explain clipboard limits',a
     tx.objectStore('tiles').put({id:'large-tile',captureId:'oversized-fixture',sequence:0,x:0,y:0,width:19000,height:500,sourceX:0,sourceY:0,sourceWidth:12,sourceHeight:12,blob});await new Promise<void>(resolve=>{tx.oncomplete=()=>resolve()});db.close();
   });
   await page.reload();await expect(page.getByTestId('editor-canvas')).toBeVisible();await page.getByRole('button',{name:'Copy image',exact:true}).click();await expect(page.getByText(/too large for the clipboard/)).toBeVisible();
+  await page.getByRole('button',{name:'Dismiss notification'}).click();await page.getByTestId('editor-canvas').click({button:'right',position:{x:200,y:30}});await page.getByRole('menuitem',{name:'Copy image',exact:true}).click();await expect(page.getByText(/too large for the clipboard/)).toBeVisible();
   await page.getByRole('button',{name:'Export',exact:true}).click();const wait=page.waitForEvent('download');await page.getByRole('menuitem',{name:'PNG image'}).click();const files=unzipSync(new Uint8Array(await fs.readFile((await (await wait).path())!)));const map=JSON.parse(new TextDecoder().decode(files['parts.json']));expect(map.parts).toHaveLength(2);expect(map.parts.map((p:any)=>p.width)).toEqual([16384,2616]);
   const image=await sharp(files['Wide image-002.png']).raw().toBuffer({resolveWithObject:true});const index=(200*image.info.width+716)*image.info.channels;expect([...image.data.subarray(index,index+3)]).toEqual([0,0,0]);
 });

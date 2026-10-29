@@ -1,4 +1,4 @@
-# Submit Scrollout 1.0.5
+# Submit Scrollout 1.0.6
 
 ## Publisher account
 
@@ -10,9 +10,9 @@
 
 ## Store draft
 
-The published Chrome Web Store version is 1.0.2. The recorded submission is version 1.0.4 (Pending review). This kit prepares version 1.0.5; it has not been uploaded or submitted by this generator.
+The published Chrome Web Store version is 1.0.2. The recorded submission is version 1.0.4 (Pending review). This kit prepares version 1.0.6; it has not been uploaded or submitted by this generator.
 
-- [ ] Uploaded release/Scrollout-1.0.5.zip (SHA-256: b5cd5d2e5db941dfa32423cb91632d4de21184ed73d6a746bbdc340e3fbf3aa1).
+- [ ] Uploaded release/Scrollout-1.0.6.zip (SHA-256: d10ada77e88f107318c42daff45a6d4099689117fef41db8c1a37ff2fbe5b2fc).
 - [ ] Saved description, English language, Tools category, homepage and support URLs.
 - [ ] Uploaded icon, five numbered screenshots, small promo and marquee.
 - [ ] Saved single purpose, four permission explanations, no remote code, Website content and Web history disclosures, and privacy URL.

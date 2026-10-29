@@ -4,7 +4,7 @@
 
 Keep Chrome up to date to receive browser security fixes. Chrome 120 is the minimum compatibility version.
 
-1. Extract `Scrollout-1.0.5.zip` into a folder you will keep.
+1. Extract `Scrollout-1.0.6.zip` into a folder you will keep.
 2. Open `chrome://extensions` in desktop Chrome 120 or newer.
 3. Turn on **Developer mode**, click **Load unpacked**, and select the extracted folder containing `manifest.json`.
 4. Pin Scrollout from Chrome's extensions menu.

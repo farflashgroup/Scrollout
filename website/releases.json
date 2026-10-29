@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "1.0.5",
-  "sha256": "b5cd5d2e5db941dfa32423cb91632d4de21184ed73d6a746bbdc340e3fbf3aa1",
+  "version": "1.0.6",
+  "sha256": "d10ada77e88f107318c42daff45a6d4099689117fef41db8c1a37ff2fbe5b2fc",
   "storeVersion": "1.0.2",
   "storeUrl": "https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm"
 }

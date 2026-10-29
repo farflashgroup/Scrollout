@@ -14,3 +14,21 @@ export const browserArgs = ['--headless=new', '--force-device-scale-factor=1'];
 export function captureArgs(scale = 1) {
   return ['--headless=new', `--force-device-scale-factor=${scale}`, '--window-size=916,838'];
 }
+import { chromium } from '@playwright/test';
+
+
+export async function extensionContext(profile:string,extension:string,options:NonNullable<Parameters<typeof chromium.launchPersistentContext>[1]>) {
+  // Loading at startup and then through CDP can race, replacing the worker
+  // after a test has connected to it. Pick one loader per browser context.
+  const context=await chromium.launchPersistentContext(profile,{...options,args:[...(options.args??[]),'--enable-unsafe-extension-debugging']});
+  try {
+    const cdp=await context.browser()!.newBrowserCDPSession();
+    await cdp.send('Extensions.loadUnpacked',{path:extension});
+    return {context,legacyActions:false};
+  } catch(error) {
+    await context.close();
+    if(!/wasn't found|not found|Unknown method/.test(String(error)))throw error;
+    // Chrome 120 predates the CDP loader and still accepts the startup flag.
+    return {context:await chromium.launchPersistentContext(profile,{...options,args:[...(options.args??[]),`--load-extension=${extension}`]}),legacyActions:true};
+  }
+}

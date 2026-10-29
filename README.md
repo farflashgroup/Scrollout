@@ -6,27 +6,27 @@
 
 Scrollout is a free Chrome extension for full-page screenshots and local editing. Draw, crop, highlight, add arrows, shapes or text, cover sensitive areas, and export without a paywall. It has no account, backend, analytics, or upload service.
 
-[Add to Chrome](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm) - [Website](https://scrollout.farflash.com) - [Download v1.0.5](https://github.com/farflashgroup/Scrollout/releases/tag/v1.0.5) - [Guides](https://scrollout.farflash.com/guides/) - [Privacy](https://scrollout.farflash.com/privacy/) - [Press kit](https://scrollout.farflash.com/press/)
+[Add to Chrome](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm) - [Website](https://scrollout.farflash.com) - [Download v1.0.6](https://github.com/farflashgroup/Scrollout/releases/tag/v1.0.6) - [Guides](https://scrollout.farflash.com/guides/) - [Privacy](https://scrollout.farflash.com/privacy/) - [Press kit](https://scrollout.farflash.com/press/)
 
 ![Scrollout’s real screenshot editor with drawing, highlights, arrows, and text](website/assets/press/launch-landscape.png)
 
-Scrollout 1.0.2 is public in the [Chrome Web Store](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm), verified October 28, 2026. The newer 1.0.5 ZIP/source release improves capture speed and editor loading, including the panel-capture and editor-sizing fixes from 1.0.4 and update notices from 1.0.3. Version 1.0.4 was submitted for store review on October 28 with automatic publication after approval. The 1.0.5 download is separate from that pending store update.
+Scrollout 1.0.2 is public in the [Chrome Web Store](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm), verified October 28, 2026. The newer 1.0.6 ZIP/source release fixes right-click Copy image and includes the faster capture, main-panel capture, editor sizing fixes, and update notices from earlier releases. Version 1.0.4 was submitted for store review on October 28 with automatic publication after approval. The 1.0.6 download is separate from that pending store update.
 
 ## Install the ready-to-use extension
 
 For the Chrome-managed installation, [open Scrollout in the Chrome Web Store](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm), choose **Add to Chrome**, and pin Scrollout from the extensions menu.
 
-For the unpacked/source edition, download [Scrollout-1.0.5.zip from the release](https://github.com/farflashgroup/Scrollout/releases/download/v1.0.5/Scrollout-1.0.5.zip) and extract it into a folder you will keep.
+For the unpacked/source edition, download [Scrollout-1.0.6.zip from the release](https://github.com/farflashgroup/Scrollout/releases/download/v1.0.6/Scrollout-1.0.6.zip) and extract it into a folder you will keep.
 
 1. Open `chrome://extensions` in desktop Chrome 120 or newer.
 2. Turn on **Developer mode**.
 3. Choose **Load unpacked** and select the extracted folder (or `dist` if you built from source).
 4. Open Chrome's extensions menu and pin **Scrollout**.
 
-The distribution archive is `release/Scrollout-1.0.5.zip`. Extract it first, then load the extracted folder. Chrome does not install an unpacked extension directly from a ZIP.
+The distribution archive is `release/Scrollout-1.0.6.zip`. Extract it first, then load the extracted folder. Chrome does not install an unpacked extension directly from a ZIP.
 
 The archive includes `INSTALL.md` with loading instructions and a short usage guide, along with the brand guide and third-party notices.
-The separate `release/Scrollout-1.0.5-source.zip` contains the source, tests, and build scripts, without dependencies or generated test reports.
+The separate `release/Scrollout-1.0.6-source.zip` contains the source, tests, and build scripts, without dependencies or generated test reports.
 
 ## Updates
 
@@ -35,6 +35,14 @@ Store installs use Chrome’s automatic update system; enterprise installs follo
 Release checks fetch one static public JSON file at most every 12 hours while an editor is open. They send no screenshots, annotations, page URLs, filenames, cookies, credentials, or request body. Automatic checks can be disabled in Help; Chrome’s own update system is separate. Checks are bounded, cached, and optional; capture/edit/export still work offline. A downloaded Chrome update waits until capture and all extension pages have closed. No remote code is downloaded or executed by the checker.
 
 Future releases: bump the package/manifest version, build and test, then run `node scripts/store-kit.mjs`, `node scripts/website.mjs`, and `node scripts/package-store.mjs`. Publish the matching ZIP and website together. The website generator writes `releases.json` and its CORS/no-store headers from the packaged version and hash. Set the published store URL only after verifying public installation; its version comes from the recorded published/submitted store version, so an unpacked release is never mistaken for an approved store update.
+
+### Right-click copy in 1.0.6
+
+Right-click the screenshot and choose **Copy image**, or focus it and press Shift+F10. This copies the full edited crop at original resolution, including annotations and opaque redactions. The header Copy image button uses the same operation. Chrome's native canvas menu previously copied only the transparent annotation layer in the visible workspace.
+
+The menu supports Escape, Tab, outside clicks, scroll dismissal, and narrow windows. Oversized copies show the same export guidance as the header button. The clipboard write begins during the click while its PNG renders, preserving the user gesture for slower images. Permissions and local processing remain unchanged.
+
+On October 28, 2026, all 31 unit tests and 49 browser tests passed on Windows with Chromium 153.0.8010.12. The regression tests use an actual Ctrl+V paste into a separate page, verify the full 800 × 2,400 pixel cropped image including offscreen pixels and redactions, and compare it pixel-for-pixel with PNG export. The unmodified production build passes the same test with its four declared permissions. Test profiles load extensions once, avoiding a startup/CDP double-load race. These new flows have not been runtime-tested on Chrome 120.
 
 ### Capture speed in 1.0.5
 

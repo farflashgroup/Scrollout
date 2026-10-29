@@ -34,6 +34,6 @@ await fs.mkdir('release',{recursive:true});
 await fs.writeFile(`release/Scrollout-${version}.zip`,zipSync(entries,{level:6}));
 const sourceEntries={};
 for(const dir of ['src','public','scripts','tests','store','website'])await collect(dir,dir+'/',sourceEntries);
-for(const file of ['package.json','package-lock.json','editor.html','tsconfig.json','vite.config.ts','playwright.config.ts','.gitignore','README.md','INSTALL.md','BRAND.md','THIRD_PARTY_NOTICES.md','LICENSE','CONTRIBUTING.md','SECURITY.md'])sourceEntries[file]=new Uint8Array(await fs.readFile(file));
+for(const file of ['package.json','package-lock.json','editor.html','tsconfig.json','vite.config.ts','playwright.config.ts','.gitignore','README.md','INSTALL.md','BRAND.md','THIRD_PARTY_NOTICES.md','LICENSE','CONTRIBUTING.md','SECURITY.md','CHROMEWEBSTORE.md'])sourceEntries[file]=new Uint8Array(await fs.readFile(file));
 await fs.writeFile(`release/Scrollout-${version}-source.zip`,zipSync(sourceEntries,{level:6}));
 console.log(`Ready: dist/, release/Scrollout-${version}.zip, and release/Scrollout-${version}-source.zip`);

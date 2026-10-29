@@ -27,6 +27,6 @@ const distribution=await fs.readFile(`release/Scrollout-${version}.zip`);files[`
 const checksums=Object.entries(files).map(([name,bytes])=>hash(bytes)+'  '+name).join('\n')+'\n';files['SHA256SUMS.txt']=new TextEncoder().encode(checksums);
 const filename=`release/Scrollout-${version}-store-kit.zip`;await fs.writeFile(filename,zipSync(files,{level:6}));
 const source={};for(const dir of ['src','public','scripts','tests','store','website','marketing'])await collect(dir,dir+'/',source);
-for(const file of ['package.json','package-lock.json','editor.html','tsconfig.json','vite.config.ts','playwright.config.ts','.gitignore','README.md','INSTALL.md','BRAND.md','THIRD_PARTY_NOTICES.md','LICENSE','CONTRIBUTING.md','SECURITY.md'])source[file]=new Uint8Array(await fs.readFile(file));
+for(const file of ['package.json','package-lock.json','editor.html','tsconfig.json','vite.config.ts','playwright.config.ts','.gitignore','README.md','INSTALL.md','BRAND.md','THIRD_PARTY_NOTICES.md','LICENSE','CONTRIBUTING.md','SECURITY.md','CHROMEWEBSTORE.md'])source[file]=new Uint8Array(await fs.readFile(file));
 await fs.writeFile(`release/Scrollout-${version}-source.zip`,zipSync(source,{level:6}));
 console.log(JSON.stringify({file:filename,files:Object.keys(files).length,bytes:(await fs.stat(filename)).size,sha256:hash(await fs.readFile(filename)),assets:assets.length,unchangedDistributionSha256:hash(distribution)},null,2));

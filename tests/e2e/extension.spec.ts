@@ -1,9 +1,9 @@
-import { test, expect, chromium, type BrowserContext, type Worker } from '@playwright/test';
+import { test, expect, type BrowserContext, type Worker } from '@playwright/test';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import sharp from 'sharp';
-import { browserOptions, captureArgs, testBaseUrl } from './browser';
+import { browserOptions, captureArgs, testBaseUrl, extensionContext } from './browser';
 
 let context:BrowserContext,worker:Worker,folder:string;
 test.describe('real MV3 capture pipeline',()=>{
@@ -17,12 +17,7 @@ test.describe('real MV3 capture pipeline',()=>{
     manifest.host_permissions=['<all_urls>'];manifest.background.service_worker='test-background.js';await fs.writeFile(path.join(extension,'manifest.json'),JSON.stringify(manifest));
     await fs.writeFile(path.join(extension,'test-events.js'),"const add = chrome.tabs.onUpdated.addListener; globalThis.__scrolloutTabUpdates = []; chrome.tabs.onUpdated.addListener = listener => { globalThis.__scrolloutTabUpdates.push(listener); add.call(chrome.tabs.onUpdated, listener); };");
     await fs.writeFile(path.join(extension,'test-background.js'),"import './test-events.js'; import { start } from './background.js'; globalThis.__scrolloutStart = start;");
-    context=await chromium.launchPersistentContext(path.join(folder,'profile'),{...browserOptions,headless:true,viewport:null,ignoreDefaultArgs:['--disable-extensions'],args:[...captureArgs(testInfo.annotations.some(a=>a.type==='high-dpi')?2:1),'--enable-unsafe-extension-debugging',`--load-extension=${extension}`]});
-    // Branded Chrome 137+ removed startup loading; Chrome 120 predates the CDP
-    // loader. Support both without modifying the extension under test.
-    const cdp=await context.browser()!.newBrowserCDPSession();
-    try{if(!context.serviceWorkers().length)await cdp.send('Extensions.loadUnpacked',{path:extension})}
-    catch(error){if(!/wasn't found|not found|Unknown method/.test(String(error)))throw error}
+    ({context}=await extensionContext(path.join(folder,'profile'),extension,{...browserOptions,headless:true,viewport:null,ignoreDefaultArgs:['--disable-extensions'],args:captureArgs(testInfo.annotations.some(a=>a.type==='high-dpi')?2:1)}));
     worker=context.serviceWorkers()[0]??await context.waitForEvent('serviceworker');
     await expect.poll(async()=>{worker=context.serviceWorkers().find(w=>w.url().endsWith('/test-background.js'))??worker;try{return await worker.evaluate(()=>typeof (globalThis as any).__scrolloutStart==='function')}catch{return false}}).toBe(true);
   });

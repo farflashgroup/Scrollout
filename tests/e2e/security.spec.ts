@@ -1,5 +1,5 @@
-import { test, expect, chromium, type BrowserContext, type Worker, type Page } from '@playwright/test';
-import { browserOptions, captureArgs, testBaseUrl } from './browser';
+import { test, expect, type BrowserContext, type Worker, type Page } from '@playwright/test';
+import { browserOptions, captureArgs, testBaseUrl, extensionContext } from './browser';
 import { randomUUID } from 'node:crypto';
 import { build } from 'esbuild';
 import fs from 'node:fs/promises';
@@ -11,6 +11,7 @@ import http from 'node:http';
 import sharp from 'sharp';
 import type { Socket } from 'node:net';
 import { RELEASE_URL } from '../../src/shared/updates';
+import { seedClipboardScreenshot, verifyContextImagePaste } from './clipboard-fixture';
 
 test('fractional redactions cover every touched output pixel at native and PDF scales',async({page})=>{
   const bundle=await build({entryPoints:['src/editor/renderer.ts'],bundle:true,format:'iife',globalName:'ScrolloutRenderer',write:false});
@@ -98,11 +99,8 @@ test.describe('production extension security and temporary ownership',()=>{
     const native=!!process.env.SCROLLOUT_QA_ACTION_FILE;
     const extensionPath=path.resolve(process.env.SCROLLOUT_QA_EXTENSION_DIR||'dist');
     if(native)test.setTimeout(180000);
-    context=await chromium.launchPersistentContext(profile,{...browserOptions,headless:!native,viewport:null,ignoreDefaultArgs:['--disable-extensions'],args:[...captureArgs().filter(arg=>!native||arg!=='--headless=new'),'--enable-unsafe-extension-debugging',`--load-extension=${extensionPath}`]});
+    ({context,legacyActions}=await extensionContext(profile,extensionPath,{...browserOptions,headless:!native,viewport:null,ignoreDefaultArgs:['--disable-extensions'],args:captureArgs().filter(arg=>!native||arg!=='--headless=new')}));
     await context.route(RELEASE_URL,route=>route.fulfill({contentType:'application/json',headers:{'Access-Control-Allow-Origin':'*'},body:JSON.stringify({schemaVersion:1,version:'1.0.3',sha256:'a'.repeat(64),storeVersion:null,storeUrl:null})}));
-    const cdp=await context.browser()!.newBrowserCDPSession();legacyActions=false;
-    try{if(!context.serviceWorkers().length)({id}=await cdp.send('Extensions.loadUnpacked',{path:extensionPath}))}
-    catch(error){if(!/wasn't found|not found|Unknown method/.test(String(error)))throw error;legacyActions=true}
     worker=context.serviceWorkers()[0]??await context.waitForEvent('serviceworker');
     id=new URL(worker.url()).host;
     await expect.poll(async()=>{worker=context.serviceWorkers().find(w=>w.url().endsWith('/background.js'))??worker;try{return await worker.evaluate(async()=>!!(await chrome.storage.session.get('browserSessionToken')).browserSessionToken)}catch{return false}}).toBe(true);
@@ -159,6 +157,13 @@ test.describe('production extension security and temporary ownership',()=>{
   });
   test('production PNG, JPEG, PDF, and clipboard exports erase covered source data before scaling',async()=>{
     const page=await context.newPage();await page.goto(`chrome-extension://${id}/editor.html?capture=redaction-security`);await verifyRedactedExports(page);
+  });
+  test('right-click clipboard output pastes the complete crop using production permissions',async()=>{
+    const [major,minor,patch]=await worker.evaluate(()=>chrome.runtime.getManifest().version.split('.').map(Number));
+    test.skip(major===1&&minor===0&&patch<6,'This context-menu feature was added after the published 1.0.2 store package.');
+    const page=await context.newPage();await page.goto(`chrome-extension://${id}/editor.html?capture=clipboard-regression`);
+    expect(await page.evaluate(()=>chrome.runtime.getManifest().permissions)).toEqual(['activeTab','scripting','storage','clipboardWrite']);
+    await seedClipboardScreenshot(page);await verifyContextImagePaste(page);
   });
   test('untrusted text stays literal and CSP blocks remote resources and inline scripts',async()=>{
     const page=await seededEditor(),requests:string[]=[];

@@ -41,10 +41,10 @@
     "automaticPublishing": true
   },
   "preparedPackage": {
-    "version": "1.0.5",
-    "archiveSha256": "b5cd5d2e5db941dfa32423cb91632d4de21184ed73d6a746bbdc340e3fbf3aa1",
+    "version": "1.0.6",
+    "archiveSha256": "d10ada77e88f107318c42daff45a6d4099689117fef41db8c1a37ff2fbe5b2fc",
     "preparedOn": "2026-10-28",
-    "status": "Tested performance release for ZIP/source distribution. Not uploaded or submitted; the 1.0.4 store review remains separate."
+    "status": "Tested right-click clipboard fix for ZIP/source distribution. Not uploaded or submitted; the 1.0.4 store review remains separate."
   },
   "publishedVersion": "1.0.2",
   "storeUrl": "https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm",
