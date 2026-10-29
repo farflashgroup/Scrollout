@@ -76,7 +76,7 @@ Screenshots are processed on your device and never upload to us. There is no acc
 Current download and instructions: https://scrollout.farflash.com/
 Source: https://github.com/farflashgroup/Scrollout
 
-Version 1.0.2 is available in the Chrome Web Store. A newer 1.0.6 ZIP/source release is also available, with reliable right-click image copying, main-panel capture, editor sizing fixes, and faster processing. Version 1.0.4 is submitted for store review. It targets desktop Chrome 120+. Captures are temporary, so export before closing the last editor. Small widgets, other panels, and embedded frames retain their visible contents.
+Version 1.0.2 is available in the Chrome Web Store. A newer 1.0.6 ZIP/source release is also available, with reliable right-click image copying, main-panel capture, editor sizing fixes, and faster processing. Version 1.0.6 is submitted for store review with automatic publication enabled. It targets desktop Chrome 120+. Captures are temporary, so export before closing the last editor. Small widgets, other panels, and embedded frames retain their visible contents.
 
 Feedback about the editor and difficult page layouts would help. Please keep private content out of shared examples.
 

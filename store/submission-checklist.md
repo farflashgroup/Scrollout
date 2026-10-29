@@ -10,17 +10,15 @@
 
 ## Store draft
 
-The published Chrome Web Store version is 1.0.2. The recorded submission is version 1.0.4 (Pending review). This kit prepares version 1.0.6; it has not been uploaded or submitted by this generator.
-
-- [ ] Uploaded release/Scrollout-1.0.6.zip (SHA-256: d10ada77e88f107318c42daff45a6d4099689117fef41db8c1a37ff2fbe5b2fc).
-- [ ] Saved description, English language, Tools category, homepage and support URLs.
-- [ ] Uploaded icon, five numbered screenshots, small promo and marquee.
-- [ ] Saved single purpose, four permission explanations, no remote code, Website content and Web history disclosures, and privacy URL.
-- [ ] Publisher authorized and accepted the three limited-use certifications.
+- [x] Uploaded release/Scrollout-1.0.6.zip (SHA-256: d10ada77e88f107318c42daff45a6d4099689117fef41db8c1a37ff2fbe5b2fc).
+- [x] Saved description, English language, Tools category, homepage and support URLs.
+- [x] Uploaded icon, five numbered screenshots, small promo and marquee.
+- [x] Saved single purpose, four permission explanations, no remote code, Website content and Web history disclosures, and privacy URL.
+- [x] Publisher authorized and accepted the three limited-use certifications.
 - [x] Public website, privacy and support URLs work over HTTPS; DNS complete.
-- [ ] Saved reviewer-instructions-short.txt in the dashboard (maximum 500 characters). Full internal test guidance is in reviewer-instructions.txt.
-- [ ] Free of charge, Public, all regions.
-- [ ] Submitted for Google review. Automatic publication: enabled.
+- [x] Saved reviewer-instructions-short.txt in the dashboard (maximum 500 characters). Full internal test guidance is in reviewer-instructions.txt.
+- [x] Free of charge, Public, all regions.
+- [x] Submitted for Google review. Automatic publication: enabled.
 
 Draft: https://chrome.google.com/webstore/devconsole/9406c6b1-b2f4-4509-94ad-0146d2c7884f/ajlhmigmaeodaedpgjmngkchnjoenmkm/edit/listing
 

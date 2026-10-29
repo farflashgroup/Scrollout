@@ -4,7 +4,7 @@ Last updated: October 28, 2026 (America/Toronto).
 
 ## Release and submission status
 
-Prepared source/ZIP version: **1.0.6**. This clipboard fix is not uploaded or submitted to the store. The recorded store submission is 1.0.4, submitted October 28 with automatic publication enabled. The last verified publicly installable store version is 1.0.2. See [submission-state.json](store/submission-state.json) for saved status and archive hashes; preparing a ZIP does not change review or publication status.
+Source/ZIP version: **1.0.6**, also uploaded and submitted for Chrome Web Store review on October 28, 2026. The dashboard confirms **Pending review**, package revision **00004**, with **automatic publication enabled**. This replaces the cancelled 1.0.4 review. The last verified publicly installable store version is 1.0.2. See [submission-state.json](store/submission-state.json) for saved status and archive hashes; preparing a ZIP does not change review or publication status.
 
 ## Store listing
 
@@ -28,7 +28,7 @@ MAKE YOUR EDITS
 Draw, highlight, add arrows, rectangles, ellipses, and text. Move, resize, or delete annotations. Crop to the area you need, adjust color and line width, and undo or redo edits. Use solid black redaction to cover sensitive areas before export.
 
 EXPORT WITHOUT A PAYWALL
-Save PNG, JPEG, or a paginated A4 PDF. Copy a flattened PNG to your clipboard. Very large PNG and JPEG exports are delivered as numbered parts in one ZIP; oversized images must be exported instead of copied.
+Save PNG, JPEG, or a paginated A4 PDF. Copy the full edited screenshot from the toolbar or right-click menu. Very large PNG and JPEG exports are delivered as numbered parts in one ZIP; oversized images must be exported instead of copied.
 
 LOCAL AND TEMPORARY
 Screenshots and edits are processed on your device. Scrollout has no analytics or screenshot upload service. Temporary captures survive editor reloads, but closing or leaving the last editor for a capture deletes its temporary screenshot and edits. Restarting Chrome expires temporary sessions. Download anything you want to keep. Downloaded files and clipboard copies remain under your control.
@@ -92,9 +92,9 @@ Privacy policy: https://scrollout.farflash.com/privacy/
 
 | Version | Date | Changes | Recorded status |
 |---|---|---|---|
-| 1.0.6 | October 28, 2026 | Right-click Copy image copies the entire edited crop; keyboard and narrow-window support | ZIP/source prepared; not submitted |
+| 1.0.6 | October 28, 2026 | Right-click Copy image copies the entire edited crop; keyboard and narrow-window support | Submitted; pending review; automatic publication |
 | 1.0.5 | October 28, 2026 | Faster capture and editor loading | ZIP/source released; not submitted |
-| 1.0.4 | October 28, 2026 | Main scrolling panel capture and stable editor sizing | Submitted; recorded pending review |
+| 1.0.4 | October 28, 2026 | Main scrolling panel capture and stable editor sizing | Review cancelled; superseded by 1.0.6 |
 | 1.0.2 | Previously verified | Initial published release with redaction hardening | Publicly installable at last verification |
 
 ## Review notes and validation

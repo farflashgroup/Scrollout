@@ -1,5 +1,5 @@
 {
-  "version": "1.0.4",
+  "version": "1.0.6",
   "publisherId": "9406c6b1-b2f4-4509-94ad-0146d2c7884f",
   "itemId": "ajlhmigmaeodaedpgjmngkchnjoenmkm",
   "draftUrl": "https://chrome.google.com/webstore/devconsole/9406c6b1-b2f4-4509-94ad-0146d2c7884f/ajlhmigmaeodaedpgjmngkchnjoenmkm/edit/listing",
@@ -19,7 +19,7 @@
   "reviewSubmitted": true,
   "automaticPublishing": true,
   "resubmittedForAutomaticPublication": true,
-  "automaticPublicationConfirmation": "Publish Scrollout automatically after it has passed review was checked in the 1.0.4 submission confirmation",
+  "automaticPublicationConfirmation": "Publish Scrollout automatically after it has passed review was checked in the 1.0.6 submission confirmation",
   "category": "Productivity > Tools",
   "language": "English",
   "price": "Free of charge",
@@ -29,11 +29,11 @@
     "Website content",
     "Web history"
   ],
-  "archiveSha256": "2df1cd5be6e04b79b3460c3941ded4b247875258079b7522aa1e93e72d1d7d8b",
+  "archiveSha256": "d10ada77e88f107318c42daff45a6d4099689117fef41db8c1a37ff2fbe5b2fc",
   "nextPackage": {
-    "version": "1.0.4",
-    "archiveSha256": "2df1cd5be6e04b79b3460c3941ded4b247875258079b7522aa1e93e72d1d7d8b",
-    "status": "Uploaded and submitted for review on October 28, 2026; automatic publication enabled. Version 1.0.2 remains the published store version.",
+    "version": "1.0.6",
+    "archiveSha256": "d10ada77e88f107318c42daff45a6d4099689117fef41db8c1a37ff2fbe5b2fc",
+    "status": "Uploaded and submitted for review on October 28, 2026; automatic publication enabled. This supersedes the cancelled 1.0.4 review. Version 1.0.2 remains the published store version.",
     "preparedOn": "2026-10-28",
     "packageUploaded": true,
     "reviewSubmitted": true,
@@ -43,12 +43,28 @@
   "preparedPackage": {
     "version": "1.0.6",
     "archiveSha256": "d10ada77e88f107318c42daff45a6d4099689117fef41db8c1a37ff2fbe5b2fc",
+    "status": "Uploaded and submitted for review on October 28, 2026; automatic publication enabled. This supersedes the cancelled 1.0.4 review. Version 1.0.2 remains the published store version.",
     "preparedOn": "2026-10-28",
-    "status": "Tested right-click clipboard fix for ZIP/source distribution. Not uploaded or submitted; the 1.0.4 store review remains separate."
+    "packageUploaded": true,
+    "reviewSubmitted": true,
+    "submittedOn": "2026-10-28",
+    "automaticPublishing": true
   },
   "publishedVersion": "1.0.2",
   "storeUrl": "https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm",
   "publicationVerifiedOn": "2026-10-21",
   "publicationVerifiedTimezone": "America/Toronto",
-  "publicInstallControlVerified": true
+  "publicInstallControlVerified": true,
+  "supersededSubmissions": [
+    {
+      "version": "1.0.4",
+      "archiveSha256": "2df1cd5be6e04b79b3460c3941ded4b247875258079b7522aa1e93e72d1d7d8b",
+      "submittedOn": "2026-10-28",
+      "cancelledOn": "2026-10-28",
+      "status": "Review cancelled and replaced by 1.0.6 at the user's request; never recorded as published."
+    }
+  ],
+  "packageRevision": "00004",
+  "submissionVerifiedOn": "2026-10-28",
+  "submissionVerification": "Dashboard confirmed successful submission and Package showed Pending review, draft 1.0.6, revision 00004, with the four original permissions. Published package remains 1.0.2."
 }

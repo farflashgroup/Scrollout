@@ -29,7 +29,7 @@ MAKE YOUR EDITS
 Draw, highlight, add arrows, rectangles, ellipses, and text. Move, resize, or delete annotations. Crop to the area you need, adjust color and line width, and undo or redo edits. Use solid black redaction to cover sensitive areas before export.
 
 EXPORT WITHOUT A PAYWALL
-Save PNG, JPEG, or a paginated A4 PDF. Copy a flattened PNG to your clipboard. Very large PNG and JPEG exports are delivered as numbered parts in one ZIP; oversized images must be exported instead of copied.
+Save PNG, JPEG, or a paginated A4 PDF. Copy the full edited screenshot from the toolbar or right-click menu. Very large PNG and JPEG exports are delivered as numbered parts in one ZIP; oversized images must be exported instead of copied.
 
 LOCAL AND TEMPORARY
 Screenshots and edits are processed on your device. Scrollout has no analytics or screenshot upload service. Temporary captures survive editor reloads, but closing or leaving the last editor for a capture deletes its temporary screenshot and edits. Restarting Chrome expires temporary sessions. Download anything you want to keep. Downloaded files and clipboard copies remain under your control.

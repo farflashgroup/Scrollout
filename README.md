@@ -10,7 +10,7 @@ Scrollout is a free Chrome extension for full-page screenshots and local editing
 
 ![Scrollout’s real screenshot editor with drawing, highlights, arrows, and text](website/assets/press/launch-landscape.png)
 
-Scrollout 1.0.2 is public in the [Chrome Web Store](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm), verified October 28, 2026. The newer 1.0.6 ZIP/source release fixes right-click Copy image and includes the faster capture, main-panel capture, editor sizing fixes, and update notices from earlier releases. Version 1.0.4 was submitted for store review on October 28 with automatic publication after approval. The 1.0.6 download is separate from that pending store update.
+Scrollout 1.0.2 is public in the [Chrome Web Store](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm), verified October 28, 2026. The newer 1.0.6 ZIP/source release fixes right-click Copy image and includes the faster capture, main-panel capture, editor sizing fixes, and update notices from earlier releases. Version 1.0.6 was submitted for store review on October 28 with automatic publication after approval, replacing the earlier 1.0.4 submission. The 1.0.6 ZIP/source download is available while that store update is pending review.
 
 ## Install the ready-to-use extension
 
