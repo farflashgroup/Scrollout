@@ -6,7 +6,7 @@
   "type": "module",
   "description": "Free, private full-page screenshots and editing for Chrome.",
   "engines": {
-    "node": "^24.22.1 || ^26.12.1"
+    "node": "^24.22.3 || ^26.13.1"
   },
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 4173",

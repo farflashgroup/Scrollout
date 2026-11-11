@@ -105,7 +105,7 @@ Image tiles and edits are temporarily held in the extension's IndexedDB. A reloa
 
 ## Development
 
-Use the latest patched Node.js 24 LTS (at least 24.22.1) and npm. Node.js 26.12.1+ in the 26.x line is also supported. `.node-version` selects the 24.x line, and `engine-strict` rejects older, unpatched runtimes during dependency installation.
+Use the latest patched Node.js 24 LTS (at least 24.22.3) and npm. Node.js 26.13.1+ in the 26.x line is also supported. `.node-version` selects the patched 24.22.3 runtime, and `engine-strict` rejects older, unpatched runtimes during dependency installation.
 
 ```sh
 npm ci
