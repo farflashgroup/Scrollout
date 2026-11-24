@@ -1,13 +1,13 @@
 {
   "preparedOn": "2026-10-20",
   "publisher": "FarFlash Group Ltd.",
-  "storeStatus": "Published - public (1.0.2); dashboard and normal public installation page verified",
+  "storeStatus": "Published - public (1.0.6); updated October 29, 2026",
   "channels": [
     {
       "name": "AlternativeTo",
       "url": "https://alternativeto.net/faq/#add-a-new-application",
       "status": "Published; store-link update submitted for moderation",
-      "notes": "Existing entry is now public with Free/MIT/Google Chrome, logo, three screenshots and maker attribution preserved. Submitted the official Chrome Web Store platform link and replaced pending-review availability with store 1.0.2 and newer ZIP/source 1.0.3. Confirmation: Your suggestions have been submitted; an admin will approve them. No duplicate or paid priority.",
+      "notes": "Existing entry is now public with Free/MIT/Google Chrome, logo, three screenshots and maker attribution preserved. Submitted the official Chrome Web Store platform link. Chrome Web Store version 1.0.6 updated October 29, 2026. Confirmation: Your suggestions have been submitted; an admin will approve them. No duplicate or paid priority.",
       "rules": "https://alternativeto.net/about/terms/",
       "checkedOn": "2026-10-21",
       "publicListingUrl": "https://alternativeto.net/software/scrollout/about/",
@@ -39,7 +39,7 @@
       "name": "SaaSHub",
       "url": "https://www.saashub.com/services/submit",
       "status": "Submitted and ownership verified; awaiting approval",
-      "notes": "Existing verified-owner description saved with the official Chrome Web Store URL as a Markdown link, published version 1.0.2 and separate newer ZIP/source 1.0.3. Owner edit form retained the URL and public description displays current availability, but the provider renders the link label without a clickable anchor. The directory entry remains Pending approval. Existing MIT/free pricing, source and guides links, Chrome platform, logo, three screenshots and feature summaries preserved. No paid placement or new terms.",
+      "notes": "Existing verified-owner description saved with the official Chrome Web Store URL as a Markdown link, published version 1.0.6, updated October 29, 2026. Owner edit form retained the URL and public description displays current availability, but the provider renders the link label without a clickable anchor. The directory entry remains Pending approval. Existing MIT/free pricing, source and guides links, Chrome platform, logo, three screenshots and feature summaries preserved. No paid placement or new terms.",
       "rules": "https://www.saashub.com/site/product_verification",
       "checkedOn": "2026-10-21",
       "publicListingUrl": "https://www.saashub.com/scrollout",
@@ -54,7 +54,7 @@
       "name": "LibHunt",
       "url": "https://www.libhunt.com/repo/submit",
       "status": "Published; store-link and license corrections awaiting moderation",
-      "notes": "Existing entry retained. Suggested a two-sentence description with the verified Chrome Web Store 1.0.2 installation URL, preserving official website/docs and canonical MIT License correction. Maker note distinguishes newer ZIP/source 1.0.3. Confirmation: suggested changes will be applied as soon as approved. The public MIT/OSI metadata warning remains a provider error pending correction.",
+      "notes": "Existing entry retained. Suggested a two-sentence description with the verified Chrome Web Store 1.0.6 installation URL, updated October 29, 2026, preserving official website/docs and canonical MIT License correction. Confirmation: suggested changes will be applied as soon as approved. The public MIT/OSI metadata warning remains a provider error pending correction.",
       "rules": "https://www.libhunt.com/site/project_submit",
       "checkedOn": "2026-10-21",
       "publicListingUrl": "https://www.libhunt.com/r/Scrollout",
@@ -67,7 +67,7 @@
       "name": "FossHub",
       "url": "https://www.fosshub.com/contact.html",
       "status": "Suggestion sent; awaiting review",
-      "notes": "Contact form confirmed: Your message has been sent to FOSShub. Maker affiliation, public website, MIT source, version 1.0.2 availability and pending CWS review disclosed.",
+      "notes": "Contact form confirmed: Your message has been sent to FOSShub. Maker affiliation, public website, MIT source, version 1.0.6 availability disclosed, updated October 29, 2026.",
       "rules": "https://www.fosshub.com/faq.html",
       "checkedOn": "2026-10-20",
       "publicListingUrl": null,
@@ -79,7 +79,7 @@
       "name": "DevHunt",
       "url": "https://devhunt.org/login",
       "status": "Public free listing created; promotional launch queued",
-      "notes": "Existing maker comment edited to include verified Chrome Web Store URL, published 1.0.2 and newer ZIP/source 1.0.3. Main description updated with an Add Scrollout to Chrome HTML link; editor retained changes after navigation and the provider confirmed Your launch has been updated successfully. Public main description still showed old pending-review copy on reload, so public propagation is not confirmed. Free listing, logo, screenshots, categories, maker attribution and website preserved. Free promotional slot remains Oct 7, 2031; no paid upgrade. Automatic AI replies remain disabled.",
+      "notes": "Existing maker comment edited to include verified Chrome Web Store URL, published version 1.0.6, updated October 29, 2026. Main description updated with an Add Scrollout to Chrome HTML link; editor retained changes after navigation and the provider confirmed Your launch has been updated successfully. Public main description still showed old pending-review copy on reload, so public propagation is not confirmed. Free listing, logo, screenshots, categories, maker attribution and website preserved. Free promotional slot remains Oct 7, 2031; no paid upgrade. Automatic AI replies remain disabled.",
       "rules": "https://devhunt.org/faq",
       "checkedOn": "2026-10-21",
       "publicListingUrl": "https://devhunt.org/tool/scrollout",
@@ -174,7 +174,7 @@
       "name": "Awesome Screenshot Tools",
       "url": "https://github.com/aitaskorchestra/awesome-screenshot-tools",
       "status": "Pull request open; not merged",
-      "notes": "Existing PR 8 body now links the verified Chrome Web Store 1.0.2 installation and newer ZIP/source 1.0.3; obsolete pending-store statement replaced. The proposed directory entry already links the official website. PR remains open and mergeable; no new PR, comment or outreach.",
+      "notes": "Existing PR 8 body now links the verified Chrome Web Store 1.0.6 installation, updated October 29, 2026. The proposed directory entry already links the official website. PR remains open and mergeable; no new PR, comment or outreach.",
       "rules": "https://github.com/aitaskorchestra/awesome-screenshot-tools/blob/main/CONTRIBUTING.md",
       "checkedOn": "2026-10-21",
       "publicListingUrl": null,
@@ -210,8 +210,8 @@
   "ownedChannels": [
     {
       "name": "GitHub",
-      "status": "Public releases v1.0.2 and v1.0.3 installation notes updated with the verified store link and separate version availability",
-      "url": "https://github.com/farflashgroup/Scrollout/releases/tag/v1.0.3",
+      "status": "Public release v1.0.6 installation notes updated with the verified store link, updated October 29, 2026",
+      "url": "https://github.com/farflashgroup/Scrollout/releases/tag/v1.0.6",
       "updatedOn": "2026-10-21"
     },
     {
@@ -230,7 +230,7 @@
     {
       "name": "Chrome Web Store",
       "status": "Published - public; Add to Chrome verified",
-      "version": "1.0.2",
+      "version": "1.0.6",
       "url": "https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm",
       "verifiedOn": "2026-10-21"
     }
@@ -239,8 +239,8 @@
   "storeUrl": "https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm",
   "rollout": {
     "checkedOn": "2026-10-21",
-    "publishedStoreVersion": "1.0.2",
-    "downloadVersion": "1.0.3",
+    "publishedStoreVersion": "1.0.6",
+    "downloadVersion": "1.0.6",
     "websiteStatus": "Production READY and custom domain verified; desktop/mobile store installation, download and privacy routes passed",
     "accessibleDirectoryUpdatesCompleted": true,
     "providerLimitations": [

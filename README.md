@@ -4,13 +4,13 @@
 
 **Free, open source, and completely local.**
 
-Scrollout is a free Chrome extension for full-page screenshots and local editing. Draw, crop, highlight, add arrows, shapes or text, cover sensitive areas, and export without a paywall. It has no account, backend, analytics, or upload service.
+Scrollout is a free, open-source Chrome extension for full-page screenshots. It's an alternative to [GoFullPage](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm) with drawing, cropping, highlighting, arrows, shapes, text, and redaction tools — all without a paywall. No account, backend, analytics, or upload service.
 
 [Add to Chrome](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm) - [Website](https://scrollout.farflash.com) - [Download v1.0.6](https://github.com/farflashgroup/Scrollout/releases/tag/v1.0.6) - [Guides](https://scrollout.farflash.com/guides/) - [Privacy](https://scrollout.farflash.com/privacy/) - [Press kit](https://scrollout.farflash.com/press/)
 
 ![Scrollout’s real screenshot editor with drawing, highlights, arrows, and text](website/assets/press/launch-landscape.png)
 
-Scrollout 1.0.2 is public in the [Chrome Web Store](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm), verified October 28, 2026. The newer 1.0.6 ZIP/source release fixes right-click Copy image and includes the faster capture, main-panel capture, editor sizing fixes, and update notices from earlier releases. Version 1.0.6 was submitted for store review on October 28 with automatic publication after approval, replacing the earlier 1.0.4 submission. The 1.0.6 ZIP/source download is available while that store update is pending review.
+Scrollout 1.0.6 is public in the [Chrome Web Store](https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm), updated October 29, 2026. It includes the right-click Copy image fix, faster capture, main-panel capture, editor sizing fixes, and update notices from earlier releases. The matching 1.0.6 ZIP and source downloads are on the [v1.0.6 release](https://github.com/farflashgroup/Scrollout/releases/tag/v1.0.6).
 
 ## Install the ready-to-use extension
 
