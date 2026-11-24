@@ -18,7 +18,7 @@ Every tool and export is free. Save PNG, JPEG, or paginated A4 PDF, or copy a fl
 
 The extension has no accounts, analytics, backend, screenshot upload service, subscription, or paid upgrade. Screenshots never upload to FarFlash Group Ltd., its publisher. Captures are temporary: export before closing the last editor. Desktop Chrome 120+; version 1.0.4 adds automatic capture of a large main scrolling panel when the document itself does not scroll. Other panels, small widgets, and embedded frames keep their visible content. Source code is MIT licensed.
 
-Current availability: version 1.0.2 is public in the Chrome Web Store. Version 1.0.3 is also downloadable for unpacked/source installation. Use the website’s current installation instructions.
+Current availability: version 1.0.6 is public in the Chrome Web Store, updated October 29, 2026. The matching 1.0.6 ZIP/source is also available for unpacked/source installation. Use the website’s current installation instructions.
 
 Chrome Web Store: https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm
 
@@ -41,7 +41,7 @@ Title: Scrollout
 
 Tagline: Local full-page screenshots and annotations for Chrome
 
-Description: Capture a long page, point to a UI bug with arrows or text, crop the relevant area, redact private details, and export PNG, JPEG, or A4 PDF. Scrollout is MIT licensed and processes screenshots locally. Every tool is free, with no account or paid upgrade. Desktop Chrome 120+. Captures are temporary; export before closing the editor. Version 1.0.2 is available in the Chrome Web Store; a newer 1.0.3 ZIP/source release is also available.
+Description: Capture a long page, point to a UI bug with arrows or text, crop the relevant area, redact private details, and export PNG, JPEG, or A4 PDF. Scrollout is MIT licensed and processes screenshots locally. Every tool is free, with no account or paid upgrade. Desktop Chrome 120+. Captures are temporary; export before closing the editor. Version 1.0.6 is available in the Chrome Web Store, updated October 29, 2026. Matching ZIP and source downloads are on the v1.0.6 release.
 
 Categories, if offered: Browser Extension, Testing/QA, Open Source, Developer Productivity. Choose the free permanent listing; no weekly launch fee is authorized.
 
@@ -76,7 +76,7 @@ Screenshots are processed on your device and never upload to us. There is no acc
 Current download and instructions: https://scrollout.farflash.com/
 Source: https://github.com/farflashgroup/Scrollout
 
-Version 1.0.2 is available in the Chrome Web Store. A newer 1.0.6 ZIP/source release is also available, with reliable right-click image copying, main-panel capture, editor sizing fixes, and faster processing. Version 1.0.6 is submitted for store review with automatic publication enabled. It targets desktop Chrome 120+. Captures are temporary, so export before closing the last editor. Small widgets, other panels, and embedded frames retain their visible contents.
+Version 1.0.6 is available in the Chrome Web Store, updated October 29, 2026, with reliable right-click image copying, main-panel capture, editor sizing fixes, and faster processing. It targets desktop Chrome 120+. Captures are temporary, so export before closing the last editor. Small widgets, other panels, and embedded frames retain their visible contents.
 
 Feedback about the editor and difficult page layouts would help. Please keep private content out of shared examples.
 
@@ -91,7 +91,7 @@ Free, open source, and completely local. Screenshots never upload to FarFlash.
 Install from the Chrome Web Store: https://chromewebstore.google.com/detail/scrollout/ajlhmigmaeodaedpgjmngkchnjoenmkm
 Source: https://github.com/farflashgroup/Scrollout
 
-The website also provides the 1.0.3 ZIP/source release and manual installation instructions.
+The website also provides the 1.0.6 ZIP/source release and manual installation instructions.
 
 ## Short social post
 
